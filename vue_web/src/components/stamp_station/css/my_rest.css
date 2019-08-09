@@ -1,0 +1,64 @@
+*{
+	font: 14px "Micorsoft Yahei";
+	color:#333;
+	box-sizing: border-box;
+}
+ul{list-style:none;margin:0;padding:0;}
+li{margin-left:0;}
+body{background:#fafafa;margin:0;}
+a{cursor: pointer;text-decoration: none}
+input,button,select{outline:none;border:1px solid #ddd;}
+#section{
+	position:fixed;top:55px;left:100px;
+	border-top:1px solid #ddd;
+}
+.searchBox{
+	display:flex;width:100%;
+	flex-flow:row wrap;
+	line-height:30px;
+}
+/* 搜索框 */
+.searchBox input,
+.searchBox p,
+.searchBox select{
+	margin:0 5px 5px;
+	height:30px;outline:none;
+}
+.searchBox select,
+.searchBox input{
+	border:1px solid #ddd;
+	outline:none;
+	padding:0.35rem;
+	height:30px;width:160px;
+}
+.searchBox select{width:100px;}
+.searchBox a{
+	display:inline-block;height:30px;
+	font-size:15px;text-align:center;
+	background:#258ff1;	
+	color:#fff;line-height:30px;
+	border-radius:3px;
+}
+.searchBox a.popup{
+	width:100px;
+}
+.searchBox a.popup:not([href]):not([tabindex]){
+	color:#fff;
+}
+.searchBox a:hover{
+	color:#fff;text-decoration: none;
+}
+.searchBox .search a{ /* 搜索按钮*/
+	width:30px;
+	background:url("../../assets/search.png") center center no-repeat #258ff1;
+	border-top-left-radius:0;
+	border-bottom-left-radius:0;
+}
+.searchBox .search input{
+	position: relative;top:-10px;
+	margin-right:0;
+} 
+table{
+  border-collapse: collapse;
+  border-spacing: 1px;
+}
