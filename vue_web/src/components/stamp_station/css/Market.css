@@ -1,27 +1,6 @@
-*{
-	font: 13px "Micorsoft Yahei";
-	color:#000;
-	box-sizing: border-box;
-}
-ul{list-style:none;margin:0;padding:0;}
-li{margin-left:0;}
-body{width:1002px;height:100%;margin:0 auto;
-	/* background: url("../../../img/body_bg.gif") repeat top center; */
-	/* overflow: hidden; */
-}
-a{cursor: pointer;text-decoration: none}
-input,button,select{
-	height:26px;
-	padding:0 5px;
-	outline:none;border:1px solid #ddd;
-}
-input[type="text"],
-select{
-	width:160px;
-}
 /* 外边的大边框 */
 #market{
-    width:783px;height:3561px;
+    width:783px;height:100%;
     border:1px solid #ccc;
 }
 /* 下拉选择框 */

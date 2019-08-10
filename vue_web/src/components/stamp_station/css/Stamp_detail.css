@@ -1,0 +1,65 @@
+
+/* 外边的大边框 */
+#Stamp_detail{
+    width:783px;height:100%;
+    border:1px solid #ccc;
+}
+/* 下拉选择框 */
+
+#Stamp_detail .details-title{
+    display:flex;
+    position:relative;
+    padding:30px;
+}
+#Stamp_detail .details-img{
+    width:282px;height:242px;
+    background-color:#ddd;
+    text-align:center;
+}
+#Stamp_detail .details-img img{
+    margin-top:20px;
+}
+#Stamp_detail .details-title ul{
+    padding-left:40px;
+    display:block;
+}
+#Stamp_detail .details-title li{
+    line-height:25px;
+}
+#Stamp_detail .details-car{
+    display:flex;
+    justify-content: space-around;
+    width:364px;height:92px;
+    background-color:#FFF8E7;
+    text-align:center;
+    margin-left:40px;
+}
+#Stamp_detail .details-car img{
+    width:125px;height:34px;
+    margin-top:30px;
+}
+#Stamp_detail .remind{
+    width:308px;
+    margin-top:-10px;
+    margin-left:30px;
+}
+#Stamp_detail .details{
+    width:752px;
+    margin:0 auto;
+}
+#Stamp_detail h1.intr-title{
+    width:752px;height:29px;
+    border:1px solid #e3e3e3;
+    background:url("http://www.51gu.com/cn/images/title_bg03.gif");
+}
+#Stamp_detail .intr-title span{
+    display:block;width:130px;height:29px;
+    color:#fff;
+    line-height:26px;
+    padding-left:30px;
+    font-weight:bold;
+    background: url("http://www.51gu.com/cn/images/title5_h1.jpg") no-repeat left center;
+    
+}
+#Stamp_detail .intr{padding:12px 0 30px 30px;}
+#Stamp_detail .intr li{line-height:26px;}

@@ -1,5 +1,5 @@
 <template>
-<div id="MarketPage">
+<div id="StampinfoPage">
   <!-- 引入顶部子组件：Header -->
   <Hd></Hd>
   <div class="container">
@@ -9,8 +9,8 @@
     </aside>
     <!-- 主体区域 -->
     <section>
-      <!-- 引入中间模块：IndexCen -->
-      <Market></Market>
+      <!-- 引入中间模块 -->
+      <Stampdetail></Stampdetail>
     </section>
   </div>
   <!-- 引入页脚 -->
@@ -19,13 +19,13 @@
 </template>
 <script>
 import Hd from "./Header";
-import Market from "./Market";
 import Marketaside from "./Market_aside";
+import Stampdetail from "./Stamp_detail";
 export default {
   data(){return {
 		
   }},
-  components:{Hd,Market,Marketaside},
+  components:{Hd,Marketaside,Stampdetail},
   methods:{
 		
 	},

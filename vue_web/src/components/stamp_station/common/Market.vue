@@ -17,9 +17,9 @@
 				<li>内容：花卉1全（信销票）</li>
 				<li>价格：￥5.00</li>
 			</ul>
-			<a href="#"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
+			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
 			</a>
-			<a href="#"><img src="http://www.51gu.com/cn/images/but_che.jpg">
+			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_che.jpg">
 			</a>
 		</div>
   </div>

@@ -2,13 +2,17 @@
 <div id="app">
   <!-- 引入顶部子组件：Header -->
   <Hd></Hd>
-  <!-- 主体区域 -->
-  <section>
+  <div class="container">
     <!-- 引入左侧边栏 -->
-    <!-- 引入中间模块：IndexCen -->
-    <IndexCen></IndexCen>
-    <!-- 引入右侧边栏 -->
-  </section>
+    <aside>
+    
+    </aside>
+    <!-- 主体区域 -->
+    <section>
+      <!-- 引入中间模块：IndexCen -->
+      <IndexCen></IndexCen>
+    </section>
+  </div>
   <!-- 引入页脚 -->
   <footer></footer>
 </div>
@@ -31,7 +35,5 @@ export default {
  
 </script>
 <style>
-section{
-  display:flex;
-}
+
 </style>

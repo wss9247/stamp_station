@@ -1,0 +1,28 @@
+/* 左边栏 */
+#market-aside{
+    width:198px;height:800px;
+    border:1px solid #ccc;
+}
+
+.aside-input{text-align:center;background-color:#f3fdfe;}
+/* 所有select和input的样式 */
+.search input,select{
+    margin-bottom:10px;
+    font-size:12px;
+}
+.search select{width:122px;padding:0;}
+/* 搜索框 */
+.search-input{
+    background-image:linear-gradient(to bottom,#1eb4e6 0%,#1297d8 50%);
+    color:#fff;
+    width:61px;
+    height:20px;
+}
+.login input{
+    margin-bottom:10px;
+    font-size:12px;
+}
+.login :nth-child(4) {
+    background-image:url("http://www.51gu.com/cn/images/ico_01.gif")
+}
+
