@@ -5,6 +5,13 @@
 }
 ul{list-style:none;margin:0;padding:0;}
 li{margin-left:0;}
-body{background:#fafafa;margin:0;}
+body{width:1002px;height:100%;margin:0 auto;
+	/* background: url("../../../img/body_bg.gif") repeat top center; */
+	/* overflow: hidden; */
+}
 a{cursor: pointer;text-decoration: none}
-input,button,select{outline:none;border:1px solid #ddd;}
+input,button,select{
+	height:26px;
+	padding:5px;
+	outline:none;border:1px solid #ddd;
+}
