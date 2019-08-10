@@ -1,0 +1,43 @@
+#index_cen{width:581px;}
+/* 搜索 */
+#index_cen .searchbox h3{
+	height:32px;width:100%;line-height:32px;
+	background:url("../../../img/t2_bg.gif") repeat left center;
+}
+#index_cen .searchbox h3 img{margin:6px 5px 0 10px;}
+#index_cen .searchbox h3 span{
+	position: relative;top:-5px;font-weight: bold;
+}
+#index_cen .searchbox table{width:581px;}
+#index_cen .searchbox tr{height:30px;}
+#index_cen .searchbox td:nth-child(2n+1){width:13%; text-align:right;}
+#index_cen .searchbox td:nth-child(4n+1){width:10%;}
+#index_cen .searchbox td:nth-child(2n){width:37%;}
+#index_cen .searchbox tr:first-child td:last-child{text-align:center;}
+#index_cen .searchbox a.searchbtn{color:#00f;}
+#index_cen .searchbox a.searchbtn:hover{text-decoration: underline;}
+#index_cen .searchbox input[type="button"]{
+	background-image:linear-gradient(#4bb6f7,#055bdc);
+	padding:0 10px;
+	color:#fff;
+	border: 1px solid #055bdc;	
+}
+#index_cen .searchbox input[type="text"],
+#index_cen .searchbox select{
+	width:158px;
+}
+/* 新品推荐 */
+#index_cen .newPro
+#index_cen .newPro .buy{
+  display: block;
+  width:107px;height:20px;
+  background:url("http://www.51gu.com/cn/images/but_2.gif") no-repeat center center;
+}
+#index_cen .newPro .desc,
+#index_cen .newPro h4{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

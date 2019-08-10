@@ -1,11 +1,11 @@
 <template>
 <div id="app">
-  <!-- 引入顶部子组件 -->
+  <!-- 引入顶部子组件：Header -->
   <Hd></Hd>
   <!-- 主体区域 -->
   <section>
     <!-- 引入左侧边栏 -->
-    <!-- 引入中间模块 -->
+    <!-- 引入中间模块：IndexCen -->
     <IndexCen></IndexCen>
     <!-- 引入右侧边栏 -->
   </section>
