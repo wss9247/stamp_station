@@ -1,7 +1,7 @@
 <template>
 <div id="StampinfoPage">
   <!-- 引入顶部子组件：Header -->
-  <Hd></Hd>
+  <Hd :mid="current"></Hd>
   <div class="container">
     <!-- 引入左侧边栏 -->
     <aside>
@@ -14,18 +14,19 @@
     </section>
   </div>
   <!-- 引入页脚 -->
-  <footer></footer>
+  <fot></fot>
 </div>
 </template>
 <script>
 import Hd from "./Header";
 import Marketaside from "./Market_aside";
 import Stampdetail from "./Stamp_detail";
+import fot from "./Footer";
 export default {
   data(){return {
-		
+		current:"2",
   }},
-  components:{Hd,Marketaside,Stampdetail},
+  components:{Hd,Marketaside,Stampdetail,fot},
   methods:{
 		
 	},

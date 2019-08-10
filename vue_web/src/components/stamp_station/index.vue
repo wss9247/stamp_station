@@ -1,7 +1,8 @@
 <template>
 <div id="app">
+  
   <!-- 引入顶部子组件：Header -->
-  <Hd></Hd>
+  <Hd :mid="current"></Hd><!--向子组件传递需要选中的menuid-->
   <div class="container">
     <!-- 引入左侧边栏 -->
     <aside>
@@ -14,17 +15,18 @@
     </section>
   </div>
   <!-- 引入页脚 -->
-  <footer></footer>
+  <fot></fot>
 </div>
 </template>
 <script>
 import Hd from "./common/Header";
 import IndexCen from "./common/IndexCen";
+import fot from "./common/Footer";
 export default {
   data(){return {
-		
+		current:"0", // 首页mid=0
   }},
-  components:{Hd,IndexCen},
+  components:{Hd,IndexCen,fot},
   methods:{
 		
 	},
@@ -34,6 +36,6 @@ export default {
 }
  
 </script>
-<style>
+<style scoped>
 
 </style>
