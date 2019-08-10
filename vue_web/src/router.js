@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // 为Exam01.vue组件指定访问路径
 // 1.引入组件
 import index from "./components/stamp_station/index.vue"
+import MarketPage from "./components/stamp_station/common/MarketPage.vue"
 
 Vue.use(Router)
 
@@ -10,5 +11,6 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/index',component:index},
+    {path:'/market',component:MarketPage},
   ]
 })

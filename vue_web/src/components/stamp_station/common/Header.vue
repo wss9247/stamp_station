@@ -59,7 +59,8 @@ export default {
 }
 #header .menus a{
   width:103px;height:37px;
-  color:#fff;line-height:42px;text-align:center;
+  font-size: 14px;
+  color:#fff;line-height:40px;text-align:center;
   margin-top:4px;;
   font-weight:bold;
 
@@ -72,7 +73,7 @@ export default {
 }
 #header .date{
   height:42px;
-  text-align:right;line-height:42px;color:#fff;
+  text-align:right;line-height:48px;color:#fff;
   position: absolute;
   right:20px;top:0;
 }

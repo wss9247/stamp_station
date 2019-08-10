@@ -38,16 +38,16 @@
 	</div>
 	<!-- 新品推荐 -->
 	<div class="newPro">
-		<h3 class="title">新品推荐</h3>
+		<h3 class="title581">新品推荐</h3>
 		<div class="content">
 			<div class="pro" v-for="(stamp,i) of stamps" :key="i">
-				<img :src="stamp.imgurl">
 				<div class="left">
 					<div class="desc">{{stamp.detials}}</div>
 					<h4>{{stamp.stitle}}</h4>
 					<p v-html="`编号：${stamp.snum} 国家：${stamp.nname}`"></p>
 					<a class="buy" href="javascript:;"></a>
 				</div>
+				<img :src="stamp.imgurl">
 			</div>
 		</div>
 	</div>
