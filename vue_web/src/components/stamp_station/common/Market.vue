@@ -9,7 +9,7 @@
 		</h3>
 		<!-- 商品 -->
 		<div id="product">
-			<img class="product-img" src="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg" alt="">
+			<a @click="jumpTo"><img class="product-img" src="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg"></a>			
 			<ul>
 				<li>编号：CZKB815CU</li>
 				<li>国家：捷克</li>
@@ -26,7 +26,13 @@
 </template>
 <script>
 export default {
-	
+	methods:{
+		jumpTo(e){ 
+			
+      this.$router.push("/info");// 点击后跳转到宝贝详情页
+      
+    },
+	},
 }
 </script>
 <style scoped>

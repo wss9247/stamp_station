@@ -1,7 +1,7 @@
 <template>
 <div id="MarketPage">
   <!-- 引入顶部子组件：Header -->
-  <Hd></Hd>
+  <Hd :mid="current"></Hd>
   <div class="container">
     <!-- 引入左侧边栏 -->
     <aside>
@@ -14,18 +14,19 @@
     </section>
   </div>
   <!-- 引入页脚 -->
-  <footer></footer>
+  <fot></fot>
 </div>
 </template>
 <script>
 import Hd from "./Header";
 import Market from "./Market";
 import Marketaside from "./Market_aside";
+import fot from "./Footer";
 export default {
   data(){return {
-		
+		current:"2",
   }},
-  components:{Hd,Market,Marketaside},
+  components:{Hd,Market,Marketaside,fot},
   methods:{
 		
 	},

@@ -1,7 +1,8 @@
 <template>
   <header id="header">
+    <div><img src="../../../img/header.jpg" ></div>
     <div class="menus">
-      <a @click="select" v-for="(m,i) of menus" :key="i" :data-id="i" :class="{active:i==current}">{{m.mtitle}}</a>
+      <a @click="jumpTo" v-for="(m,i) of menus" :key="i" :data-id="i" :data-link="m.murl" :class="{active:i==mid}" >{{m.mtitle}}</a>
     </div>
     <div class="date" v-html="date"></div>
   </header>
@@ -11,9 +12,9 @@ export default {
   data(){return {
     current:0,
     menus:[
-      {"mtitle":"首页","murl":""},
+      {"mtitle":"首页","murl":"/index"},
       {"mtitle":"用户专区","murl":""},
-      {"mtitle":"网上超市","murl":""},
+      {"mtitle":"网上超市","murl":"/market"},
       {"mtitle":"电子目录","murl":""},
       {"mtitle":"帮助中心","murl":""},
       {"mtitle":"联系我们","murl":""}
@@ -22,9 +23,9 @@ export default {
   methods:{
     select(e){
       this.current=e.target.dataset.id;
-      console.log(this.current);
     }
   },
+  props:["mid"],// 从父组件的mid属性中拿到mid
   computed:{
     date(){
       var today=new Date();
@@ -42,8 +43,13 @@ export default {
       
     }
   },
+  methods:{    
+    jumpTo(e){ 
+      var url=e.target.dataset.link;
+      this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
+    },
+  },
   mounted(){
-    
   }
 }
 </script>
@@ -51,11 +57,13 @@ export default {
 #header{
   position: relative;
   width:100%;
-  height:42px;
-  background: url("../../../img/nav_bg.jpg") repeat top center;
+  height:201px;
 }
+#header div>img{display:block;}
 #header .menus{
-  display:flex;margin-left:20px;
+  width:100%;
+  display:flex;padding-left:20px;
+  background: url("../../../img/nav_bg.jpg") repeat top center;
 }
 #header .menus a{
   width:103px;height:37px;
@@ -75,7 +83,7 @@ export default {
   height:42px;
   text-align:right;line-height:48px;color:#fff;
   position: absolute;
-  right:20px;top:0;
+  right:20px;top:159px;
 }
 /* #header .menus a + a:before{
   content:"";
