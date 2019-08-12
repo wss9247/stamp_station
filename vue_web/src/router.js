@@ -5,12 +5,16 @@ import Router from 'vue-router'
 import index from "./components/stamp_station/index.vue"
 import MarketPage from "./components/stamp_station/common/MarketPage.vue"
 import StampinfoPage from "./components/stamp_station/common/StampinfoPage.vue"
+import Aside from "./components/stamp_station/common/Aside.vue"
+import Right from "./components/stamp_station/common/Right.vue"
 
 Vue.use(Router)
 
 // 2.为组件执行访问路径 /Exam01 
 export default new Router({
   routes: [
+    {path:'/right',component:Right},
+    {path:'/aside',component:Aside},
     {path:'/index',component:index},
     {path:'/market',component:MarketPage},
     {path:'/info',component:StampinfoPage},
