@@ -15,8 +15,12 @@ create table stamp_details(
  price DECIMAL(7,2) comment "售价",
  imgurl VARCHAR(256) comment "图片地址",
  detials VARCHAR(256) comment "详细介绍", 
- kid VARCHAR(128) comment " 种类ID，关联表：kinds"
+ kid VARCHAR(128) comment " 种类ID，关联表：kinds",
+ kname VARCHAR(300) comment " 种类名称，关联表：kinds",
+ subid INT comment " 专题ID，关联表：subjects",
+ sub_name VARCHAR(300) comment " 专题名称，关联表：subjects",
 );
+
 -- 国家数据表
 create table nations(
  nid INT PRIMARY KEY AUTO_INCREMENT comment "国家ID",
