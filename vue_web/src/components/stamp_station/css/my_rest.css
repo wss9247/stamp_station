@@ -18,7 +18,9 @@ body{width:1002px;height:100%;margin:0 auto;
 }
 /* 中间区域 */
 section{
-  width:783px;
+	width:783px;
+	display:flex;
+	justify-content: space-between;
 }
 /* 侧边栏 */
 aside{

@@ -1,5 +1,5 @@
 <template>
-<div id="index_cen">
+<div id="index_cen" >
 	<!-- 搜索 -->
 	<div class="searchbox">
 		<h3 class="searTitle"><img src="../../../img/search2.png"><span>邮品搜索</span></h3>
@@ -41,7 +41,7 @@
 		<h3 class="title581">新品推荐 <a @click="market">最新行情,最新邮品！</a></h3>
 		<div class="content">
 			<!-- 查询4个产品信息 -->
-			<div class="pro" v-for="(stamp,i) of stamps" :key="i">
+			<div class="pro" v-for="(stamp,i) of stamps1" :key="i">
 				<div class="left">
 					<div class="desc"><a href="">{{stamp.detials}}</a></div>
 					<h4><a href="">{{stamp.stitle}}</a></h4>
@@ -52,7 +52,7 @@
 			</div>
 			<!-- 一行显示3个产品 -->
 			<div class="pro last">
-				<div class="list" v-for="(stamp,i) of stamps" :key="i">
+				<div class="list" v-for="(stamp,i) of stamps2" :key="i">
 					<div class="img" :style="`background-image: url('${stamp.imgurl}');`"></div>
 					<h4><a href="">{{stamp.stitle}}</a></h4>
 					<p v-html="`编号：${stamp.snum}`"></p>
@@ -79,18 +79,33 @@ import Classfication from "./Classfication.vue";
 export default {
   data(){return {
 		keywords:"",
-		stamps:[
-			{"sid":1,"detials":"摩纳哥邮政于2017年7月13日发行一枚小型张，以纪念在该国举行的以故宫为主题的大型展览。这个名为《紫禁城在摩纳哥：中国帝国宫廷生活》的大型展览于7月14日至9月10日在摩纳哥格里马尔迪会议中心举行。本次展览由该中心与北京故宫博物院合作举办，展出的250余件展品包括书法、绘画、瓷器、家具、玉器、仪式用品等，其中约200件来自北京故宫博物院，其余为10余家欧美博物馆馆藏。此次展览选择以清朝为主题，是因为清朝是中国封建社会最强盛的王朝之一，而康熙、雍正和乾隆3位皇帝将清朝推向经济、军事、艺术和文化的鼎盛时期，他们也因此成为展览的重点。这也是该中心继2001年《中国秦始皇》展之后，第二次举办中国主题展览。在此之后，摩纳哥将于2018年9月在北京故宫博物院举办摩纳哥王室主题展。活动主办方希望通过互办展览促进两国民众对彼此历史的了解，增进双方的文化交流。格里马尔迪会议中心落成于2000年，主要用于举办展会和音乐会等文化活动，曾举办《中国秦始皇》、《非洲艺术》、《埃及皇后》及《欧洲王室》等大型展览，是摩纳哥重要的文化活动场所之一","stitle":"紫禁城在摩纳哥：中国帝国宫廷生活大型展览，敞开的紫禁城大门","snum":"MNCB729SS","nname":"摩纳哥","imgurl":"http://www.51gu.com/shop/asp/stpimg/MNC/MNCB729SS3.jpg"},
-			{"sid":2,"detials":"摩纳哥邮政于2017年7月13日发行一枚小型张","stitle":"紫禁城在摩纳哥：中国帝国宫廷生活大型展览，敞开的紫禁城大门","snum":"MNCB729SS","nname":"摩纳哥","imgurl":"http://www.51gu.com/shop/asp/stpimg/MNC/MNCB729SS3.jpg"},
-		],
+		stamps1:[],
+		stamps2:[],
 	}},
 	methods:{
 		market(){
 			this.$router.push("/market");
-		}
+		},
+		
 	},
 	components: {Classfication,},
+	created(){
+		// 页面加载后
+		this.axios.get("newPro").then(res=>{
+			console.log(res);
+			var stamps=res.data.data;  //将从服务器端获取到的数据提取出来，保存到stamps变量中
+			// console.log(this.stamps);
+			if(stamps.length>4){
+				this.stamps1=stamps.slice(0,4);
+				this.stamps2=stamps.slice(4);
+			}
+		}).catch(err=>{console.log("出错啦")});
+	},
+	mounted () {
+		
+	},
 }
+
 </script>
 <style scoped>
 @import "../css/IndexCen.css";

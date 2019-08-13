@@ -89,6 +89,7 @@
 #index_cen .newPro .pro.last{
   height:226px;
   justify-content: space-around;
+  padding:15px 0 10px;
 }
 #index_cen .newPro .list{
   width:160px;

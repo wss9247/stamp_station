@@ -12,6 +12,7 @@
     <section>
       <!-- 引入中间模块：IndexCen -->
       <IndexCen></IndexCen>
+      <!-- 引入右侧边栏 -->
     </section>
   </div>
   <!-- 引入页脚 -->

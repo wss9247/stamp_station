@@ -18,9 +18,9 @@ Vue.use(MintUI)
 // 4.将字体图标引入到当前的项目中
 import "./font/iconfont.css"
 // 5.引入axios第三方ajax模块
-import axios from 'axios';
-// 6.配置axios基础路径
-axios.defaults.baseURL="http://127.0.0.1:5000";
+import axios from 'axios'
+// 6.配置axios基础路径，用于请求服务器端数据
+axios.defaults.baseURL="http://176.204.15.14:5000/"
 // 7.配置axios 保存session信息
 axios.defaults.withCredentials=true;
 // 8.将axios注册vue实例中。由于axios不支持use()，所以只能将实例添加到vue的原型上
@@ -54,9 +54,8 @@ import './components/stamp_station/css/my_rest.css'  // 加载自定义的全局
 import './components/stamp_station/js/jquery-3.2.1.js'
 
 //31: 设置请求的根路径 
-//Vue.http.options.root = "http://127.0.0.1/vue_ser/";
+// Vue.http.options.root = "http://127.0.0.1/vue_ser/";
 //32:全局设置post 时候表音的数据组织格式为 application/x-www-form-urlencoded
-//Vue.http.options.emulateJSON = true;
 // 导入 MUI 的样式表， 和 Bootstrap 用法没有差别
 // import './lib/mui/css/mui.css'
 // 导入 MUI 的样式表，扩展图标样式，购物车图标
