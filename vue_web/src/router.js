@@ -7,6 +7,7 @@ import MarketPage from "./components/stamp_station/common/MarketPage.vue"
 import StampinfoPage from "./components/stamp_station/common/StampinfoPage.vue"
 import Aside from "./components/stamp_station/common/Aside.vue"
 import Right from "./components/stamp_station/common/Right.vue"
+import Member from "./components/stamp_station/common/Member.vue"
 
 Vue.use(Router)
 
@@ -18,5 +19,6 @@ export default new Router({
     {path:'/index',component:index},
     {path:'/market',component:MarketPage},
     {path:'/info',component:StampinfoPage},
+    {path:'/Member',component:Member},
   ]
 })
