@@ -1,20 +1,21 @@
 <template>
 <!-- 分类查询：世界邮票，专题邮票 -->
   <div id="Classfication">
-    <ul>
-      <li>
+    <ul  :nareas="nareas">
+      <li v-for="(a,i) of nareas" :key="i">
         <div class="row">
-          <a>亚洲</a><a>非洲</a>
+          <a>{{a.nareas}}</a>
+          <a >中国</a><a >中国香港</a>
         </div>
         <a class="more">更多>></a>
       </li>
-      <li><a>亚洲</a></li>
+     
     </ul>
   </div>
 </template>
 <script>
 export default {
-  
+  props:["nareas"]
 }
 </script>
 <style scoped>

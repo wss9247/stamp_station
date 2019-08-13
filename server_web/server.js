@@ -4,7 +4,7 @@ const cors=require("cors");
 const session=require("express-session");
 
 // 引入用户信息路由
-const newPro=require('./routers/newPro.js');
+const IndexCen=require('./routers/IndexCen.js');
 
 var server=express();
 server.listen(5000);
@@ -29,5 +29,5 @@ server.use(session({
 
 
 // 使用路由器
-server.use('',newPro);
+server.use('',IndexCen);
 

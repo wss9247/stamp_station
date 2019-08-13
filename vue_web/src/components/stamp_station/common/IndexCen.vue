@@ -43,8 +43,8 @@
 			<!-- 查询4个产品信息 -->
 			<div class="pro" v-for="(stamp,i) of stamps1" :key="i">
 				<div class="left">
-					<div class="desc"><a href="">{{stamp.detials}}</a></div>
-					<h4><a href="">{{stamp.stitle}}</a></h4>
+					<div class="desc"><a @click="infoId" :data-sid="stamp.sid">{{stamp.detials}}</a></div>
+					<h4><a @click="infoId" :data-sid="stamp.sid">{{stamp.stitle}}</a></h4>
 					<p v-html="`编号：${stamp.snum} 国家：${stamp.nname}`"></p>
 					<a class="buy" href="javascript:;"></a>
 				</div>
@@ -54,7 +54,7 @@
 			<div class="pro last">
 				<div class="list" v-for="(stamp,i) of stamps2" :key="i">
 					<div class="img" :style="`background-image: url('${stamp.imgurl}');`"></div>
-					<h4><a href="">{{stamp.stitle}}</a></h4>
+					<h4><a @click="infoId" :data-sid="stamp.sid">{{stamp.stitle}}</a></h4>
 					<p v-html="`编号：${stamp.snum}`"></p>
 					<p v-html="`国家：${stamp.nname}`"></p>
 				</div>
@@ -64,7 +64,7 @@
 	<!-- 世界邮票 -->
 	<div class="areaStamp">
 		<h3 class="title581">世界邮票 <a @click="market">更多>></a></h3>
-		<Classfication></Classfication>
+		<Classfication :nareas="nareas"></Classfication>
 	</div>
 	
 	<!-- 专题邮票 -->
@@ -81,18 +81,26 @@ export default {
 		keywords:"",
 		stamps1:[],
 		stamps2:[],
+		nareas:[],
 	}},
 	methods:{
-		market(){
+		market(){//跳转到网上超市
 			this.$router.push("/market");
 		},
+		infoId(e){//跳转到商品详情页
+			var sid=e.target.dataset.sid;
+			var url="info";
+			// this.axios.get("info",{params:{sid}}).then(res=>{
+			
+				
+			// }).catch(err=>{console.log("出错啦")});
+		}
 		
 	},
 	components: {Classfication,},
 	created(){
-		// 页面加载后
+		// 新品推荐，自动获取产品
 		this.axios.get("newPro").then(res=>{
-			console.log(res);
 			var stamps=res.data.data;  //将从服务器端获取到的数据提取出来，保存到stamps变量中
 			// console.log(this.stamps);
 			if(stamps.length>4){
@@ -100,9 +108,19 @@ export default {
 				this.stamps2=stamps.slice(4);
 			}
 		}).catch(err=>{console.log("出错啦")});
+		// 世界邮票，自定获取地域
+		this.axios.get("nations").then(res=>{
+			this.nareas=res.data.data;
+			var nareaStr="";
+			for(var area of this.nareas){
+				nareaStr+=area.nareas+",";
+			}
+			nareaStr.slice(0,nareaStr.length-1);
+			console.log(nareaStr);
+		}).catch(err=>{console.log("出错啦")});
 	},
 	mounted () {
-		
+	
 	},
 }
 
