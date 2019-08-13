@@ -64,24 +64,28 @@
 	<!-- 世界邮票 -->
 	<div class="areaStamp">
 		<h3 class="title581">世界邮票 <a @click="market">更多>></a></h3>
-		<Classfication :nareas="nareas"></Classfication>
+		<Classfication1 :cats="nareas" :state="state"></Classfication1>
 	</div>
 	
 	<!-- 专题邮票 -->
 	<div class="kinsStamp">
 		<h3 class="title581">专题邮票 <a @click="market">更多>></a></h3>
-		<Classfication></Classfication>
+		<Classfication2 :cats="subjects" :state="sub"></Classfication2>
 	</div>
 </div> 
 </template>
 <script>
-import Classfication from "./Classfication.vue";
+import Classfication1 from "./Classfication1.vue";
+import Classfication2 from "./Classfication2.vue";
 export default {
   data(){return {
 		keywords:"",
 		stamps1:[],
 		stamps2:[],
 		nareas:[],
+		state:[],
+		subjects:[],
+		sub:[],
 	}},
 	methods:{
 		market(){//跳转到网上超市
@@ -94,40 +98,87 @@ export default {
 			
 				
 			// }).catch(err=>{console.log("出错啦")});
-		}
-		
+		},
 	},
-	components: {Classfication,},
+	components: {Classfication1,Classfication2},
 	created(){
 		// 新品推荐，自动获取产品
 		this.axios.get("newPro").then(res=>{
 			var stamps=res.data.data;  //将从服务器端获取到的数据提取出来，保存到stamps变量中
-			// console.log(this.stamps);
 			if(stamps.length>4){
 				this.stamps1=stamps.slice(0,4);
 				this.stamps2=stamps.slice(4);
 			}
 		});
-		// 世界邮票，自定获取地域
+		// 世界邮票，自动获取地域
 		this.axios.get("nations").then(res=>{
 			this.nareas=res.data.data;
-			var Str="";
-			for(var area of this.nareas){
-				Str+=area.nareas+",";
+			// 将得到的地域数组，拼接为特殊格式
+			var cats=this.nareas;
+			var str="";
+			for(var cat of cats){
+				str+="'"+cat.nareas+"',";
 			}
-			var nareaStr=Str.slice(0,Str.length-1);
-			// 世界邮票，自定获取国家
-			this.axios.get("country",{params:{nareas:nareaStr}}).then(res=>{
-				
-				console.log(res);
-			});
-
+			// 通过得到的地域名称，获取所有的国家
+			var nareas=str.slice(0,str.length-1);
+			this.axios.get("country",{params:{nareas}}).then(res=>{
+				var countrys=res.data.data;
+				// 遍历对齐地域和国家数组中的nareas属性，将相同属性的子数组并在整理归类
+				var cc=[];
+				for(var i=0;i<cats.length;i++){
+					cc.push([]);
+					var m=0;
+					for(var j=0;j<countrys.length;j++){
+						if(m<10){  // 一个地域最多显示10个国家
+							if(cats[i].nareas==countrys[j].nareas){
+								cc[i][m]=countrys[j];
+								m++;
+							}
+						}
+					}
+				}	
+				this.state=cc;		
+			})
 		});
 		
+		// 专题邮票，自动获取专题
+		this.axios.get("subject").then(res=>{
+			this.subjects=res.data.data;
+			// 将得到的专题大类别，拼接为特殊格式
+			var cats=this.subjects;
+			var str="";
+			for(var cat of cats){
+				str+="'"+cat["sub_cat"]+"',";
+			}
+
+			// 通过得到的专题大类别，获取专题项目
+			var subjects=str.slice(0,str.length-1);
+			console.log(subjects)
+			this.axios.get("sub",{params:{subjects}}).then(res=>{
+				var subs=res.data.data;
+				// 遍历，将相同属性的子数组并在整理归类
+				var cc=[];
+				for(var i=0;i<cats.length;i++){
+					cc.push([]);
+					var m=0;
+					for(var j=0;j<subs.length;j++){
+						if(m<10){  // 一个地域最多显示10个国家
+							if(cats[i]["sub_cat"]==subs[j]["sub_cat"]){
+								cc[i][m]=subs[j];
+								m++;
+							}
+						}
+					}
+				}	
+				this.sub=cc;	
+				// console.log(this.sub)	
+			});
+		});
+	
 	},
 	mounted () {
 	
-	},
+	}
 }
 
 </script>
