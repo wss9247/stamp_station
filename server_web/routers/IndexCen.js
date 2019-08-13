@@ -24,14 +24,13 @@ router.get("/nations",(req,res)=>{
     res.send({code:1,msg:"查询数据成功",data:result});
   });
 })
-// router.get("/country",(req,res)=>{
-//   var sql2="select nid,nname,nareas from nations where nareas in(?)";
-//   pool.query(sql2,[area.nareas],(err,result)=>{
-//     count.push(result);
-//     console.log("111111111111111111111111111111111111111111");
-//     console.log(result);
-//   })
-// })
+router.get("/country",(req,res)=>{
+  var obj=req.nareas;
+  var sql2="select nid,nname,nareas from nations where nareas in(?)";
+  pool.query(sql2,[obj],(err,result)=>{
+    console.log(result);
+  })
+})
 // 专题邮票分类
 
 

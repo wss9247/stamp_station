@@ -107,17 +107,23 @@ export default {
 				this.stamps1=stamps.slice(0,4);
 				this.stamps2=stamps.slice(4);
 			}
-		}).catch(err=>{console.log("出错啦")});
+		});
 		// 世界邮票，自定获取地域
 		this.axios.get("nations").then(res=>{
 			this.nareas=res.data.data;
-			var nareaStr="";
+			var Str="";
 			for(var area of this.nareas){
-				nareaStr+=area.nareas+",";
+				Str+=area.nareas+",";
 			}
-			nareaStr.slice(0,nareaStr.length-1);
-			console.log(nareaStr);
-		}).catch(err=>{console.log("出错啦")});
+			var nareaStr=Str.slice(0,Str.length-1);
+			// 世界邮票，自定获取国家
+			this.axios.get("country",{params:{nareas:nareaStr}}).then(res=>{
+				
+				console.log(res);
+			});
+
+		});
+		
 	},
 	mounted () {
 	
