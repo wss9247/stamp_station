@@ -32,8 +32,8 @@
 		</h1>
 		<h2 class="title-1">相关推荐</h2>
 		<ul class="intr">
-			<li>相关专题：花卉  </li>
-			<li>相关国家：捷克</li>
+			<li>相关专题：<a v-for="(s,i) of subs" :key="i">{{s.sub_name}} </a></li>
+			<li  v-html="`相关国家：${pro.nname}`"></li>
 			<li>相关物品：暂时没有相关物品</li>
 		</ul>
 	</div>
@@ -43,15 +43,21 @@
 export default {
 	data(){return {
 		pro:[],
+		subs:[],
 	}},
   created(){
 		// 获取当前页面的地址，如：http://127.0.0.1:8080/#/info?sid=9
 		var url=window.location.href;
 		// 提取地址中的sid值
-		var sid=url.split("?")[1].split("=")[1];
-		console.log(sid)
+		// var sid=url.split("?")[1].split("=")[1];
+		var sid=url.split("=")[1];
+		// 获取商品详细信息
 		this.axios.get("info",{params:{sid}}).then(res=>{
 			this.pro=res.data.data[0];
+		})
+		// 获取商品的相关专题
+		this.axios.get("infoSub",{params:{sid}}).then(res=>{
+			this.subs=res.data.data;
 		})
 	},
 }

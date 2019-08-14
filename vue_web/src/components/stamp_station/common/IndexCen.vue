@@ -113,9 +113,7 @@ export default {
 			// 将得到的地域数组，拼接为特殊格式
 			var cats=this.nareas;
 			var str="";
-			for(var cat of cats){
-				str+="'"+cat.nareas+"',";
-			}
+			for(var cat of cats){str+="'"+cat.nareas+"',";}
 			// 通过得到的地域名称，获取所有的国家
 			var nareas=str.slice(0,str.length-1);
 			this.axios.get("country",{params:{nareas}}).then(res=>{
@@ -144,13 +142,9 @@ export default {
 			// 将得到的专题大类别，拼接为特殊格式
 			var cats=this.subjects;
 			var str="";
-			for(var cat of cats){
-				str+="'"+cat["sub_cat"]+"',";
-			}
-
+			for(var cat of cats){str+="'"+cat["sub_cat"]+"',";}
 			// 通过得到的专题大类别，获取专题项目
 			var subjects=str.slice(0,str.length-1);
-			console.log(subjects)
 			this.axios.get("sub",{params:{subjects}}).then(res=>{
 				var subs=res.data.data;
 				// 遍历，将相同属性的子数组并在整理归类
@@ -167,8 +161,7 @@ export default {
 						}
 					}
 				}	
-				this.sub=cc;	
-				// console.log(this.sub)	
+				this.sub=cc;		
 			});
 		});
 	

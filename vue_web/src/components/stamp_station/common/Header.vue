@@ -15,7 +15,7 @@ export default {
       {"mtitle":"首页","murl":"/index"},
       {"mtitle":"用户专区","murl":""},
       {"mtitle":"网上超市","murl":"/market"},
-      {"mtitle":"电子目录","murl":""},
+      {"mtitle":"电子目录","murl":"/book"},
       {"mtitle":"帮助中心","murl":""},
       {"mtitle":"联系我们","murl":""}
     ],
@@ -46,6 +46,7 @@ export default {
   methods:{    
     jumpTo(e){ 
       var url=e.target.dataset.link;
+      console.log(url)
       this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
     },
   },
