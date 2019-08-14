@@ -93,11 +93,8 @@ export default {
 		},
 		infoId(e){//跳转到商品详情页
 			var sid=e.target.dataset.sid;
-			var url="info";
-			// this.axios.get("info",{params:{sid}}).then(res=>{
-			
-				
-			// }).catch(err=>{console.log("出错啦")});
+			var url=`info?sid=${sid}`;
+			this.$router.push(url);
 		},
 	},
 	components: {Classfication1,Classfication2},

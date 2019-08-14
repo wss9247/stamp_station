@@ -3,26 +3,25 @@
 	<h3 class="title2">邮品详情</h3>
 	<div class="details-title">
 		<div class="details-img">
-			<a href="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg">
-				<img src="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg" alt="">
+			<!-- 点击查看图片 -->
+			<a :data-sid="pro.sid" :href="pro.imgurl" target="_blank" :style="`background-image: url('${pro.imgurl}');`">
+				<!-- <img :src="pro.imgurl"> -->
 			</a>
 		</div>
 		<div>
 			<ul>
-				<li>商品名称：花卉1全（信销票）  </li>
-				<li>商品编号：CZKB815CU</li>
-				<li>发行国家：捷克</li>
-				<li>发行时间：2018年06月20日</li>
-				<li>售　　价：￥5.00</li>
-				<li>目录志号：  </li>
+				<li v-html="`商品名称：${pro.stitle}`"></li>
+				<li v-html="`商品编号：${pro.snum}`"></li>
+				<li v-html="`发行国家：${pro.nname}`"></li>
+				<li v-html="`发行时间：${pro.sdate}`">2018年06月20日</li>
+				<li>售　　价：<span v-html="`￥${pro.price}`"></span></li>
+				<li>目录志号：</li>
 			</ul>
 			<div class="details-car">
-				<a href="javascript:;">
-					<img src="http://www.51gu.com/cn/images/b_butsc.jpg" alt="">
-				</a>
-				<a href="javascript:;">
-					<img src="http://www.51gu.com/cn/images/b_but02.jpg" alt="">
-				</a>
+				<!-- 点击将商品加入购物车中 -->
+				<a href="javascript:;"></a>
+				<!-- 点击商品，收藏 -->
+				<a href="javascript:;"></a>
 			</div>
 		</div>
 	</div>
@@ -42,7 +41,19 @@
 </template>
 <script>
 export default {
-    
+	data(){return {
+		pro:[],
+	}},
+  created(){
+		// 获取当前页面的地址，如：http://127.0.0.1:8080/#/info?sid=9
+		var url=window.location.href;
+		// 提取地址中的sid值
+		var sid=url.split("?")[1].split("=")[1];
+		console.log(sid)
+		this.axios.get("info",{params:{sid}}).then(res=>{
+			this.pro=res.data.data[0];
+		})
+	},
 }
 </script>
 <style scoped>

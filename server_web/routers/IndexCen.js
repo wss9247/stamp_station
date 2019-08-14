@@ -46,16 +46,22 @@ router.get("/subject",(req,res)=>{
   // 先查询有子项的专题大类别，并取前5个数据
   var sql1="select sub_cat from subjects GROUP BY sub_cat HAVING count(sub_name)>1 order by sub_cat limit 0,5";
   pool.query(sql1,(err,result)=>{
-    res.send({code:1,msg:"查询数据成功",data:result});
+    if(result!=undefined){
+      res.send({code:1,msg:"查询数据成功",data:result});
+    }else{
+      res.send({code:-1,msg:"未查询到对应数据"});
+    }
   });
 })
 router.get("/sub",(req,res)=>{
   var obj=req.query.subjects;
   var sql2=`select subid,sub_name,sub_cat from subjects where sub_cat in(${obj}) order by sub_cat`;  
   pool.query(sql2,(err,result)=>{
-    console.log(result)
-    res.send({code:1,msg:"查询数据成功",data:result});
-            
+    if(result!=undefined){
+      res.send({code:1,msg:"查询数据成功",data:result});
+    }else{
+      res.send({code:-1,msg:"未查询到对应数据"});
+    }
   })
 })
 module.exports = router;

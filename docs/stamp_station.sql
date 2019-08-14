@@ -17,8 +17,8 @@ create table stamp_details(
  detials VARCHAR(256) comment "详细介绍", 
  kid VARCHAR(128) comment " 种类ID，关联表：kinds",
  kname VARCHAR(300) comment " 种类名称，关联表：kinds",
- subid INT comment " 专题ID，关联表：subjects",
- sub_name VARCHAR(300) comment " 专题名称，关联表：subjects",
+ --subid INT comment " 专题ID，关联表：subjects",
+ --sub_name VARCHAR(300) comment " 专题名称，关联表：subjects",
 );
 
 -- 国家数据表
@@ -38,6 +38,7 @@ create table stamp_sub_rela(
  relaid INT PRIMARY KEY AUTO_INCREMENT comment "关联ID", 
  sid INT comment "邮票ID，关联表：stamp_details",
  subid INT comment "专题ID，关联表：subjects"
+ sub_name VARCHAR(128) comment "专题名称，关联表：subjects"
 );
 -- 邮票种类数据表 
 create table kinds(

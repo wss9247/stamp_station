@@ -13,8 +13,18 @@
 }
 #Stamp_detail .details-img{
     width:282px;height:242px;
-    background-color:#ddd;
     text-align:center;
+}
+
+#Stamp_detail .details-img a{
+    display:block;
+    width:282px;height:242px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color:#ddd;
+
+
 }
 #Stamp_detail .details-img img{
     margin-top:20px;
@@ -34,10 +44,19 @@
     text-align:center;
     margin-left:40px;
 }
-#Stamp_detail .details-car img{
+
+#Stamp_detail .details-car a{
+    display:inline-block;
     width:125px;height:34px;
-    margin-top:30px;
+    margin-top:30px;   
+    background:url("http://www.51gu.com/cn/images/b_butsc.jpg") no-repeat center;
 }
+#Stamp_detail .details-car a:last-child{
+    background:url("http://www.51gu.com/cn/images/b_but02.jpg") no-repeat center;
+}
+#Stamp_detail .details-car img{
+}
+#Stamp_detail li span{color:#f60;}
 #Stamp_detail .remind{
     width:308px;
     margin-top:-10px;
