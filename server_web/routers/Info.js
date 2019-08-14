@@ -20,6 +20,7 @@ router.get("/infoSub",(req,res)=>{
   var sid=req.query.sid
   var sql=`select subid,sub_name from stamp_sub_rela where sid=${sid}`;
   pool.query(sql,(err,result)=>{
+    console.log(result);
     if(result!=undefined){
       res.send({code:1,msg:"获取数据成功",data:result});
     }else{

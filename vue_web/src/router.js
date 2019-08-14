@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import index from "./components/stamp_station/index.vue"
 import MarketPage from "./components/stamp_station/common/MarketPage.vue"
 import BookPage from "./components/stamp_station/common/BookPage.vue"
+import StampAddPage from "./components/stamp_station/common/StampAddPage.vue"
 import StampinfoPage from "./components/stamp_station/common/StampinfoPage.vue"
 import Member from "./components/stamp_station/common/Member.vue"
 
@@ -18,5 +19,6 @@ export default new Router({
     {path:'/info',component:StampinfoPage}, // 商品详情页
     {path:'/book',component:BookPage}, // 商品详情页
     {path:'/Member',component:Member},
+    {path:'/AddStamp',component:StampAddPage},// 添加邮票
   ]
 })

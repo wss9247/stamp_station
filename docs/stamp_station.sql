@@ -2,7 +2,7 @@ SET NAMES UTF8;
 drop database if exists stamp_station;
 create database stamp_station CHARSET=UTF8;
 
-use stamp_station;
+##use stamp_station;
 
 ## 邮票详情表
 create table stamp_details(
@@ -18,7 +18,7 @@ create table stamp_details(
  kid VARCHAR(128) comment " 种类ID，关联表：kinds",
  kname VARCHAR(300) comment " 种类名称，关联表：kinds",
  subid INT comment " 专题ID，关联表：subjects",
- sub_name VARCHAR(300) comment " 专题名称，关联表：subjects",
+ sub_name VARCHAR(300) comment " 专题名称，关联表：subjects"
 );
 
 ## 国家数据表
