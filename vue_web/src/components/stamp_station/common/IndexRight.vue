@@ -1,25 +1,24 @@
 <template>
-  <div id="right">
-    <div class="right_bg">
-      <div class="title">
-        <img src="http://www.51gu.com/cn/images/t5_h1.jpg">
-      </div>
-      <div class="head">
-       用户名：<input type="text" id="i2">
-       <br>
-       密码：<input type="password" id="i1">
-            <img src="http://www.51gu.com/cn/images/login.jpg">
-      </div>
-      <div class="buttom">
-        <a href="#">
-         <img src="http://www.51gu.com/cn/images/font_1.gif">
-        </a>
-        <a href="#">
-         <img src="http://www.51gu.com/cn/images/font_2.gif">
-        </a>
-      </div>
+<div id="IndexRight">
+  <div class="right_bg">
+    <div class="title">
+      <img src="http://www.51gu.com/cn/images/t5_h1.jpg">
     </div>
-  
+    <div class="head">
+      用户名：<input type="text" id="i2">
+      <br>
+      密码：<input type="password" id="i1">
+          <img src="http://www.51gu.com/cn/images/login.jpg">
+    </div>
+    <div class="buttom">
+      <a >
+        <img src="http://www.51gu.com/cn/images/font_1.gif">
+      </a>
+      <a >
+        <img src="http://www.51gu.com/cn/images/font_2.gif">
+      </a>
+    </div>
+  </div>
   <div id="right1">
     <img src="http://www.51gu.com/cn/images/s_img02.jpg">
   </div>
@@ -28,7 +27,7 @@
     <img src="http://www.51gu.com/cn/images/s_img03.jpg">
   </div>
   <div class="right3">
-    <a href="#">索取目录</a>
+    <a >索取目录</a>
   </div>
   <h3 class="title198">书籍专栏</h3>
   <div class="right4">
@@ -64,9 +63,9 @@
       </li>
       </ul>
       <ul>
-          <li><a href="">
-            <img src="http://www.51gu.com/shop/asp/stpimg/9AA/9AACAT5013.jpg">
-          </a>
+        <li><a href="">
+          <img src="http://www.51gu.com/shop/asp/stpimg/9AA/9AACAT5013.jpg">
+        </a>
         </li>
         <li>
           <span class="s1">
@@ -78,7 +77,7 @@
           <br>
           <span>售价：</span><span class="s2">￥108.00</span>
         </li>
-        </ul>
+      </ul>
   </div>
   <div class="right5"><img src="http://www.51gu.com/cn/images/a_01.jpg"></div>
   <div class="right5"><img src="http://www.51gu.com/cn/images/a_02.jpg"></div>
@@ -95,98 +94,61 @@ export default {
 }
 </script>>
 <style>
-  *{
-	font: 13px "Micorsoft Yahei";
-	color:#000;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-ul{list-style:none;margin:0;padding:0;}
-li{margin-left:0;}
-body{width:1002px;height:100%;margin:0 auto;
-	/* background: url("../../../img/body_bg.gif") repeat top center; */
-	/* overflow: hidden; */
-}
-a{cursor: pointer;text-decoration: none}
-input,button,select{
-	height:26px;
-	padding:0 5px;
-	outline:none;border:1px solid #ddd;
-}
-input[type="text"],
-select{
-	width:160px;
-}
-/* 模块标题 */
-h3{
-	width:100%;height:34px;padding-left:36px;
-	position:relative;
-	font-size:14px;font-weight:bold;
-	color:#fff;line-height:29px;
-}
-/* 宽198px的模块标题 背景 */
-h3.title198{
-  background:url("http://www.51gu.com/cn/images/t1_bg.jpg") no-repeat left top;
-}
-/* 宽581px的模块标题 背景 */
-h3.title581{
-  background:url("http://www.51gu.com/cn/images/t3_bg.jpg") no-repeat left top;
-}
-/* right 的宽度*/
-#right{width:198px;}
+
+/* IndexRight 的宽度*/
+#IndexRight{width:198px;}
 /* 登录界面的样式 */
-#right>.right_bg{
+#IndexRight>.right_bg{
   width:198px;
   height:168px;
 }
 /* 登录界面title 的样式 */
-#right>.right_bg .title{
+#IndexRight>.right_bg .title{
   width:194px;
   height:32px;
   background-image: linear-gradient(to bottom,#f1e6dd 0%,#e8cbb0 100% );
 }
 /* title img 的样式 */
-#right>.right_bg .title img{
+#IndexRight>.right_bg .title img{
    margin:3px 0px 0px 30px 
   }
 /* 登录界面head 的样式 */
-#right>.right_bg .head{
+#IndexRight>.right_bg .head{
     width:194px;
     height:100px;
     background: #f2e8e1;
     padding:0px 0px 0px 12px;
 }
 /* input 的宽度 */
-#right>.right_bg .head input{
+#IndexRight>.right_bg .head input{
   width:115px;
   height:25px;
 }
 /*input 的上边距 */
-#right>.right_bg .head #i2{
+#IndexRight>.right_bg .head #i2{
   margin-top: 10px;
 }
 /* input 的上 左边距 */
-#right>.right_bg .head #i1{
+#IndexRight>.right_bg .head #i1{
   margin:10px 0px 0px 13px ;
 }
 /* 图片的位置 */
-#right>.right_bg .head img{
+#IndexRight>.right_bg .head img{
   margin:3px 0px 0px 50px ;
 }
 /* 登录界面脚的样式 */
-#right>.right_bg .buttom{
+#IndexRight>.right_bg .buttom{
     width:194px;
     height:32px;
     background: #f2e8e1;
     border-top:1px solid #ccc;
 }
 /* 下面图片的样式 */
-#right>.right_bg .buttom img{
+#IndexRight>.right_bg .buttom img{
   margin: 10px 0px 0px 18px ;
 }
 /* right 的样式 */
-#right1{
+#IndexRight1{
   width:194px;
   height: 186px;
   background: #F4FDFD;
@@ -195,7 +157,7 @@ h3.title581{
   margin:10px 0px 20px 0px;
 }
 /* right 下面img 的样式 */
-#right1 img{
+#IndexRight1 img{
   margin:8px; 
 }
 /* right2 的样式 */
