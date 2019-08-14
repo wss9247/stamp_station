@@ -20,15 +20,22 @@ router.get("/nations",(req,res)=>{
   // 先查询出地域
   var sql1="select nareas from nations group by nareas HAVING count(nname)>1";
   pool.query(sql1,(err,result)=>{
-    res.send({code:1,msg:"查询数据成功",data:result});
+    if(result!=undefined){
+     res.send({code:1,msg:"查询数据成功",data:result});
+    }else{
+      res.send({code:-1,msg:"未查询到对应数据"});
+    }  
   });
 })
 router.get("/country",(req,res)=>{
   var obj=req.query.nareas;
   var sql2=`select nid,nname,nareas from nations where nareas in(${obj}) order by nareas`;
   pool.query(sql2,(err,result)=>{
-    console.log(result)
-    res.send({code:1,msg:"查询数据成功",data:result});
+    if(result!=undefined){
+      res.send({code:1,msg:"查询数据成功",data:result});
+     }else{
+       res.send({code:-1,msg:"未查询到对应数据"});
+     }
             
   })
 })

@@ -20,7 +20,7 @@ import "./font/iconfont.css"
 // 5.引入axios第三方ajax模块
 import axios from 'axios'
 // 6.配置axios基础路径，用于请求服务器端数据
-axios.defaults.baseURL="http://176.204.15.14:5000/"
+axios.defaults.baseURL="http://127.0.0.1:5000/"
 // 7.配置axios 保存session信息
 axios.defaults.withCredentials=true;
 // 8.将axios注册vue实例中。由于axios不支持use()，所以只能将实例添加到vue的原型上
