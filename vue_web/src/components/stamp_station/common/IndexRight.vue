@@ -92,10 +92,42 @@
 export default {
   data(){
     return{
-
+      uname:"",
+      upwd:""
     }
   },
- 
+ methods:{
+   btn1(){
+     var uname=this.uname;
+     var upwd=this.upwd;
+     var z=/^[a-z0-9]{6,19}$/i;
+     if(!z.test(uname)){
+       alert("用户名格式不正确");
+       return;
+     }
+     if(!z.test(upwd)){
+       alert("密码格式不正确");
+       return;
+     }
+    //  发送ajax请求
+    var url="indexright";
+    var obj={uname:uname,upwd:upwd};
+    this.axios.get(url,{params:obj}).then(res=>{
+      if(res.data.code==-1){
+        alert("用户名和密码有误")
+      }else{
+        alert("登录成功");
+        // this.$router.push()
+      }
+    })
+   },
+   btn2(){
+      this.$router.push("Noupda")
+   },
+   btn3(){
+      this.$router.push("Registro")
+   }
+ }
 }
 </script>>
 <style>
