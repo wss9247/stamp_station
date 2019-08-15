@@ -22,3 +22,4 @@ export default new Router({
     {path:'/AddStamp',component:StampAddPage},// 添加邮票
   ]
 })
+// 

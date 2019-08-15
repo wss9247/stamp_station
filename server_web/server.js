@@ -9,6 +9,7 @@ const Info=require('./routers/Info.js');
 
 var server=express();
 server.listen(5000);
+// 
 
 // 引入静态资源 public
 server.use(express.static('public'));
