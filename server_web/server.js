@@ -6,11 +6,14 @@ const session=require("express-session");
 // 引入用户信息路由
 const IndexCen=require('./routers/IndexCen.js');
 const Info=require('./routers/Info.js');
+<<<<<<< HEAD
 const user=require('./routers/user.js');
+=======
+const market=require('./routers/Market.js');
+>>>>>>> bbc9ffbe62ff6408beb6bcd835488e49f38d3d5f
 
 var server=express();
 server.listen(5000);
-// 
 
 // 引入静态资源 public
 server.use(express.static('public'));
@@ -34,5 +37,9 @@ server.use(session({
 // 使用路由器
 server.use('',IndexCen);  // 首页
 server.use('',Info);			// 商品详情页
+<<<<<<< HEAD
 server.use('',user);			// 登录
+=======
+server.use('',market);			// 网上超市
+>>>>>>> bbc9ffbe62ff6408beb6bcd835488e49f38d3d5f
 
