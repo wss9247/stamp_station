@@ -6,6 +6,7 @@ const session=require("express-session");
 // 引入用户信息路由
 const IndexCen=require('./routers/IndexCen.js');
 const Info=require('./routers/Info.js');
+const user=require('./routers/user.js');
 
 var server=express();
 server.listen(5000);
@@ -33,4 +34,5 @@ server.use(session({
 // 使用路由器
 server.use('',IndexCen);  // 首页
 server.use('',Info);			// 商品详情页
+server.use('',user);			// 登录
 

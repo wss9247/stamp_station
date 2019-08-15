@@ -5,17 +5,17 @@
       <img src="http://www.51gu.com/cn/images/t5_h1.jpg">
     </div>
     <div class="head">
-      用户名：<input type="text" id="i2">
+      用户名：<input type="text" id="i2" v-model="uname">
       <br>
-      密码：<input type="password" id="i1">
-          <img src="http://www.51gu.com/cn/images/login.jpg">
+      密码：<input type="password" id="i1" v-model="upwd">
+          <img src="http://www.51gu.com/cn/images/login.jpg" @click="btn1">
     </div>
     <div class="buttom">
       <a >
-        <img src="http://www.51gu.com/cn/images/font_1.gif">
+        <img src="http://www.51gu.com/cn/images/font_1.gif" @click="btn2">
       </a>
       <a >
-        <img src="http://www.51gu.com/cn/images/font_2.gif">
+        <img src="http://www.51gu.com/cn/images/font_2.gif" @click="btn3">
       </a>
     </div>
   </div>
@@ -90,7 +90,12 @@
 </template>
 <script>
 export default {
-  
+  data(){
+    return{
+
+    }
+  },
+ 
 }
 </script>>
 <style>

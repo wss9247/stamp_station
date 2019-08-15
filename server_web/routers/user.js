@@ -24,8 +24,21 @@ router.get("/indexright",(req,res)=>{
 })
 //测试
 //http://127.0.0.1:5000/indexright?uname=wangsisi&upwd=123456
+
 // 修改界面
-router.get("/noupwd",(req,result)=>{
-  // 
+router.get("/noupwd",(req,res)=>{
+  var uname=req.query.uname;
+  var upwd=req.query.upwd;
+  var sql="UPDATE users SET upwd=? WHERE uname=? ";
+  pool.query(sql,[upwd,uname],(err,result)=>{
+    if(err) throw err;
+    if(result.affectedRows==0){
+      res.send({code:-1,msg:"修改失败"})
+    }else{
+      res.send({code:1,mgs:"修改成功"})
+    }
+  })
 })
+// 测试网站
+// http://127.0.0.1:5000/noupwd?uname=wangsisi&upwd=123456
 module.exports=router;
