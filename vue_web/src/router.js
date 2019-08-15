@@ -8,6 +8,7 @@ import BookPage from "./components/stamp_station/common/BookPage.vue"
 import StampAddPage from "./components/stamp_station/common/StampAddPage.vue"
 import StampinfoPage from "./components/stamp_station/common/StampinfoPage.vue"
 import Member from "./components/stamp_station/common/Member.vue"
+import ShoppingCar from "./components/stamp_station/common/ShoppingCar.vue"
 
 Vue.use(Router)
 
@@ -20,6 +21,7 @@ export default new Router({
     {path:'/book',component:BookPage}, // 商品详情页
     {path:'/Member',component:Member},
     {path:'/AddStamp',component:StampAddPage},// 添加邮票
+    {path:'/ShoppingCar',component:ShoppingCar},
   ]
 })
 // 
