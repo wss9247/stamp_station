@@ -7,31 +7,43 @@
 				<option>请选择排列规则</option>
 			</select>
 		</h3>
+		<div class="probox">
 		<!-- 商品 -->
-		<div id="product">
-			<a @click="jumpTo"><img class="product-img" src="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg"></a>			
-			<ul>
-				<li>编号：CZKB815CU</li>
-				<li>国家：捷克</li>
-				<li>发行年份：2018年6月20日</li>
-				<li>内容：花卉1全（信销票）</li>
-				<li>价格：￥5.00</li>
-			</ul>
-			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
-			</a>
-			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_che.jpg">
-			</a>
+			<div id="product" v-for="(prop,i) of pros" :key="i">
+				<a @click="jumpTo"><img class="product-img" :src="prop.imgurl"></a>			
+				<ul>
+					<li>编号：{{prop.snum}}</li>
+					<li>国家：{{prop.nname}}</li>
+					<li>发行年份：{{prop.sdata}}</li>
+					<li>内容：{{prop.stitle}}</li>
+					<li>价格：{{prop.price}}</li>
+				</ul>
+				<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
+				</a>
+				<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_che.jpg">
+				</a>
+			</div>
 		</div>
   </div>
 </template>
 <script>
 export default {
+	data(){return {
+		pros:[]
+	}},
 	methods:{
 		jumpTo(e){ 
 			
-      this.$router.push("/info");// 点击后跳转到宝贝详情页
+      		this.$router.push("/info");// 点击后跳转到宝贝详情页
       
-    },
+		},
+	
+	},
+	created(){
+		this.axios.get("market").then(res=>{
+			this.pros=res.data.data;
+			console.log(res)
+		})
 	},
 }
 </script>
