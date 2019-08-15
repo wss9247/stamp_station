@@ -2,8 +2,13 @@
 	<div id="market">
 		<!-- 下拉选择框 -->
 		<h3  class="choice">
-			<select>
-				<option>请选择排列规则</option>
+			<select name="pxx" v-model="px" @change="selc">
+				<!-- <option value="sdate desc">上架时间</option>
+				<option value="sdate">上架时间 升序</option> -->
+				<option value="country">按发行国家排列</option>
+				<option value="price desc">按价格从高到低</option>
+				<option value="price">按价格从低到高</option>
+				<option value="sdate">按商品发行时间</option>
 			</select>
 		</h3>
 		<div class="probox">
@@ -32,16 +37,42 @@
 <script>
 export default {
 	data(){return {
-		pros:[]
+		pros:[],
+		px:"sdate"
 	}},
 	methods:{
 		jumpTo(e){ 	
       		this.$router.push("/info");// 点击后跳转到宝贝详情页
 		},
+		selc(){
+			var px=this.px;
+			var country=this.country;
+			var price=this.price;
+			var setTime=this.setTime;
+			this.axios.get("market",
+				{params:{px}},
+				{params:{country}},
+				{params:{price}}),
+				{params:{sdate}}
+			.then(res=>{
+				this.pros=res.data.data;
+				for(var pro of this.pros){
+					var date=pro.sdate;
+					var sdate=new Date(date);
+					var year=sdate.getUTCFullYear();
+					var month=sdate.getMonth()+1;
+					var date1=sdate.getDate();
+					pro.sdate=year+"-"+month+"-"+date1
+				}
+				
+				console.log(year)
+			})
+		}
 	},
 	created(){
 		// 获取后台数据
-		this.axios.get("market").then(res=>{
+		var px=this.px;
+		this.axios.get("market",{params:{px}}).then(res=>{
 			this.pros=res.data.data;
 			for(var pro of this.pros){
 				var date=pro.sdate;
