@@ -4,13 +4,13 @@ const cors=require("cors");
 const session=require("express-session");
 
 // 引入用户信息路由
-const IndexCen=require('./routers/IndexCen.js'); // 首页路由
-const Info=require('./routers/Info.js');	// 商品详情页路由
-const Stamp=require('./routers/Stamp.js'); // 商品管理
-const IndexCen=require('./routers/IndexCen.js');
-const Info=require('./routers/Info.js');
-const market=require('./routers/Market.js');
-const user=require('./routers/user.js');
+// const IndexCen=require('./routers/IndexCen.js'); // 首页路由
+// const Info=require('./routers/Info.js');	// 商品详情页路由
+// const Stamp=require('./routers/Stamp.js'); // 商品管理
+// const IndexCen=require('./routers/IndexCen.js');
+// const Info=require('./routers/Info.js');
+// const market=require('./routers/Market.js');
+const user=require('./routers/user.js');//登录界面
 
 
 var server=express();
@@ -36,9 +36,9 @@ server.use(session({
 
 
 // 使用路由器
-server.use('',IndexCen);  // 首页
-server.use('',Info);			// 商品详情页
-server.use('',Stamp);			// 商品管理
-server.use('',market);			// 网上超市
+// server.use('',IndexCen);  // 首页
+// server.use('',Info);			// 商品详情页
+// server.use('',Stamp);			// 商品管理
+// server.use('',market);			// 网上超市
 server.use('',user);			// 登录
 

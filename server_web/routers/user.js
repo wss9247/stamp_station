@@ -59,9 +59,9 @@ router.get("/register",(req,res)=>{
     tel:req.query.tel,
     id_card:req.query.id_card
   }
-  console.log(obj.upwd);
+  // console.log(obj.upwd);
   var sql="INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?);";
-  pool.query(sql,[null,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
+  pool.query(sql,[obj.uid,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
     // console.log(result+"1212")
     // if(err) throw err;
     if(result.length==0){

@@ -22,10 +22,10 @@
       <tr>
         <td>性别：</td>
         <td>
-          <input type="checkbox" v-model="sex1" id="nan" checked="false">
-          <label for="nan">男</label>
-          <input type="radio" v-model="sex2" id="lv">
-          <label for="lv">女</label>
+          <input type="radio" v-model="sex" value="1" name="gender">
+          <label for="m">男</label>
+          <input type="radio" v-model="sex" value="0" name="gender">
+          <label for="w">女</label>
         </td>
       </tr>
       <tr>
@@ -65,12 +65,67 @@ export default {
       bitrh:"",
       email:"",
       tel:"",
-      id_card:""
+      id_card:"",
+      sex:"1"
     }
   },
   methods:{
     btn1(){
-      
+    var uid=0;
+    var uname=this.uname;
+    var upwd=this.upwd;
+    var upwds=this.upwds;
+    var nickname=this.nickname;
+    var bitrh=this.bitrh;
+    var email=this.email;
+    var tel=this.tel;
+    var id_card=this.id_card;
+    var sex=this.sex;
+    // 正则表达式
+    var um=/^[a-z0-9]{6,19}$/i;  //账号和密码的正则
+    var zw=/^[\u4e00-\u9fa5]{2,3}$/i;  //名字的正则
+    var em=/^(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)$/i; //邮箱的正则
+    var dh=/^1(3|4|5|6|7|8|9)\d{9}$/i;         //电话的正则
+    var sh=/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/i; //中国大陆的身份证验证
+      if(upwd!=upwds){
+       alert("两次密码不一样");
+       return;
+     }
+       if(!um.test(uname)){
+          alert("用户名格式不正确");
+          return;
+       }
+       if(!um.test(upwd)){
+         alert("密码格式不正确");
+         return
+       }
+       if(!zw.test(nickname)){
+          alert("请输入正确的中文名字");
+          return;
+       }
+       if(!em.test(email)){
+         alert("请输入正确的邮箱");
+         return;
+       }
+       if(!dh.test(tel)){
+         alert("请输入正确的电话号码");
+         return;
+       }
+       if(!sh.test(id_card)){
+         alert("请输入正确的身份证号码");
+         return;
+       }
+      //  alert("用户名："+uname+"  用户密码："+upwd+"   名字："+nickname+"  邮箱："+ tel+" s身份证号码："+id_card+"  出生年月："+bitrh)
+      // 发送ajax请求
+      var url="register";
+      var obj={uid:uid,uname:uname,upwd:upwd,nickname:nickname,sex:sex,bitrh:bitrh,email:email,tel:tel,id_card:id_card};
+      this.axios.get(url,{params:obj}).then(res=>{
+        if(res.data.code==-1){
+          alert("注册失败")
+        }else{
+          alert("注册成功")
+        }
+      })
     },
     btn2(){
       this.uname="";
@@ -80,7 +135,8 @@ export default {
       this.bitrh="";
       this.email="";
       this.tel="";
-      this.id_card=""
+      this.id_card="";
+
     }
   }
 }
