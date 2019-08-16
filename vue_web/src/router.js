@@ -24,13 +24,13 @@ export default new Router({
     {path:'/market',component:MarketPage}, //网上超市
     {path:'/info',component:StampinfoPage}, // 商品详情页
     {path:'/book',component:BookPage}, // 商品详情页
-    {path:'/Member',component:Member},
+    {path:'/Member',component:Member},//会员页
     {path:'/AddStamp',component:StampAddPage},// 添加邮票
     {path:'/Noupda',component:Noupda},// 修改密码
     {path:'/Registro',component:Registro},//用户注册
     {path:'/IndexRight',component:IndexRight},//右边框
     {path:'/IndexAside',component:IndexAside},//左边框
-    {path:'/ShoppingCar',component:ShoppingCar},
+    {path:'/ShoppingCar',component:ShoppingCar},//购物车
   ]
 })
 // 
