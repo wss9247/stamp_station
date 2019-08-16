@@ -1,37 +1,93 @@
 <template>
-	
 	<div id="market">
 		<!-- 下拉选择框 -->
-		<h3  id="choice">
-			<select>
-				<option>请选择排列规则</option>
+		<h3  class="choice">
+			<select name="pxx" v-model="px" @change="selc">
+				<!-- <option value="sdate desc">上架时间</option>
+				<option value="sdate">上架时间 升序</option> -->
+				<option value="country">按发行国家排列</option>
+				<option value="price desc">按价格从高到低</option>
+				<option value="price">按价格从低到高</option>
+				<option value="sdate">按商品发行时间</option>
 			</select>
 		</h3>
+		<div class="probox">
 		<!-- 商品 -->
-		<div id="product">
-			<a @click="jumpTo"><img class="product-img" src="http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg"></a>			
-			<ul>
-				<li>编号：CZKB815CU</li>
-				<li>国家：捷克</li>
-				<li>发行年份：2018年6月20日</li>
-				<li>内容：花卉1全（信销票）</li>
-				<li>价格：￥5.00</li>
-			</ul>
-			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
-			</a>
-			<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_che.jpg">
-			</a>
+			<div class="product" v-for="(prop,i) of pros" :key="i">
+				<div @click="jumpTo" class="product-img">
+					<a :style="`background-image:url('${prop.imgurl}');`"></a>
+				</div>			
+				<ul>
+					<li>编号：{{prop.snum}}</li>
+					<li>国家：{{prop.nname}}</li>
+					<li>发行年份：{{prop.sdate}}</li>
+					<li>内容：{{prop.stitle}}</li>
+					<li>价格：{{prop.price}}</li>
+				</ul>
+				<div class="collection">
+					<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_dg.jpg">
+					</a>
+					<a href="javascript:;"><img src="http://www.51gu.com/cn/images/but_che.jpg">
+					</a>
+				</div>
+			</div>
 		</div>
   </div>
 </template>
 <script>
 export default {
+	data(){return {
+		pros:[],
+		px:"sdate"
+	}},
 	methods:{
-		jumpTo(e){ 
+		jumpTo(e){ 	
+      		this.$router.push("/info");// 点击后跳转到宝贝详情页
+		},
+		selc(){
+			var px=this.px;
+			var country=this.country;
+			var price=this.price;
+			var setTime=this.setTime;
+			this.axios.get("market",
+				{params:{px}},
+				{params:{country}},
+				{params:{price}}),
+				{params:{sdate}}
+			.then(res=>{
+				this.pros=res.data.data;
+				for(var pro of this.pros){
+					var date=pro.sdate;
+					var sdate=new Date(date);
+					var year=sdate.getUTCFullYear();
+					var month=sdate.getMonth()+1;
+					var date1=sdate.getDate();
+					pro.sdate=year+"-"+month+"-"+date1
+				}
+				
+				console.log(year)
+			})
+		}
+	},
+	created(){
+		// 获取后台数据
+		var px=this.px;
+		this.axios.get("market",{params:{px}}).then(res=>{
+			this.pros=res.data.data;
+			for(var pro of this.pros){
+				var date=pro.sdate;
+				var sdate=new Date(date);
+				var year=sdate.getUTCFullYear();
+				var month=sdate.getMonth()+1;
+				var date1=sdate.getDate();
+				pro.sdate=year+"-"+month+"-"+date1
+			}
 			
-      this.$router.push("/info");// 点击后跳转到宝贝详情页
-      
-    },
+			console.log(year)
+		})
+		// var date=new Date(this.pros[0]);
+		// console.log(date)
+		// date=getFullYear(date);
 	},
 }
 </script>

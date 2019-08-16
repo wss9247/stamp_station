@@ -7,10 +7,12 @@ const session=require("express-session");
 const IndexCen=require('./routers/IndexCen.js'); // 首页路由
 const Info=require('./routers/Info.js');	// 商品详情页路由
 const Stamp=require('./routers/Stamp.js'); // 商品管理
+const IndexCen=require('./routers/IndexCen.js');
+const Info=require('./routers/Info.js');
+const market=require('./routers/Market.js');
 
 var server=express();
 server.listen(5000);
-// 
 
 // 引入静态资源 public
 server.use(express.static('public'));
@@ -35,4 +37,5 @@ server.use(session({
 server.use('',IndexCen);  // 首页
 server.use('',Info);			// 商品详情页
 server.use('',Stamp);			// 商品管理
+server.use('',market);			// 网上超市
 
