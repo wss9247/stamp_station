@@ -22,9 +22,9 @@
       <tr>
         <td>性别：</td>
         <td>
-          <input type="radio" v-model="sex" value="1" name="gender">
+          <input type="radio" v-model="sex" value="1" name="gender" id="m">
           <label for="m">男</label>
-          <input type="radio" v-model="sex" value="0" name="gender">
+          <input type="radio" v-model="sex" value="0" name="gender" id="w">
           <label for="w">女</label>
         </td>
       </tr>
