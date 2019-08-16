@@ -1,0 +1,48 @@
+/* 整体框架 */
+#shoppingCar{
+    width:990px;height:862px;
+    color:#000;
+    /* position:relative; */
+}
+
+.area{
+    display:flex;
+    justify-content: space-between;
+}
+.area  em,span{
+    color:#f00;
+    font-size:20px;
+    font-weight: bold;
+    border-bottom:2px solid #f00;
+}
+.top{
+    height:43px;
+    display:flex;
+    background-color: #f3f3f3;
+    line-height: 43px;
+}
+.top div{
+    width:170px;
+    line-height: 43px;
+}
+.top :nth-child(3){
+    width:500px;
+}
+.details{
+    background-image:linear-gradient(to bottom,#dbebfa 0%,#f1f8ff 50% );
+    height:300px;
+    border-top:3px solid #aaa;
+    display:flex;
+}
+.details img{
+    background-repeat: no-repeat;
+}
+
+.details img{
+    display:block;
+    width:170px;height:220px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top:10px;
+}
