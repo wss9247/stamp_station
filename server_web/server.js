@@ -7,10 +7,8 @@ const session=require("express-session");
 const IndexCen=require('./routers/IndexCen.js'); // 首页路由
 const Info=require('./routers/Info.js');	// 商品详情页路由
 const Stamp=require('./routers/Stamp.js'); // 商品管理
-const IndexCen=require('./routers/IndexCen.js');
-const Info=require('./routers/Info.js');
-const market=require('./routers/Market.js');
-const user=require('./routers/user.js');//登录界面
+const market=require('./routers/Market.js');//网上超市
+const user=require('./routers/user.js');  //登陆界面
 
 
 var server=express();
