@@ -4,21 +4,23 @@ const cors=require("cors");
 const session=require("express-session");
 
 // 引入用户信息路由
+const IndexCen=require('./routers/IndexCen.js'); // 首页路由
+const Info=require('./routers/Info.js');	// 商品详情页路由
+const Stamp=require('./routers/Stamp.js'); // 商品管理
 const IndexCen=require('./routers/IndexCen.js');
 const Info=require('./routers/Info.js');
-<<<<<<< HEAD
-const user=require('./routers/user.js');
-=======
 const market=require('./routers/Market.js');
->>>>>>> bbc9ffbe62ff6408beb6bcd835488e49f38d3d5f
+const user=require('./routers/user.js');
+
 
 var server=express();
 server.listen(5000);
 
 // 引入静态资源 public
 server.use(express.static('public'));
+// 使用bodyParser中间件，将post请求的数据格式化为对象
 server.use(bodyparser.urlencoded({
-    extended:false
+    extended:false// 不使用第三方qs模块。而是使用核心模块querystring。结尾不能加分号
 }));
 // 配置跨域 ，用于访问前端vue运行后的端口8080
 server.use(cors({
@@ -33,13 +35,10 @@ server.use(session({
 }));
 
 
-
 // 使用路由器
 server.use('',IndexCen);  // 首页
 server.use('',Info);			// 商品详情页
-<<<<<<< HEAD
-server.use('',user);			// 登录
-=======
+server.use('',Stamp);			// 商品管理
 server.use('',market);			// 网上超市
->>>>>>> bbc9ffbe62ff6408beb6bcd835488e49f38d3d5f
+server.use('',user);			// 登录
 
