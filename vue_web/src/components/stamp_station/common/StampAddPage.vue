@@ -26,7 +26,7 @@
         <tr>
           <td>图片上传：</td>
           <td>
-            <input @change="changimg" type="file" accept="image/*"/>
+            <input @change="getimg" type="file" accept="image/*"/>
           </td>
           
         </tr>
@@ -46,8 +46,14 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>详细描述：</td>
+          <td>
+            <input v-model="detials" type="textarea" />
+          </td>          
+        </tr>
         <tr><td colspan="2"><input type="button" value="提交" @click="addStamp"></td></tr>
-      </table>      
+      </table>   
     </section>
   </div>
   <!-- 引入页脚 -->
@@ -70,27 +76,33 @@ export default {
     sdate:"",
     price:"",
     samount:"",
+    detials:"",
     imgurl:"",
     kid:"",
     subid:"",
   }},
   components:{Hd,Marketaside,fot},
   methods:{
+    // 提交邮票信息
 		addStamp(){
       var data=new URLSearchParams();
       data.append("stitle",this.stitle);
       data.append("snum",this.snum);
       data.append("nid",this.nid);
-      data.append("sdate",this.sdate);
+      data.append("sdate",this.sdate); //发行时间
       data.append("price",this.price);
       data.append("samount",this.samount);
+      data.append("detials",this.detials);
       data.append("imgurl",this.imgurl);
       data.append("kid",this.kid);
-      data.append("subid",this.subid);
+      data.append("subid",this.subid);  
+      var shelfTime=new Date(); //自动获取当前时间
+      data.append("shelfTime",shelfTime.toLocaleDateString());  //上架时间
       this.axios.post("addStamp",data).then(res=>{
-        console.log(res.data);
-      }) 
+        console.log(res);
+      }).catch(err=>{console.log(err)})
     },
+    //显示/隐藏专题项目
     xlpop(e){
       // 获取ul元素
       var nextAny=$(e.target).siblings();
@@ -100,25 +112,14 @@ export default {
         nextAny.addClass("hide");
       }
     },
-    changimg(e){
-      // console.log(this.$refs.inputer)
-      // var img1=e.target.files[0];//图片文件  
-      // var size=img1.size;//文件的大小，判断图片的大小  
-     
-      // if(size>3145728){  
-      //     alert('请选择3M以内的图片！');  
-      //     return false;  
-      // }  
-      // var imgfile=img1;
-      // var imgurl=img1.name
-      // this.imgurl=imgfile;
-      // var data = new URLSearchParams();   //一定要这样写，否则后台收不到参数的
-      // data.append('imgfile', imgfile);       //你要传给后台的参数值 key/value
-      // data.append('imgurl', imgurl);       //你要传给后台的参数值 key/value
-      // this.axios.post("addimg",data).then(res=>{
-      //   console.log(res.data);
-      // })      
-    }
+    // 自动获取图片
+    getimg(ev){
+      const file=ev.target.files[0];
+      let obj=new FileReader();
+      obj.readAsDataURL(file);
+      this.imgurl=obj.result;
+    },
+    
    
 	},
 	computed:{
@@ -132,6 +133,7 @@ export default {
       this.kinds=kinds;
       this.subs=subs;
     })
+    // 创建一个公共的函数，用于拼接
   },
   mounted(){
     

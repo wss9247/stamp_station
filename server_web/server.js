@@ -36,7 +36,7 @@ server.use(session({
 // 使用路由器
 server.use('',IndexCen);  // 首页
 server.use('',Info);			// 商品详情页
-server.use('',Stamp);			// 商品管理
+server.use('',Stamp);			// 商品管理-增删改查
 server.use('',market);			// 网上超市
 server.use('',user);			// 登录
 

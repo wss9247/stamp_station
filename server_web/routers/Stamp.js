@@ -31,7 +31,33 @@ router.get("/getinfo",(req,res)=>{
 
 // 添加邮票
 router.post("/addStamp",(req,res)=>{
-  res.send("发送成功")
+  var obj=req.body;
+  var sql=`INSERT INTO stamp_details (sid,stitle,snum,nid,nname,sdate,price,imgurl,detials,kid,kname,subid,samount,shelfTime) 
+  VALUES (NULL,
+      "${obj.stitle}",
+      "${obj.snum}",
+      "${obj.nid}",
+      (SELECT nname from nations where nid="${obj.nid}"),
+      "${obj.sdate}",
+      "${obj.price}",
+      "${obj.imgurl}",
+      "${obj.detials}",
+      "${obj.kid}",
+      (select kname from kinds where kid="${obj.kid}"),
+      "${obj.subid}",
+      "${obj.samount}",
+      "${obj.shelfTime}"
+    )`;
+  pool.query(sql,(err,result)=>{
+    console.log(result);
+    if(result.affectedRows>0){
+      res.send({code:1,msg:"添加数据成功"})
+    }else{
+      res.send({code:1,msg:"添加数据失败"})
+    }
+    
+  })
+  
 })
 
 module.exports = router;

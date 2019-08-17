@@ -72,7 +72,8 @@
 #index_cen .newPro .desc{
   -webkit-line-clamp: 4;
   text-indent: 2em;
-  height:85px;
+  overflow:hidden;
+  /* height:85px; */
 }
 #index_cen .newPro .pro:nth-child(2n){
   flex-direction: row-reverse;
