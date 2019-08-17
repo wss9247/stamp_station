@@ -8,9 +8,10 @@ import BookPage from "./components/stamp_station/common/BookPage.vue"
 import StampAddPage from "./components/stamp_station/common/StampAddPage.vue"
 import StampinfoPage from "./components/stamp_station/common/StampinfoPage.vue"
 import Member from "./components/stamp_station/common/Member.vue"
-import Noupda from "./components/stamp_station/common/Noupda.vue"
 import Registro from "./components/stamp_station/common/Registro.vue"
 import ShoppingCar from "./components/stamp_station/common/ShoppingCar.vue"
+import IndexRight from "./components/stamp_station/common/IndexRight.vue"
+import UpwdPage from "./components/stamp_station/common/UpwdPage.vue"
 
 Vue.use(Router)
 
@@ -23,9 +24,10 @@ export default new Router({
     {path:'/book',component:BookPage}, // 商品详情页
     {path:'/Member',component:Member},//会员页
     {path:'/AddStamp',component:StampAddPage},// 添加邮票
-    {path:'/Noupda',component:Noupda},// 修改密码
     {path:'/Registro',component:Registro},//用户注册
     {path:'/ShoppingCar',component:ShoppingCar},//购物车
+    {path:'/IndexRight',component:IndexRight},//购物车
+    {path:'/UpwdPage',component:UpwdPage},//购物车
   ]
 })
 // 
