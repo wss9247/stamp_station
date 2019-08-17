@@ -1,13 +1,10 @@
 const pool=require("../pool.js");
 const express=require("express");
 var router=express.Router();
+// 邮票管理页面：新增，修改，删除
 
-// router.post('/addimg',function(req,res){  
-//   console.log(req.body);    
-//   res.send('POST发送成功了')
-// })
-
-// 获取国家、邮票类型和专题能基础信息
+// 1-新增
+// 获取国家、邮票类型和专题等基础信息
 router.get("/getinfo",(req,res)=>{
   var lists={
     country:[], // 国家
@@ -30,6 +27,19 @@ router.get("/getinfo",(req,res)=>{
 })
 
 // 添加邮票
+// 判断邮票编码是否已存在
+router.get("/snumUni",(req,res)=>{
+  var sql=`select sid from stamp_details where snum="${req.query.snum}"`;
+  pool.query(sql,(err,result)=>{
+    if(result.length==0){
+      res.send({code:1,msg:"该编码可用"});
+    }else{
+      res.send({code:-1,msg:"该编码已存在"});
+    }
+    
+  })
+})
+// 插入数据
 router.post("/addStamp",(req,res)=>{
   var obj=req.body;
   var sql=`INSERT INTO stamp_details (sid,stitle,snum,nid,nname,sdate,price,imgurl,detials,kid,kname,samount,shelfTime) 
@@ -88,6 +98,15 @@ router.get("/snumInfo",(req,res)=>{
     res.send({code:1,msg:"查询数据成功",data:result})
   })
 })
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
