@@ -18,10 +18,10 @@
 				<li>目录志号：</li>
 			</ul>
 			<div class="details-car">
-				<!-- 点击将商品加入购物车中 -->
-				<a href="javascript:;"></a>
 				<!-- 点击商品，收藏 -->
-				<a @click="jumpTo" href="javascript:;"></a>
+				<a href="javascript:;"></a>
+				<!-- 点击将商品加入购物车中 -->
+				<a  :data-sid="pro.sid" :data-price="pro.price" :data-stitle="pro.stitle" @click="addcart" href="javascript:;"></a>
 			</div>
 		</div>
 	</div>
@@ -46,8 +46,23 @@ export default {
 		subs:[],
 	}},
 	methods:{
-		jumpTo(e){ 	
-      		this.$router.push("/ShoppingCar");// 点击后跳转到购物车
+		addcart(e){
+			// 点击后跳转到购物车
+			var sid=e.target.dataset.sid;
+			var stitle=e.target.dataset.stitle;
+			var price=e.target.dataset.price;
+			 // 发送ajax请求
+			var url="addcart";
+			var obj={sid:sid,stitle:stitle,price:price};
+			// 获取返回的结果
+			this.axios.get(url,{params:obj}).then(res=>{
+					if(res.data.code==-1){
+						alert("请先登录再购买商品");
+					}else{
+						alert("添加成功");
+						this.$router.push("/ShoppingCar")
+					}
+			})
 		},
 	},
   created(){

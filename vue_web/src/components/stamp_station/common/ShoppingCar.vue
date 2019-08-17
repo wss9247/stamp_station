@@ -1,7 +1,7 @@
 <template>
     <div id="shoppingCar">
 			<!-- 顶部背景图 -->
-    <img data-v-ab8ace4c="" src="/img/header.56c0547c.jpg">
+    <img src="/img/header.56c0547c.jpg">
     <div>
 			<!-- 配送 -->
         <div class="area">
@@ -58,7 +58,7 @@
 			<ul class="bottom-right">
 				<li>已选择<span>1</span> 件商品</li>
 				<li>总价：</li>
-				<li><span>￥188.00</span></li>
+				<li><span>￥188</span></li>
 				<li><button>去结算</button></li>
 			</ul>
 		</div>
@@ -66,7 +66,10 @@
 </template>
 <script>
 export default {
-    
+    data(){
+		return{}
+	},methods:{},
+	
 }
 </script>
 <style scoped>
