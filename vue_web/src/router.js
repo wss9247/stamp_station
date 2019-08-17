@@ -11,6 +11,7 @@ import Member from "./components/stamp_station/common/Member.vue"
 import Noupda from "./components/stamp_station/common/Noupda.vue"
 import Registro from "./components/stamp_station/common/Registro.vue"
 import ShoppingCar from "./components/stamp_station/common/ShoppingCar.vue"
+import IndexRight from "./components/stamp_station/common/IndexRight.vue"
 
 Vue.use(Router)
 
@@ -26,6 +27,7 @@ export default new Router({
     {path:'/Noupda',component:Noupda},// 修改密码
     {path:'/Registro',component:Registro},//用户注册
     {path:'/ShoppingCar',component:ShoppingCar},//购物车
+    {path:'/IndexRight',component:IndexRight},//购物车
   ]
 })
 // 
