@@ -32,7 +32,7 @@ router.get("/getinfo",(req,res)=>{
 // 添加邮票
 router.post("/addStamp",(req,res)=>{
   var obj=req.body;
-  var sql=`INSERT INTO stamp_details (sid,stitle,snum,nid,nname,sdate,price,imgurl,detials,kid,kname,subid,samount,shelfTime) 
+  var sql=`INSERT INTO stamp_details (sid,stitle,snum,nid,nname,sdate,price,imgurl,detials,kid,kname,samount,shelfTime) 
   VALUES (NULL,
       "${obj.stitle}",
       "${obj.snum}",
@@ -43,21 +43,51 @@ router.post("/addStamp",(req,res)=>{
       "${obj.imgurl}",
       "${obj.detials}",
       "${obj.kid}",
-      (select kname from kinds where kid="${obj.kid}"),
-      "${obj.subid}",
+      (select kname from kinds where kid="${obj.kid}"),      
       "${obj.samount}",
       "${obj.shelfTime}"
     )`;
   pool.query(sql,(err,result)=>{
-    console.log(result);
-    if(result.affectedRows>0){
-      res.send({code:1,msg:"添加数据成功"})
+    if(!result){ 
+      if(result.affectedRows>0){// 数据添加成功
+        // 判断是否传入了subid，有-将得到的专题id值进行拆分为数组
+        if(obj.subid.length>0){
+          var subs=obj.subid.split(",");
+          var condt="";
+          for(var s of subs){
+            condt+=`(NULL,
+              (select sid from stamp_details where snum="${obj.snum}"),
+              ${s},
+              (select sub_name from subjects where subid="${s}")),`
+          }
+          condt=condt.slice(0,condt.length-1);
+          // 在邮票和专题关系表中插入数据
+          var sql2=`insert into stamp_sub_rela values ${condt}`;
+          pool.query(sql2,(err,result)=>{
+            if(!result){ 
+              if(result.affectedRows>0){
+                res.send({code:1,msg:"添加数据成功"})
+              }            
+            }            
+          })
+        }
+      } 
     }else{
-      res.send({code:1,msg:"添加数据失败"})
+      res.send({code:-1,msg:"添加数据失败"})
     }
-    
-  })
-  
+  })  
 })
+
+// 根据邮票唯一编码snum查看新增数据的id
+router.get("/snumInfo",(req,res)=>{
+  console.log(req.query.snum)
+  var sql=`select sid from stamp_details where snum="${req.query.snum}"`;
+  console.log(sql)
+  pool.query(sql,(err,result)=>{
+    console.log(result);
+    res.send({code:1,msg:"查询数据成功",data:result})
+  })
+})
+
 
 module.exports = router;

@@ -1,0 +1,1 @@
+alter table carts add snum varchar(128);

@@ -13,7 +13,7 @@
        <div class="hellow">
          <span>您好！欢迎你来“我要集邮！”通过下面您可以找回登录密码。 </span>
        </div>
-       <div class="table">
+       <div class="table b-c">
             <table>
               <tr>
                 <td>账号：</td>
@@ -103,6 +103,7 @@ export default {
   .zh .imgs{
     margin: 20px 0px 0px 20px ;
   }
+  /* 修改密码的整体区域 */
   .update{
     width:1002px;
     height:1000px;
@@ -122,5 +123,10 @@ export default {
     line-height: 67px;
     color:#000;
     margin-left:25px; 
+  }
+  .table{
+   width:937px;
+   height:150px;
+   margin: 0 auto;
   }
 </style>
