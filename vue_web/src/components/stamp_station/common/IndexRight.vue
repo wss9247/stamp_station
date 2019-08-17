@@ -117,8 +117,8 @@ export default {
         alert("用户名和密码有误")
       }else{
         //  登录成功：将登录成功的凭据保存到session
-      req.session.uid=result[0].id;
-      console.log(req.session);
+      // req.session.uid=result[0].id;
+      // console.log(req.session);
         alert("登录成功");
         // this.$router.push()
       }

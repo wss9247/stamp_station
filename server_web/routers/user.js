@@ -17,7 +17,7 @@ router.get("/indexright",(req,res)=>{
     if(result.length==0){
       res.send({code:-1,msg:"用户名或密码有误"})
     }else{
-     req.session.uid=result[0].uid;
+    //  req.session.uid=result[0].uid;
       res.send({code:1,msg:"登录成功"})
     }
   })
