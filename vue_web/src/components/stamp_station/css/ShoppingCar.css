@@ -61,6 +61,9 @@
     display:flex;
     margin: 18px 0 0 20px;
 }
+#shoppingCar  .count :first-child{
+    margin-left:10px;
+}
 #shoppingCar  .count li{
     width:115px;
 }
@@ -77,7 +80,7 @@
     justify-content: space-between;
 }
 /* 悬停字体变红 */
-#shoppingCar .bottom a:hover{
+#shoppingCar .bottom a:hover,#shoppingCar .count a:hover{
     color:#f00;
 }
 #shoppingCar .bottom ul{

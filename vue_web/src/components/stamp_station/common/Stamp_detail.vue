@@ -57,7 +57,11 @@ export default {
 			// 获取返回的结果
 			this.axios.get(url,{params:obj}).then(res=>{
 					if(res.data.code==-1){
-						alert("请先登录再购买商品");
+						this.$messagebox("消息","请登录").then(res=>{
+							this.$router.push("index")
+						})
+					// alert("请登录")
+						
 					}else{
 						alert("添加成功");
 						this.$router.push("/ShoppingCar")

@@ -22,15 +22,15 @@ router.get("/addcart",(req,res)=>{
     var uid=req.session.uid;
     // // 如果用户没有登录，返回错误信息
     if(!uid){
-        res.send({code:-1 ,msg:"请先登录"});
-        return;//不在继续执行
+				res.send({code:-1 ,msg:"请先登录"});
+				return;
     }
     // 获取购物车id,price ,stitle
     var sid=req.query.sid;
     var price=req.query.price;
     var stitle=req.query.stitle;
     // 查询用户是否购买过此商品
-    var sql="select id from carts where uid=? and sid=?";
+    var sql="select cid from carts where uid=? and sid=?";
     pool.query(sql,[uid,sid],(err,result)=>{
         if(err) throw err;
         var sql="";
@@ -48,6 +48,19 @@ router.get("/addcart",(req,res)=>{
 })
 
 // 查询当前用户的购物车信息
+router.get("/cart",(req,res)=>{
+// 获取UID 并且判断如果没有请先登录
+  var uid=req.session.uid;
+    if(!uid){
+		res.send({code:-1,msg:"请登录"});
+    return;
+	}
+	var sql="select cid,uid,sid,stitle,price,counts,imgurl from carts where uid=?";
+	pool.query(sql,[uid],(err,result)=>{
+		if(err) throw err;
+		res.send({code:1,mag:"查询成功",data:result})
+	})
+})
 
 
 module.exports=router;
