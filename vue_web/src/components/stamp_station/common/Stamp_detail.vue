@@ -21,7 +21,7 @@
 				<!-- 点击将商品加入购物车中 -->
 				<a href="javascript:;"></a>
 				<!-- 点击商品，收藏 -->
-				<a href="javascript:;"></a>
+				<a @click="jumpTo" href="javascript:;"></a>
 			</div>
 		</div>
 	</div>
@@ -45,6 +45,11 @@ export default {
 		pro:[],
 		subs:[],
 	}},
+	methods:{
+		jumpTo(e){ 	
+      		this.$router.push("/ShoppingCar");// 点击后跳转到购物车
+		},
+	},
   created(){
 		// 获取当前页面的地址，如：http://127.0.0.1:8080/#/info?sid=9
 		var url=window.location.href;
