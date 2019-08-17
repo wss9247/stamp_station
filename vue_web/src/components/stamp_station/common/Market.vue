@@ -14,8 +14,8 @@
 		<div class="probox">
 		<!-- 商品 -->
 			<div class="product" v-for="(prop,i) of pros" :key="i">
-				<div @click="jumpTo" class="product-img">
-					<a :style="`background-image:url('${prop.imgurl}');`"></a>
+				<div class="product-img">
+					<a  :data-sid="prop.sid" @click="info"   :style="`background-image:url('${prop.imgurl}');`"></a>
 				</div>			
 				<ul>
 					<li>编号：{{prop.snum}}</li>
@@ -41,8 +41,10 @@ export default {
 		px:"sdate"
 	}},
 	methods:{
-		jumpTo(e){ 	
-      		this.$router.push("/info");// 点击后跳转到宝贝详情页
+		info(e){
+			var sid=e.target.dataset.sid;
+			var url=`info?sid=${sid}`;
+			this.$router.push(url);
 		},
 		selc(){
 			var px=this.px;
