@@ -1,27 +1,44 @@
 <template>
   <div>
-<h1>忘记密码修改区</h1>
-  <table>
-    <tr>
-      <td>账号：</td>
-      <td><input type="text" v-model="uname"></td>
-    </tr>
-    <tr>
-      <td>新密码：</td>
-      <td><input type="text" v-model="upwd"></td>
-    </tr>
-    <tr>
-      <td>再次输入密码：</td>
-      <td><input type="text" v-model="upwds"></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <img src="http://www.51gu.com/cn/images/but_tj.jpg" @click="btn1">
-        <img src="http://www.51gu.com/cn/images/but_res.jpg" @click="btn2">
-      </td>
-    </tr>
-  </table>
+    <table></table>
+    <div class="zh">
+      <!-- 开始的找回密码 -->
+      <div>
+      <img src="http://www.51gu.com/cn/images/pos_arr.gif" class="imgs">
+      <span>您当前的位置：找回密码</span>
+      </div>
+    </div>
+    <!-- 修改密码器区域 -->
+    <div class="update">
+       <div class="hellow">
+         <span>您好！欢迎你来“我要集邮！”通过下面您可以找回登录密码。 </span>
+       </div>
+       <div class="table">
+            <table>
+              <tr>
+                <td>账号：</td>
+                <td><input type="text" v-model="uname"></td>
+              </tr>
+              <tr>
+                <td>新密码：</td>
+                <td><input type="text" v-model="upwd"></td>
+              </tr>
+              <tr>
+                <td>再次输入密码：</td>
+                <td><input type="text" v-model="upwds"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <img src="http://www.51gu.com/cn/images/but_tj.jpg" @click="btn1">
+                  <img src="http://www.51gu.com/cn/images/but_res.jpg" @click="btn2">
+                </td>
+              </tr>
+            </table>
+       </div>
+  
+    </div>
+  
   </div>
 </template>
 <script>
@@ -60,7 +77,8 @@ export default {
         }else{
           alert("修改密码成功")
         }
-      })
+
+})
    },
    btn2(){
      this.uname="";
@@ -71,5 +89,38 @@ export default {
 }
 </script>
 <style>
-  
+*{margin:0;padding:0;}
+.w-937{width:937px;}
+.b-c{background:#ececec }
+.m_a_0{margin: 0 auto;}/*居中显示*/
+/* 找回密码 */
+  .zh{
+    width:1002px;
+    height:36px;
+    background:#ececec;
+    margin-top:-16px;
+  }
+  .zh .imgs{
+    margin: 20px 0px 0px 20px ;
+  }
+  .update{
+    width:1002px;
+    height:1000px;
+  }
+  /* 欢迎来到集邮 */
+  .hellow{
+    width:937px;
+    height:67px;
+    border:5px;
+    background: #ececec;
+    margin: 0 auto;
+    margin-top:20px;
+    border-radius: 10px;
+  }
+  .hellow>span{
+    font-size:14px;
+    line-height: 67px;
+    color:#000;
+    margin-left:25px; 
+  }
 </style>
