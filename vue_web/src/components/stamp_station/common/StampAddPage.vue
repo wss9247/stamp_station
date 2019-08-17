@@ -84,7 +84,7 @@ export default {
       data.append("sdate",this.sdate);
       data.append("price",this.price);
       data.append("samount",this.samount);
-      data.append("imgurl","");
+      data.append("imgurl",this.imgurl);
       data.append("kid",this.kid);
       data.append("subid",this.subid);
       this.axios.post("addStamp",data).then(res=>{
