@@ -78,10 +78,4 @@ create table order_details(
  amoun DECIMAL(7,2) comment "总价",
  status INT comment "订单状态：0-未支付，1-已支付，2-作废，3-退款"
 );
-## 邮票图片
-create table imgs(
- id INT PRIMARY KEY AUTO_INCREMENT,
- imgurl VARCHAR(300),
- imgfile VARCHAR(3000)
-)
 
