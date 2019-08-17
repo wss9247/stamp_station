@@ -124,6 +124,7 @@ export default {
           alert("注册失败")
         }else{
           alert("注册成功")
+          this.$router.push("IndexRight")
         }
       })
     },
