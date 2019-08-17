@@ -2,9 +2,8 @@
 #shoppingCar{
     width:990px;height:862px;
     color:#000;
-    /* position:relative; */
 }
-
+/* 配送 */
 #shoppingCar .area{
     display:flex;
     justify-content: space-between;
@@ -16,6 +15,7 @@
     font-weight: bold;
     border-bottom:2px solid #f00;
 }
+/* 商品上面的提示内容 */
 #shoppingCar .top{
     height:43px;
     display:flex;
@@ -26,24 +26,74 @@
     width:170px;
     line-height: 43px;
 }
+/* 中间空的样式 */
 #shoppingCar .top :nth-child(3){
     width:500px;
 }
+/* 添加到购物车的商品的样式 */
 #shoppingCar .details{
     background-image:linear-gradient(to bottom,#dbebfa 0%,#f1f8ff 50% );
     height:300px;
     border-top:3px solid #aaa;
     display:flex;
 }
-#shoppingCar .details img{
-    background-repeat: no-repeat;
-}
-
-#shoppingCar .details img{
+/* 商品图片 */
+#shoppingCar .product-img{
+    background:url("http://www.51gu.com/shop/asp/stpimg/SAD/SADB707CO3.jpg") no-repeat ;
+    margin-left:20px;
     display:block;
     width:170px;height:220px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
     margin-top:10px;
+}
+/* 商品内容 */
+#shoppingCar .details-text{
+    width:300px;height: 250px;
+    margin-top: 18px;
+}
+/* 单价数量操作 */
+#shoppingCar .details-text li{
+    line-height: 24px;
+}
+#shoppingCar  .count{
+    display:flex;
+    margin: 18px 0 0 20px;
+}
+#shoppingCar  .count li{
+    width:115px;
+}
+#shoppingCar  .count button{
+    border:1px solid #ccc;
+    width:30px;
+    background:#fff;
+}
+/* 小计栏 */
+#shoppingCar .bottom{
+    width:100%;height:52px;
+    background:#ccc;
+    display:flex;
+    justify-content: space-between;
+}
+/* 悬停字体变红 */
+#shoppingCar .bottom a:hover{
+    color:#f00;
+}
+#shoppingCar .bottom ul{
+    display:flex;   
+}
+
+#shoppingCar .bottom li{
+    line-height:52px; margin:0 5px;
+}
+#shoppingCar .bottom-right button{
+    background:#f00;
+    width:70px;height:52px;
+    font-size:18px;
+    color:#fff;
+    font-weight:bold;
+}
+#shoppingCar .bottom-right span{
+    border-bottom:none;
 }
