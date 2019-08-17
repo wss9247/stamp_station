@@ -11,7 +11,7 @@
     <section>
       <table cellspacing=0 cellpadding=0>
         <tr><td>邮票名称：</td><td><input v-model="stitle" type="text"></td></tr>
-        <tr><td>邮票编号：</td><td><input v-model="snum" type="text"></td></tr>
+        <tr><td>邮票编号：</td><td><input v-model="snum" type="text"><span>* 邮票编码唯一，请仔细对照输入</span></td></tr>
         <tr><td>发行国家：</td>
           <td>
             <select name="nations"  v-model="nid" id="">{{nid}}
@@ -40,9 +40,10 @@
         </tr>
         <tr><td>所属专题：</td>
           <td class="itembox">
-            <a class="selector" @click="xlpop" >--请选择所属专题--</a>
+            <a class="selector" @click="xlpop" >{{subid}}</a>
             <ul class="sub_items hide">
-              <li class="sub" v-for="(s,i) of subs" :key="i"><label><input type="checkbox" :value="s.subid">{{s["sub_name"]}}</label></li>
+              <li @click="sureBtn" class="sureBtn">确定</li><li @click="resetBtn" class="resetBtn">重置</li>
+              <li class="sub" v-for="(s,i) of subs" :key="i"><label><input type="checkbox" name="subid[]" :value="s.subid">{{s["sub_name"]}}</label></li>
             </ul>
           </td>
         </tr>
@@ -79,12 +80,13 @@ export default {
     detials:"",
     imgurl:"",
     kid:"",
-    subid:"",
+    subid:"--请选择所属专题--",
   }},
   components:{Hd,Marketaside,fot},
   methods:{
-    // 提交邮票信息
+    // 提交数据
 		addStamp(){
+      var snum=this.snum;
       var data=new URLSearchParams();
       data.append("stitle",this.stitle);
       data.append("snum",this.snum);
@@ -99,11 +101,27 @@ export default {
       var shelfTime=new Date(); //自动获取当前时间
       data.append("shelfTime",shelfTime.toLocaleDateString());  //上架时间
       this.axios.post("addStamp",data).then(res=>{
-        console.log(res);
-      }).catch(err=>{console.log(err)})
+        if(res.data==-1){
+          this.$toast("数据添加失败，请检查是否输入错误")          
+        }else{
+          this.$messagebox.confirm("是否前往详情页查看")
+          .then(action=>{
+            console.log(snum)
+            this.axios.get("snumInfo",{params:{snum}}).then(res=>{
+              var sid=res.data.data[0].sid;
+              this.$router.push("/info?sid="+sid);
+            })
+            
+          })		// 确认回调函数
+          .catch(err=>{
+            this.$router.go(0)
+          })			// 取消回调函数
+        }
+      })
     },
     //显示/隐藏专题项目
     xlpop(e){
+      
       // 获取ul元素
       var nextAny=$(e.target).siblings();
       if(nextAny.hasClass("hide")){
@@ -112,6 +130,26 @@ export default {
         nextAny.addClass("hide");
       }
     },
+    // 确定按钮
+    sureBtn(){
+      // 现将默认的选项清空
+      if(this.subid){this.subid=""}
+      // 遍历所有的input，获取选择的值，并并且为字符串
+      var input=$("#addstamp li.sub input");
+      for(var ip of input){
+        // console.dir(ip);
+        if(ip.checked){
+          this.subid+=ip.value+","
+        }
+      }
+      this.subid=this.subid.slice(0,this.subid.length-1)
+      // 点击确定按钮后，隐藏选框模块
+      $("#addstamp ul.sub_items").addClass("hide")
+    },
+    // 重置按钮
+    resetBtn(){
+      this.subid="";
+    },
     // 自动获取图片
     getimg(ev){
       const file=ev.target.files[0];
@@ -119,12 +157,9 @@ export default {
       obj.readAsDataURL(file);
       this.imgurl=obj.result;
     },
-    
    
 	},
-	computed:{
-		
-  },
+	computed:{},
   created(){
     this.axios.get("getinfo").then(res=>{
       var lists=res.data.data;
@@ -149,6 +184,11 @@ export default {
 #addstamp table td.itembox{
   position: relative;
 }
+
+#addstamp table td span{
+  margin-left:10px;
+  color:#f00;
+}
 #addstamp table input[type="file"]{
   border:none;padding:0;
 }
@@ -170,15 +210,27 @@ export default {
   flex-wrap: wrap;
   border:1px solid #ddd;
   background:#fff;
+  padding-bottom:10px;
 }
 #addstamp table ul.sub_items.hide{
   display:none;
 }
 #addstamp table ul.sub_items li{
-  height:30px;
+  height:22px;
   padding:0 10px;
+  margin-top:7px;
   border-top:none;
 }
+
+#addstamp table ul.sub_items li.resetBtn,
+#addstamp table ul.sub_items li.sureBtn{
+  width:50px;margin:7px 10px;
+  border:1px solid green;
+  line-height:20px;
+  text-align:center;
+  cursor: pointer;
+}
+
 #addstamp table ul.sub_items li input{
   width:14px;height:14px;border:1px solid #000;
   position: relative;
