@@ -45,11 +45,11 @@ router.get("/noupwd",(req,res)=>{
 
 //注册数据库
 router.get("/register",(req,res)=>{
-  //console.log(req);
-  //console.log(res);
+  console.log(req);
+  console.log(res);
   console.log(req.query);
   var obj={
-    uid:req.uid,
+    uid:req.query.uid,
     upwd:req.query.upwd,
     uname:req.query.uname,
     nickname:req.query.nickname,
@@ -62,9 +62,9 @@ router.get("/register",(req,res)=>{
   // console.log(obj.upwd);
   var sql="INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?);";
   pool.query(sql,[obj.uid,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
-    // console.log(result+"1212")
-    // if(err) throw err;
-    if(result){
+    console.log(result+"1212")
+    if(err) throw err;
+    if(result.length==0){
       res.send({code:-1,msg:"注册失败"})
     }else{
       res.send({code:1,msg:"注册成功"})
