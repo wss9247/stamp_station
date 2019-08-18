@@ -128,7 +128,7 @@ export default {
       this.$router.push("UpwdPage")
    },
    btn3(){
-      this.$router.push("Registro")
+      this.$router.push("RegistroPage")
    }
  }
 }

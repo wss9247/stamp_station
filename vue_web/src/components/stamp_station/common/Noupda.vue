@@ -13,22 +13,27 @@
        <div class="hellow">
          <span>您好！欢迎你来“我要集邮！”通过下面您可以找回登录密码。 </span>
        </div>
+       <h1 class="ff6000 h1">会员名和密码请选择便于记忆的4-12个英文字母和数字组合</h1>
+       <!-- 改密码的区域 -->
        <div class="table b-c">
             <table>
               <tr>
-                <td>账号：</td>
-                <td><input type="text" v-model="uname"></td>
+                <td class="c1">账号：</td>
+                <td>
+                  <input type="text" v-model="uname">
+                  <span class="ff6000">(您在专题邮社的账号)</span>
+                  </td>
               </tr>
               <tr>
-                <td>新密码：</td>
+                <td class="c1">新密码：</td>
                 <td><input type="text" v-model="upwd"></td>
               </tr>
               <tr>
-                <td>再次输入密码：</td>
+                <td class="c1">再次输入密码：</td>
                 <td><input type="text" v-model="upwds"></td>
               </tr>
               <tr>
-                <td></td>
+                <td class="c1"></td>
                 <td>
                   <img src="http://www.51gu.com/cn/images/but_tj.jpg" @click="btn1">
                   <img src="http://www.51gu.com/cn/images/but_res.jpg" @click="btn2">
@@ -36,7 +41,6 @@
               </tr>
             </table>
        </div>
-  
     </div>
   
   </div>
@@ -90,6 +94,10 @@ export default {
 </script>
 <style>
 *{margin:0;padding:0;}
+.ff6000{
+  color:#ff6000;
+  font-size: 14px;
+  }
 .w-937{width:937px;}
 .b-c{background:#ececec }
 .m_a_0{margin: 0 auto;}/*居中显示*/
@@ -129,4 +137,38 @@ export default {
    height:150px;
    margin: 0 auto;
   }
+  /* 会员名和密码便于记忆的4-12个英文 */
+  .h1{
+    margin: 10px 0px 10px 55px ;
+  }
+  .table{
+    border-radius: 10px;
+    padding: 0px 0px;
+    width:937px;
+    height:158px;
+  }
+  /* 登录框中的table */
+  table{
+    width:400px;
+    margin:0px 0px 0px 55px ;
+    padding:0px 0px;
+    }
+    table td{
+       /* border:1px solid #00f; */
+        padding: 4px 0px;
+    }
+    table .c1{
+     text-align: right;
+    }
+    table td img{
+    width: 80px;
+    height: 30px;
+
+    }
+    table td input{
+    height: 26px;
+    line-height: 26px;
+    background-repeat: repeat-x;
+    border: 1px solid #DB9238;
+    }
 </style>
