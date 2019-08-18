@@ -1,76 +1,63 @@
 <template>
+<!-- 主体区域 -->
 <div id="addstamp">
-  <!-- 引入顶部子组件：Header -->
-  <Hd :mid="current"></Hd>
-  <div class="container">
-    <!-- 引入左侧边栏 -->
-    <aside>
-      <Marketaside></Marketaside>
-    </aside>
-    <!-- 主体区域 -->
-    <section>
-      <table cellspacing=0 cellpadding=0>
-        <tr><td>邮票名称：</td><td><input class="stitle" v-model="stitle" type="text"></td></tr>
-        <tr><td>邮票编号：</td><td><input v-model="snum" type="text"><span>{{beizhu}}</span></td></tr>
-        <tr><td>发行国家：</td>
-          <td>
-            <select name="nations"  v-model="nid" id="">{{nid}}
-              <option value="999" selected >--请选择--</option>
-              <option :value="c.nid" v-for="(c,i) of country" :key="i">{{c.nname}}</option>
-            </select>
-          </td>
-        </tr>
-        <tr><td>发行时间：</td><td><input v-model="sdate" type="date"></td></tr>
-        <tr><td>售价：</td><td><input  v-model="price" type="number"></td></tr>
-        <tr><td>数量：</td><td><input v-model="samount" type="number"></td></tr>        
-        <tr>
-          <td>图片上传：</td>
-          <td>
-            <input @change="getimg" type="file" accept="image/*"/>
-          </td>
-          
-        </tr>
-        <tr><td>邮票类型：</td>
-          <td>
-            <select name="kinds" v-model="kid" id="">
-              <option value="999" selected >--请选择--</option>
-              <option :value="k.kid" v-for="(k,i) of kinds" :key="i">{{k.kname}}</option>
-            </select>
-          </td>
-        </tr>
-        <tr><td>所属专题：</td>
-          <td class="itembox">
-            <a class="selector" @click="xlpop" >{{subid}}</a>
-            <ul class="sub_items hide">
-              <li @click="sureBtn" class="sureBtn">确定</li>
-              <li @click="resetBtn" class="resetBtn">重置</li>
-              <li>
-                <div class="sub" v-for="(s,i) of subs" :key="i"><label><input type="checkbox" name="subid[]" :value="s.subid">{{s["sub_name"]}}</label></div>
-              </li>              
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>详细描述：</td>
-          <td>
-            <textarea v-model="detials" name="detials" id="" cols="70" rows="10" wrap="hard"></textarea>
-          </td>          
-        </tr>
-        <tr>
-          <td ><input class="submit" type="button" value="提交" @click="addStamp"></td>
-          <td ><input class="resetStamp" type="button" value="重置" @click="resetStamp"></td>
-        </tr>
-      </table>   
-    </section>
-  </div>
-  <!-- 引入页脚 -->
-  <fot></fot>
-</div>
+  <table cellspacing=0 cellpadding=0>
+    <tr><td>邮票名称：</td><td><input class="stitle" v-model="stitle" type="text"></td></tr>
+    <tr><td>邮票编号：</td><td><input v-model="snum" type="text"><span>{{beizhu}}</span></td></tr>
+    <tr><td>发行国家：</td>
+      <td>
+        <select name="nations"  v-model="nid" id="">{{nid}}
+          <option value="999" selected >--请选择--</option>
+          <option :value="c.nid" v-for="(c,i) of country" :key="i">{{c.nname}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr><td>发行时间：</td><td><input v-model="sdate" type="date"></td></tr>
+    <tr><td>售价：</td><td><input  v-model="price" type="number"></td></tr>
+    <tr><td>数量：</td><td><input v-model="samount" type="number"></td></tr>        
+    <tr>
+      <td>图片上传：</td>
+      <td>
+        <input @change="getimg" type="file" accept="image/*"/>
+      </td>
+    </tr>
+    <tr><td>邮票类型：</td>
+      <td>
+        <select name="kinds" v-model="kid" id="">
+          <option value="999" selected >--请选择--</option>
+          <option :value="k.kid" v-for="(k,i) of kinds" :key="i">{{k.kname}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr><td>所属专题：</td>
+      <td class="itembox">
+        <a class="selector" @click="xlpop" >{{subid}}</a>
+        <ul class="sub_items hide">
+          <li @click="sureBtn" class="sureBtn">确定</li>
+          <li @click="resetBtn" class="resetBtn">重置</li>
+          <li>
+            <div class="sub" v-for="(s,i) of subs" :key="i"><label><input type="checkbox" name="subid[]" :value="s.subid">{{s["sub_name"]}}</label></div>
+          </li>              
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>详细描述：</td>
+      <td>
+        <textarea v-model="detials" name="detials" id="" cols="70" rows="10" wrap="hard"></textarea>
+      </td>          
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <input class="submit" type="button" value="提交" @click="addStamp">
+        <input class="resetStamp" type="button" value="重置" @click="resetStamp">
+      </td>
+    </tr>
+  </table>   
+</div>    
 </template>
 <script>
-import Hd from "./Header";
-import Marketaside from "./Market_aside";
-import fot from "./Footer";
 export default {
   data(){return {
     current:"12",
@@ -89,7 +76,6 @@ export default {
     subid:"--请选择所属专题--",
     beizhu:"* 邮票编码唯一，请仔细对照输入",
   }},
-  components:{Hd,Marketaside,fot},
   methods:{
     // 重置数据
     resetStamp(){
@@ -213,7 +199,7 @@ export default {
       this.kinds=kinds;
       this.subs=subs;
     })
-    // 创建一个公共的函数，用于拼接
+    
   },
   mounted(){
     
@@ -221,9 +207,7 @@ export default {
 }
 </script>
 <style scoped>
-
 #addstamp table td{
-  padding-left:10px;
   padding-bottom:10px;
 }
 #addstamp table td.itembox{
@@ -235,7 +219,7 @@ export default {
   color:#f00;
 }
 #addstamp table select,
-#addstamp table input{border-color:#999;}
+#addstamp table input{border-color:#ddd;}
 #addstamp table input.stitle{
   width:470px;
 }
@@ -248,16 +232,16 @@ export default {
   height:26px;
   padding:0 5px;
   line-height:26px;
-  border:1px solid #999;
+  border:1px solid #ddd;
   background: url("../../../img/icon1.png") no-repeat 145px center;
 }
 /* 下拉选项 */ 
 #addstamp table ul.sub_items{
   position: absolute;
   width:690px;
-  left:9px;top:26px;
+  left:0;top:27px;
   /* display:flex; */
-  border:1px solid #999;
+  border:1px solid #ddd;
   background:#fff;
   overflow: hidden;
 }
@@ -285,7 +269,7 @@ export default {
 }
 #addstamp table ul.sub_items .resetBtn{
   color:#000;
-  border:1px solid #999;
+  border:1px solid #ddd;
   background-image:linear-gradient(to bottom,#f8f8f8 0%,#ddd 50%);
 }
 #addstamp table ul.sub_items .sub{
@@ -301,6 +285,9 @@ export default {
   top:2px;
 }
 /* 提交按钮 */
+#addstamp table textarea{
+  border:1px solid #ddd;
+}
 #addstamp table input.resetStamp,
 #addstamp table input.submit{
   color:#fff;

@@ -96,6 +96,18 @@ router.get("/snumInfo",(req,res)=>{
   })
 })
 
+// 查询数据1：
+router.get("/searchStamp",(req,res)=>{
+  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount from stamp_details limit 0,20`;
+  pool.query(sql,(err,result)=>{
+    if(result.length==0){
+      res.send({code:-1,msg:"未查询到任何数据",data:result});
+    }else{
+      res.send({code:1,msg:"查询成功",data:result});
+    }
+    
+  })
+})
 
 
 
