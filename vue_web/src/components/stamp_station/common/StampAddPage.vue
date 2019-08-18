@@ -10,7 +10,7 @@
     <!-- 主体区域 -->
     <section>
       <table cellspacing=0 cellpadding=0>
-        <tr><td>邮票名称：</td><td><input v-model="stitle" type="text"></td></tr>
+        <tr><td>邮票名称：</td><td><input class="stitle" v-model="stitle" type="text"></td></tr>
         <tr><td>邮票编号：</td><td><input v-model="snum" type="text"><span>{{beizhu}}</span></td></tr>
         <tr><td>发行国家：</td>
           <td>
@@ -53,10 +53,13 @@
         <tr>
           <td>详细描述：</td>
           <td>
-            <textarea v-model="detials" name="detials" id="" cols="30" rows="10" wrap="hard"></textarea>
+            <textarea v-model="detials" name="detials" id="" cols="70" rows="10" wrap="hard"></textarea>
           </td>          
         </tr>
-        <tr><td colspan="2"><input type="button" value="提交" @click="addStamp"></td></tr>
+        <tr>
+          <td ><input class="submit" type="button" value="提交" @click="addStamp"></td>
+          <td ><input class="resetStamp" type="button" value="重置" @click="resetStamp"></td>
+        </tr>
       </table>   
     </section>
   </div>
@@ -88,7 +91,19 @@ export default {
   }},
   components:{Hd,Marketaside,fot},
   methods:{
-   
+    // 重置数据
+    resetStamp(){
+      this.stitle="";
+      this.snum="";
+      this.nid="";
+      this.sdate="";
+      this.price="";
+      this.samount="";
+      this.detials="";
+      this.imgurl="";
+      this.kid="";
+      this.subid="--请选择所属专题--";
+    },
     // 提交数据
 		addStamp(){
       var snum=this.snum;   
@@ -110,7 +125,7 @@ export default {
         // 2.1 发送数据
         this.axios.post("addStamp",data).then(res=>{
           if(res.data==-1){
-            this.$toast("数据添加失败，请检查是否输入错误")          
+            this.$toast("数据添加失败，请检查是否输入错误"); 
           }else{
             // 2.2 发送成功后，可选择是否跳转到详情页查看
             this.$messagebox.confirm("是否前往详情页查看")
@@ -119,10 +134,11 @@ export default {
               this.axios.get("snumInfo",{params:{snum}}).then(res=>{
                 var sid=res.data.data[0].sid;
                 this.$router.push("/info?sid="+sid);
+                return;
               })            
             })	
             .catch(err=>{ //2.4 点击取消，重置当前页
-              this.$router.go(0)
+              this.$router.go(0);
             })
           }
         })
@@ -177,10 +193,14 @@ export default {
       var snum=this.snum;
       // 1.判断邮票编码snum是否唯一
       this.axios.get("snumUni",{params:{snum}}).then(res=>{
+        $("#addstamp table input[type=button]").show();
         if(res.data.code==1){
           this.beizhu="✔";
         }else if(res.data.code==-1){
           this.beizhu="该邮票编码已存在！请重新输入";
+          this.$toast("该邮票编码已存在！请重新输入");
+          $("#addstamp table input[type=button]").hide();
+          return;
         }
       })
     }
@@ -204,7 +224,7 @@ export default {
 
 #addstamp table td{
   padding-left:10px;
-  padding-bottom:12px;
+  padding-bottom:10px;
 }
 #addstamp table td.itembox{
   position: relative;
@@ -213,6 +233,11 @@ export default {
 #addstamp table td span{
   margin-left:10px;
   color:#f00;
+}
+#addstamp table select,
+#addstamp table input{border-color:#999;}
+#addstamp table input.stitle{
+  width:470px;
 }
 #addstamp table input[type="file"]{
   border:none;padding:0;
@@ -223,16 +248,16 @@ export default {
   height:26px;
   padding:0 5px;
   line-height:26px;
-  border:1px solid #ddd;
+  border:1px solid #999;
   background: url("../../../img/icon1.png") no-repeat 145px center;
 }
 /* 下拉选项 */ 
 #addstamp table ul.sub_items{
   position: absolute;
   width:690px;
-  left:10px;top:26px;
+  left:9px;top:26px;
   /* display:flex; */
-  border:1px solid #ddd;
+  border:1px solid #999;
   background:#fff;
   overflow: hidden;
 }
@@ -276,10 +301,16 @@ export default {
   top:2px;
 }
 /* 提交按钮 */
-#addstamp table .sub input[type="button"]{
+#addstamp table input.resetStamp,
+#addstamp table input.submit{
   color:#fff;
   background-image: linear-gradient(to bottom,#1eb4e6 0%,#1297d8 50%);
   border:1px solid #ddd;
   padding:3px 30px;
+}
+#addstamp table input.resetStamp{
+  margin-left:40px;
+  color:#000;
+  background-image:linear-gradient(to bottom,#f8f8f8 0%,#ddd 50%);
 }
 </style>

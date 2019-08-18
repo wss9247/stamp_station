@@ -90,11 +90,8 @@ router.post("/addStamp",(req,res)=>{
 
 // 根据邮票唯一编码snum查看新增数据的id
 router.get("/snumInfo",(req,res)=>{
-  console.log(req.query.snum)
   var sql=`select sid from stamp_details where snum="${req.query.snum}"`;
-  console.log(sql)
   pool.query(sql,(err,result)=>{
-    console.log(result);
     res.send({code:1,msg:"查询数据成功",data:result})
   })
 })
