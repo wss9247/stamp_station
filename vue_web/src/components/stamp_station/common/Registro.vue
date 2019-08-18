@@ -44,7 +44,7 @@
         </tr>
         <tr>
           <td>生日：</td>
-          <td><input type="text" v-model="bitrh"></td>
+          <td><input type="date" v-model="bitrh"></td>
         </tr>
         <tr>
           <td>邮箱：</td>
@@ -67,16 +67,7 @@
         </tr>
       </table>
     </div>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
+   
   </div>
   </div>
 </template>
