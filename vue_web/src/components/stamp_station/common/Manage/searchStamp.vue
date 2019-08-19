@@ -27,11 +27,14 @@ export default {
   created(){
     this.axios.get("searchStamp").then(res=>{
       if(res.data.code==1){
+        for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
+          item.sdate=item.sdate.slice(0,10);
+          item.shelfTime=item.sdate.slice(0,10);
+        }
         this.stamp=res.data.data;
       }else{
         this.$toast("未查询到任何数据");
       }
-      console.log(res)
     })
   },
 }

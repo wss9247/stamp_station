@@ -18,11 +18,11 @@
 </template>
 <script>
 import Hd from "./Header";
-import ManageAside from "./ManageAside";
+import ManageAside from "./Manage/ManageAside";
 import fot from "./Footer";
 // 主体区域子组件：
-import searchStamp from "./searchStamp";
-import AddStamp from "./AddStamp";
+import searchStamp from "./Manage/searchStamp";
+import AddStamp from "./Manage/AddStamp";
 export default {
   data(){return {
    mAny:"AddStamp"

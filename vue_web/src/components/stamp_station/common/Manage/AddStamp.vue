@@ -233,7 +233,7 @@ export default {
   padding:0 5px;
   line-height:26px;
   border:1px solid #ddd;
-  background: url("../../../img/icon1.png") no-repeat 145px center;
+  background: url("../../../../img/icon1.png") no-repeat 145px center;
 }
 /* 下拉选项 */ 
 #addstamp table ul.sub_items{
