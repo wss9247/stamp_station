@@ -18,11 +18,12 @@
         <h3 class="title198 title-198" id="t-198">销售排行</h3>
     </div>
     <div class="t_3">
-      <ul>
+      <!-- <ul>
         <li><img src="http://www.51gu.com/cn/images/01.gif">
           <a >克罗地亚科学艺术研究...</a>
         </li>
-      </ul>
+      </ul> -->
+      <IndexAside_clasif></IndexAside_clasif>
     </div>
       <h3 class="title198">历史上的今天</h3>
   </div>
@@ -54,8 +55,12 @@
 </div>
 </template>
 <script>
+import IndexAside_clasif from "./IndexAside_clasif.vue";
 export default {
-  
+  data(){
+    return{}
+  },
+  components:{IndexAside_clasif}
 }
 </script>
 <style scoped>
@@ -103,19 +108,19 @@ export default {
   margin-left: 3px;
 }
 /* li 的样式 */
-#IndexAside .notice .t_3 li{
+/* #IndexAside .notice .t_3 li{
   border-bottom: 1px dashed #ccc;
   padding:5px;
 }
-/* li 下面 img 的样式 */
+li 下面 img 的样式
 #IndexAside .notice .t_3 li>img{
   vertical-align:middle;
 }
-/* li  下面a 标签的样式 */
+li  下面a 标签的样式
 #IndexAside .notice .t_3 li>a{
   margin-top:5px;
   
-}
+} */
 /* three 的样式 */
 /*.saleBand{margin-left:3px;} */
 /* tbde_bg 的背景颜色 */

@@ -12,6 +12,7 @@ import IndexRight from "./components/stamp_station/common/IndexRight.vue"
 import UpwdPage from "./components/stamp_station/common/UpwdPage.vue"
 import ManagePage from "./components/stamp_station/common/ManagePage.vue"; //平台管理后台
 import RegistroPage from "./components/stamp_station/common/RegistroPage.vue"; //平台管理后台
+import IndexAside_footer from "./components/stamp_station/common/IndexAside_footer.vue"; //平台管理后台
 
 
 Vue.use(Router)
@@ -29,6 +30,8 @@ export default new Router({
     {path:'/UpwdPage',component:UpwdPage},//购物车
     {path:'/Manage',component:ManagePage},//平台管理后台
     {path:'/RegistroPage',component:RegistroPage},//注册区域
+    {path:'/IndexAside_footer',component:IndexAside_footer},//注册区域
+
   ]
 })
 // 

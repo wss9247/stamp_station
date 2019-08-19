@@ -1,0 +1,18 @@
+*{margin:0;padding:0;}
+a{text-decoration: none;}/*去掉a标签的所有下划线*/
+#IndexAside_clasif li{list-style-type:none;}
+/* #IndexAside_clasif{margin-left: 50px;}要删除的 */
+#IndexAside_clasif .xs{
+  width:176px;
+  height:406px;
+  overflow:hidden;
+}
+#IndexAside_clasif .xs_li{
+  width:176px;
+  height:29px;
+  overflow:hidden;
+  border-bottom: 1px dashed #A8B4BB;
+  padding: 7px 0px 0px 4px;
+  line-height: 21px;
+  background: #f3fdfe;
+}

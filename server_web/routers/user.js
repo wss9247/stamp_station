@@ -76,4 +76,23 @@ router.get("/register",(req,res)=>{
 // http://127.0.0.1:5000/register?upwd=123456&uname=qqqqqqqq&nickname=鬼子&sex=0&bitrh=2000-0-0&email=123456789&tel=12345678912&id_card=123456789
 
 // http://127.0.0.1:5000/register?uid=123&upwd=123456&uname=qqqqqqqq&nickname=鬼子&sex=0&bitrh=2000-0-0&email=123456789@qq.com&tel=12345678912&id_card=123456789
+
+// 销售拍排行的产查询
+router.get("/IndexAside_clasif",(req,res)=>{
+  // 页码
+  var p=req.query.pno;
+  // 每页显示多少条数据
+  var ps=req.query.pageSize;
+   if(!p){p=1}//默认是一页
+   if(!ps){ps=13}//默认每页13条数据
+   var offset=(p-1)*ps;
+  
+  var sql="SELECT stitle FROM stamp_details LIMIT ?,?";
+  pool.query(sql,[offset,ps],(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,msg:"查询成功",data:result});
+  })
+})
+// http://127.0.0.1:5000/IndexAside_clasif?pno=1
+
 module.exports=router;
