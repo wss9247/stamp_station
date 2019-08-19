@@ -41,6 +41,14 @@ router.get("/snumUni",(req,res)=>{
 })
 // 插入数据
 router.post("/addStamp",(req,res)=>{
+  var uid=req.session.uid   //获取session对象中保存好的uid  
+  if(!uid){ // 如果uid不存在，表示用户未登录
+    res.send({code:0,msg:"请先登录！"});    
+    return ;
+  }else if(uid==-1){
+    res.send({code:2,msg:"跳转到平台后台管理页面"});    
+    return ;
+  }
   var obj=req.body;
   var sql=`INSERT INTO stamp_details (sid,stitle,snum,nid,nname,sdate,price,imgurl,detials,kid,kname,samount,shelfTime) 
   VALUES (NULL,

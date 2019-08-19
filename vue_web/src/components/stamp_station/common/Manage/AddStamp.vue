@@ -110,8 +110,14 @@ export default {
         data.append("shelfTime",shelfTime.toLocaleDateString());  // 将当前时间转化为本地时间格式后上传
         // 2.1 发送数据
         this.axios.post("addStamp",data).then(res=>{
-          if(res.data==-1){
+          console.log(res)
+          if(res.data.code==-1){
             this.$toast("数据添加失败，请检查是否输入错误"); 
+          }else if(res.data.code==0){
+            this.$toast(res.data.msg);
+            this.$router.push("/index");
+          }else if(res.data.code==2){
+            this.$router.push("/manage");
           }else{
             // 2.2 发送成功后，可选择是否跳转到详情页查看
             this.$messagebox.confirm("是否前往详情页查看")
