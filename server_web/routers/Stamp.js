@@ -106,7 +106,7 @@ router.get("/snumInfo",(req,res)=>{
 
 // 查询数据1：
 router.get("/searchStamp",(req,res)=>{
-  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount from stamp_details limit 0,20`;
+  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount,status from stamp_details limit 0,20`;
   pool.query(sql,(err,result)=>{
     if(result.length==0){
       res.send({code:-1,msg:"未查询到任何数据",data:result});
@@ -115,6 +115,11 @@ router.get("/searchStamp",(req,res)=>{
     }
     
   })
+})
+
+// 停用
+router.post("/delStamp",(req,res)=>{
+  var sql=`update stamp_details set status=? where sid="${req.body.sid}"`
 })
 
 
