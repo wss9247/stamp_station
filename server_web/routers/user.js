@@ -8,7 +8,7 @@ router.get("/indexright",(req,res)=>{
   var uname=req.query.uname;
   var upwd=req.query.upwd;
   // 2.查询数据库 
-  var sql="SELECT uid FROM users WHERE uname=? AND upwd=?";
+  var sql="SELECT uid,nickname FROM users WHERE uname=? AND upwd=?";
   // 3.执行sql语句 
   pool.query(sql,[uname,upwd],(err,result)=>{
     // 如果哟错误就抛出错误
@@ -19,7 +19,7 @@ router.get("/indexright",(req,res)=>{
       res.send({code:-1,msg:"用户名或密码有误"})
     }else{
      req.session.uid=result[0].uid;
-      res.send({code:1,msg:"登录成功"})
+      res.send({code:1,msg:"登录成功",data:result})
     }
   })
 })
