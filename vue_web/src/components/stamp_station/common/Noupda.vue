@@ -148,24 +148,24 @@ export default {
     height:158px;
   }
   /* 登录框中的table */
-  table{
+  .update table{
     width:400px;
     margin:0px 0px 0px 55px ;
     padding:0px 0px;
     }
-    table td{
+   .update table td{
        /* border:1px solid #00f; */
         padding: 4px 0px;
     }
-    table .c1{
+   .update table .c1{
      text-align: right;
     }
-    table td img{
+   .update table td img{
     width: 80px;
     height: 30px;
 
     }
-    table td input{
+   .update table td input{
     height: 26px;
     line-height: 26px;
     background-repeat: repeat-x;

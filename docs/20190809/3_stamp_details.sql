@@ -1,3 +1,10 @@
+﻿SET NAMES UTF8;
+drop database if exists stamp_station;
+create database stamp_station CHARSET=UTF8;
+
+##use stamp_station;
+
+
 insert into stamp_details values(NULL,"安道尔艺术家，诺伊斯·莫拉陶罐作品可折叠异形票1全（折叠部分为展开后的作品全貌）","SADB707CO","","西属安道尔","20170309","43.00","http://www.51gu.com/shop/asp/stpimg/SAD/SADB707CO3.jpg","","43","普通邮票","工艺品,陶瓷玻璃","");
 insert into stamp_details values(NULL,"花卉1全（信销票）","CZKB815CU","","捷克","20180620","5.00","http://www.51gu.com/shop/asp/stpimg/CZK/CZKB815CU3.jpg","","44","小全张","花卉","");
 insert into stamp_details values(NULL,"人物、徵志等票中票首日封1全","CZKB814FC","","捷克","20180620","18.00","http://www.51gu.com/shop/asp/stpimg/CZK/CZKB814FC3.jpg","","45","小型张","其他人物","");
