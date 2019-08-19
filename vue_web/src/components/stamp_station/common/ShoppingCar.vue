@@ -85,7 +85,7 @@ export default {
 		var url ="cart";
 		this.axios.get(url).then(res=>{
 			// 获取返回结果
-			if(res.data.data==-1){
+			if(res.data.data==0){
 				// 如果用户没有登录跳转到登录界面
 				this.$messagebox("消息","请登录").then(res=>{
 					this.$router.push("/index");
@@ -94,14 +94,14 @@ export default {
 			}else{
 				var list=res.data.data;
 				this.$store.commit("clear")
-        // 注意先添加cb属性再赋值给list
-        // for(var item of list){
-        //   item.cb=false;
-        //   // 修改共享购物车中的数量
-        //   this.$store.commit("increment")
-        // }
-        // this.list=list;
-        // console.log(this.list);
+        注意先添加cb属性再赋值给list
+        for(var item of list){
+          item.cb=false;
+          // 修改共享购物车中的数量
+          this.$store.commit("increment")
+        }
+        this.list=list;
+        console.log(this.list);
         }
     })
 	},
@@ -119,7 +119,6 @@ export default {
 			}
 		})
 	},
-	
 }
 </script>
 <style scoped>
