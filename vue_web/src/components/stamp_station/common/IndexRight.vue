@@ -118,7 +118,6 @@ export default {
       }else{
         console.log(res)
         alert("登录成功");
-        this.$router.push()
       }
     })
    },
