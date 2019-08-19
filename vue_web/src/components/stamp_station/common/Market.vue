@@ -32,13 +32,15 @@
 				</div>
 			</div>
 		</div>
+		<button @click="loadMore">下一页</button>
   </div>
 </template>
 <script>
 export default {
 	data(){return {
 		pros:[],
-		px:"sdate"
+		px:"sdate",
+		page:0
 	}},
 	methods:{
 		info(e){
@@ -69,9 +71,23 @@ export default {
 				
 				console.log(year)
 			})
-		}
+		},
+		loadMore(){
+		// 获取商品分页数据
+		var url="pros";
+		this.page++;
+		var obj={page:this.page};
+		this.axios.get(url,{params:obj}).then(res=>{
+			// 获取返回结果
+			console.log(res.data.data);
+			this.pros=res.data.data
+			})
+		},
 	},
+
 	created(){
+		// this.loadMore();
+		// console.log("1:created 创建组件成功")
 		// 获取后台数据
 		var px=this.px;
 		this.axios.get("market",{params:{px}}).then(res=>{
