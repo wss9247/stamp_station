@@ -3,15 +3,6 @@
 
     <!-- 注册区域 -->
   <div id="registro">
-    <!-- 您当前的位置：新用户注册 -->
-    <div class="reg_a bak">
-        <img src="http://www.51gu.com/cn/images/pos_arr.gif">
-        <span>您当前的位置：新用户注册</span>
-    </div>
-    <!-- 欢迎您来注册成为我要集邮 网站的会员 -->
-    <div class="reg_b m-a bak bo_ra"> 
-      <span class="color-red">欢迎您来注册成为 "我要集邮" 网站的会员</span>
-    </div>
     <span class="reg_c color-ff6000">
       会员名和密码请选择便于记忆的4-12个英文字母和数字的组合  
     </span>

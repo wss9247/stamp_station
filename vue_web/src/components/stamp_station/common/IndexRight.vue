@@ -116,8 +116,8 @@ export default {
       if(res.data.code==-1){
         alert("用户名和密码有误")
       }else{
-        console.log(res)
         alert("登录成功");
+        window.location.reload(); //登录成功后重载首页
       }
     })
    },
@@ -125,7 +125,7 @@ export default {
       this.$router.push("UpwdPage")
    },
    btn3(){
-      this.$router.push("RegistroPage")
+      this.$router.push("Regist")
    }
  }
 }

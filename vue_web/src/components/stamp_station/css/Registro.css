@@ -1,13 +1,13 @@
-*{margin: 0px;padding: 0px;}
+
 .color-red{color:#FA2F33;}
 .color-ff6000{color:#ff6000}
-.bak{background: #ececec;}
+/* .bak{background: #ececec;} */
 .bo_ra{border-radius:10px; }
 .m-a{margin: 0 auto;}
 /* 最外层的样式 */
 #registro{
   width:1003px;
-  border:1px solid #f00;
+  /* border:1px solid #f00; */
 }
 #registro .reg_a{
   width:1003px;
@@ -16,18 +16,7 @@
 #registro .reg_a img{
   padding:20px 0px 0px 20px;
 }
-/* 欢迎您来注册成为 "我要邮寄!" 网站的会员 */
-#registro .reg_b{
-  width:937px;
-  height:113px;
-  margin-top:15px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-#registro .reg_b span{
-  font-size: 14px;
-  line-height: 60px;
-}
+
 /* 会员名和密码选择便于记忆的4-12个英文字母和数字组合 */
 #registro .reg_c{
   margin-left:70px;
@@ -47,4 +36,11 @@
 }
 #registro table>tr label{
   margin: 0px 5px;
+}
+#registro label{
+  position: relative;top:-5px;
+}
+#registro input[type="radio"]{
+  position: relative;
+  top:3px;
 }

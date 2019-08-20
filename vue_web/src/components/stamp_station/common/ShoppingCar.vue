@@ -1,10 +1,11 @@
 <template>
     <div id="shoppingCar">
 			<!-- 顶部背景图 -->
-    <img src="/img/header.56c0547c.jpg">
-    <div>
+    <Hd></Hd>
+    <div class="Carbox">
+			<div class="position">>> 我的购物车</div>
 			<!-- 配送 -->
-        <div class="area">
+			<div class="area">
 					<a><em>全部商品</em> <span>1</span></a>
 					<div>配送至：<select><option value="area">配送地址</option></select></div>
 			</div>
@@ -65,6 +66,7 @@
     </div>
 </template>
 <script>
+import Hd from "./Header";
 export default {
     data(){
 		return{
@@ -80,31 +82,32 @@ export default {
 		// 	}
 		// },
 	},
-	loadMore(){
-		// 加载购物车中的数据
-		var url ="cart";
-		this.axios.get(url).then(res=>{
-			// 获取返回结果
-			if(res.data.data==0){
-				// 如果用户没有登录跳转到登录界面
-				this.$messagebox("消息","请登录").then(res=>{
-					this.$router.push("/index");
-					return;
-				})
-			}else{
-				var list=res.data.data;
-				this.$store.commit("clear")
-        注意先添加cb属性再赋值给list
-        for(var item of list){
-          item.cb=false;
-          // 修改共享购物车中的数量
-          this.$store.commit("increment")
-        }
-        this.list=list;
-        console.log(this.list);
-        }
-    })
-	},
+	components:{Hd},
+	// loadMore(){
+	// 	// 加载购物车中的数据
+	// 	var url ="cart";
+	// 	this.axios.get(url).then(res=>{
+	// 		// 获取返回结果
+	// 		if(res.data.data==0){
+	// 			// 如果用户没有登录跳转到登录界面
+	// 			this.$messagebox("消息","请登录").then(res=>{
+	// 				this.$router.push("/index");
+	// 				return;
+	// 			})
+	// 		}else{
+	// 			var list=res.data.data;
+	// 			this.$store.commit("clear")
+  //       注意先添加cb属性再赋值给list
+  //       for(var item of list){
+  //         item.cb=false;
+  //         // 修改共享购物车中的数量
+  //         this.$store.commit("increment")
+  //       }
+  //       this.list=list;
+  //       console.log(this.list);
+  //       }
+  //   })
+	// },
 	created(){
 		// 获取后台数据
 		this.axios.get("addcart").then(res=>{

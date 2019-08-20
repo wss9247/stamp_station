@@ -2,9 +2,21 @@
   <header id="header">
     <div class="hdTop">
       <img src="../../../img/header.jpg" >
-      <div class="user" v-show="isLogin">
-        <span>{{nickname}}</span>
-        <span >
+      <div class="user">
+        <!-- 未登录 -->
+        <span v-if="isLogin==0">请登录<a @click="ToRegist">注册</a></span>
+        <!-- 普通用户登录 -->
+        <span v-else-if="isLogin==1">
+          用户名：{{user.uname}}
+          <!-- <a @click="updateUser">修改账户</a> -->
+          <a @click="ToShopping">购物车</a>
+          <a>查看订单</a>
+          <a @click="quitLogin">退出</a>
+        </span>
+        <!-- 管理员账号 -->
+        <span v-else>
+          用户名：{{user.uname}}
+          <!-- <a @click="updateUser">修改账户</a> -->
           <a @click="Tomanage" class="managePage">进入系统后台</a>
           <a @click="quitLogin">退出</a>
         </span>
@@ -20,8 +32,8 @@
 export default {
   data(){return {
     current:0,
-    isLogin:false,
-    nickname:"请登录",
+    isLogin:0,
+    user:[],
     menus:[
       {"mtitle":"首页","murl":"/index"},
       {"mtitle":"用户专区","murl":""},
@@ -35,23 +47,24 @@ export default {
     select(e){
       this.current=e.target.dataset.id;
     },
-    jumpTo(e){ 
+    jumpTo(e){  // 导航
       var url=e.target.dataset.link;
       this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
     },
-    quitLogin(e){
-      console.log(23)
-      if(!this.isLogin){
-        $(e.target).show();
-      }else{
-        this.axios.get("quitLogin").then(res=>{
-          this.nickname="请登录";
-          $(e.target).hide();
-        })
-      }
+    quitLogin(e){ // 退出登录   
+      this.axios.get("quitLogin").then(res=>{
+        this.isLogin=0;
+        this.$router.push("/index");
+      })
     },
-    Tomanage(){
+    ToShopping(){ // 跳转到购物车
+        this.$router.push("/shoppingcar");
+    },
+    Tomanage(){ // 跳转到平后管理
       this.$router.push("/manage")
+    },
+    ToRegist(){ // 跳转到用户注册
+      this.$router.push("/Regist");
     }
   },
   props:["mid"],// 从父组件的mid属性中拿到mid
@@ -71,27 +84,17 @@ export default {
       return `今天是：${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日，星期${week}`;
     }
   },
-  watch:{
-    nickname(){
-      console.log(this.nickname)
-      console.log("刷新")
-      // this.$router.push("/index")
-    }
-  },
   created(){
   },
   mounted(){
     this.axios.get("initUser").then(res=>{
-      $("#header .user .managePage").hide();
-      if(res.data.code==0){  //未登录
-        this.nickname="请登录";
-      }else if(res.data.code==1){ 
-        this.isLogin=true;
-        this.nickname=res.data.data[0].nickname
+      if(res.data.code==0){  //未登录        
+        this.isLogin=0;
+      }else if(res.data.code==1){  // 已登录
+        this.isLogin=1;
+        this.user=res.data.data[0];
         if(res.data.data[0].uid==-1){//管理员登录
-          $("#header .user .managePage").show();
-        }else{  // 普通用户
-
+          this.isLogin=2;
         }
       }
     })
@@ -104,6 +107,7 @@ export default {
   width:100%;
   height:201px;
 }
+/* 顶部用户管理 */
 #header .user{
   position:absolute;
   right:0;top:5px;
@@ -127,7 +131,6 @@ export default {
 #header .menus a.active{
   color:#FF6C00;
   background: url("../../../img/on_nav.jpg") repeat top center;
-
 }
 #header .date{
   height:42px;

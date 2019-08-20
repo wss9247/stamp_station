@@ -30,7 +30,7 @@ router.get("/noupwd",(req,res)=>{
   var upwd=req.query.upwd;
   var sql="UPDATE users SET upwd=? WHERE uname=? ";
   pool.query(sql,[upwd,uname],(err,result)=>{
-    if(err) throw err;
+    // if(err) throw err;
     if(result.affectedRows==0){
       res.send({code:-1,msg:"修改失败"})
     }else{
@@ -62,7 +62,7 @@ router.get("/register",(req,res)=>{
   var sql="INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?);";
   pool.query(sql,[obj.uid,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
     console.log(result+"1212")
-    if(err) throw err;
+    // if(err) throw err;
     if(result.length==0){
       res.send({code:-1,msg:"注册失败"})
     }else{
@@ -85,7 +85,7 @@ router.get("/initUser",(req,res)=>{
     res.send({code:0,msg:"请先登录！"});    
     return ;
   }
-  var sql=`select uid,nickname from users where uid=${uid}`;
+  var sql=`select uid,nickname,uname from users where uid=${uid}`;
   pool.query(sql,(err,result)=>{
     if(result.length==0){
       res.send({code:-1,msg:"登录失败"})

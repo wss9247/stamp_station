@@ -1,6 +1,7 @@
 <template>
   <div class="registropage">
    <hd></hd>
+	<div class="position">>> 新用户注册</div>
    <div>
       <registro></registro>
    </div>
