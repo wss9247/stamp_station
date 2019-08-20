@@ -9,7 +9,7 @@
     </aside>
     <!-- 主体区域 -->
     <section>
-      <!-- 引入中间模块：IndexCen -->
+      <!-- 引入中间模块：Market -->
       <Market></Market>
     </section>
   </div>

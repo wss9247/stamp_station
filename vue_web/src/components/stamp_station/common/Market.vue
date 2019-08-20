@@ -15,13 +15,13 @@
 	<!-- 商品 -->
 		<div class="product" v-for="(prop,i) of pros" :key="i">
 			<div class="product-img">
-				<a  :data-sid="prop.sid" @click="info"   :style="`background-image:url('${prop.imgurl}');`"></a>
+				<a :data-sid="prop.sid" @click="info" :style="`background-image:url('${prop.imgurl}');`"></a>
 			</div>			
 			<ul>
 				<li>编号：{{prop.snum}}</li>
 				<li>国家：{{prop.nname}}</li>
 				<li>发行年份：{{prop.sdate}}</li>
-				<li>内容：{{prop.stitle}}</li>
+				<li class="title">内容：{{prop.stitle}}</li>
 				<li>价格：{{prop.price}}</li>
 			</ul>
 			<div class="collection">
@@ -30,16 +30,19 @@
 			</div>
 		</div>
 	</div>
-	<button @click="loadMore">下一页</button>
+	<!-- 引入分页栏 -->
+	<pagination></pagination>
 </div>
 </template>
 <script>
+import pagination from "./pagination";
 export default {
 	data(){return {
 		pros:[],
 		px:"sdate",
 		page:0
 	}},
+	components: {pagination},
 	methods:{
 		addcart(e){ // 添加商品到购物车
 			var sid=e.target.dataset.sid;
@@ -64,8 +67,8 @@ export default {
 			this.axios.get("market",
 				{params:{px}},
 				{params:{country}},
-				{params:{price}}),
-				{params:{sdate}}
+				{params:{price}},
+				{params:{sdate}})
 			.then(res=>{
 				this.pros=res.data.data;
 				for(var pro of this.pros){
@@ -90,7 +93,6 @@ export default {
 			})
 		},
 	},
-
 	created(){
 		// this.loadMore();
 		// console.log("1:created 创建组件成功")
