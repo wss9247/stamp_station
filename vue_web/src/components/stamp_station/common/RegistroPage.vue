@@ -1,7 +1,7 @@
 <template>
   <div class="registropage">
    <hd></hd>
-	<div class="position">>> ÐÂÓÃ»§×¢²á</div>
+	<div class="position">&gt;&gt; æ–°ç”¨æˆ·æ³¨å†Œ</div>
    <div>
       <registro></registro>
    </div>
