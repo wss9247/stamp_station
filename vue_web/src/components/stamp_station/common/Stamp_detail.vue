@@ -56,12 +56,12 @@ export default {
 			var obj={sid:sid,stitle:stitle,price:price};
 			// 获取返回的结果
 			this.axios.get(url,{params:obj}).then(res=>{
-					if(res.data.code==-1){
+					if(res.data.code==0){
 						this.$messagebox("消息","请登录").then(res=>{
 							this.$router.push("index")
+							// res.send("请登录")
 						})
-					// alert("请登录")
-						
+					alert("请登录")
 					}else{
 						alert("添加成功");
 						this.$router.push("/ShoppingCar")

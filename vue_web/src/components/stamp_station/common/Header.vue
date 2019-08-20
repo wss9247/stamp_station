@@ -1,6 +1,9 @@
 <template>
   <header id="header">
-    <div><img src="../../../img/header.jpg" ></div>
+    <div class="hdTop">
+      <img src="../../../img/header.jpg" >
+      <div class="user">{{nickname}}<a>注册</a></div>
+    </div>
     <div class="menus">
       <a @click="jumpTo" v-for="(m,i) of menus" :key="i" :data-id="i" :data-link="m.murl" :class="{active:i==mid}" >{{m.mtitle}}</a>
     </div>
@@ -11,6 +14,7 @@
 export default {
   data(){return {
     current:0,
+    nickname:"请登录",
     menus:[
       {"mtitle":"首页","murl":"/index"},
       {"mtitle":"用户专区","murl":""},
@@ -50,6 +54,15 @@ export default {
       this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
     },
   },
+  created(){
+    this.axios.get("indexright",(req,res)=>{
+      if(res.data.code==1){
+        console.log(res)
+        // this.nickname=res.data.data[0].nickname
+      }
+      
+    })
+  },
   mounted(){
   }
 }
@@ -60,6 +73,11 @@ export default {
   width:100%;
   height:201px;
 }
+#header .user{
+  position:absolute;
+  right:0;top:5px;
+}
+#header .user a{margin-left:15px;}
 #header div>img{display:block;}
 #header .menus{
   width:100%;

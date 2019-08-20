@@ -89,3 +89,7 @@ h2.title-1{
 .aside select{
 	width:116px;height:22px;
 }
+
+ table{
+	border-collapse: collapse;
+ }
