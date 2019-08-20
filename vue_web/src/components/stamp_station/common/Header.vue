@@ -75,7 +75,7 @@ export default {
     nickname(){
       console.log(this.nickname)
       console.log("刷新")
-      this.$router.push("/index")
+      // this.$router.push("/index")
     }
   },
   created(){
