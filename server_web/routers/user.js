@@ -11,6 +11,8 @@ router.get("/indexright",(req,res)=>{
   var sql="SELECT uid FROM users WHERE uname=? AND upwd=?";
   // 3.执行sql语句 
   pool.query(sql,[uname,upwd],(err,result)=>{
+    // 如果哟错误就抛出错误
+    if(err) throw err;
     console.log(result)
     // 判断sql 语句 如果条件成立 则密码有误 否则
     if(result.length==0){
@@ -30,7 +32,7 @@ router.get("/noupwd",(req,res)=>{
   var upwd=req.query.upwd;
   var sql="UPDATE users SET upwd=? WHERE uname=? ";
   pool.query(sql,[upwd,uname],(err,result)=>{
-    // if(err) throw err;
+    if(err) throw err;
     if(result.affectedRows==0){
       res.send({code:-1,msg:"修改失败"})
     }else{
@@ -62,7 +64,7 @@ router.get("/register",(req,res)=>{
   var sql="INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?);";
   pool.query(sql,[obj.uid,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
     console.log(result+"1212")
-    // if(err) throw err;
+    if(err) throw err;
     if(result.length==0){
       res.send({code:-1,msg:"注册失败"})
     }else{
@@ -94,9 +96,6 @@ router.get("/initUser",(req,res)=>{
     }
   })
 })
-
-
-
 
 // http://127.0.0.1:5000/register?upwd=123456&uname=qqqqqqqq&nickname=鬼子&sex=0&bitrh=2000-0-0&email=123456789&tel=12345678912&id_card=123456789
 
