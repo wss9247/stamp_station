@@ -119,4 +119,21 @@ router.get("/IndexAside_clasif",(req,res)=>{
 })
 // http://127.0.0.1:5000/IndexAside_clasif?pno=1
 
+
+router.get("/IndexAside_footer",(req,res)=>{
+	var p=req.query.pno;
+	var ps=req.query.pageSize;
+	// 设置默认值
+	if(!p){p=1}//页数
+	if(!ps){ps=8}//每页显示的条数
+	var offset=(p-1)*ps;
+	var sql="select sid,stitle,price,nname,sdate,imgurl from stamp_details limit ?,?";
+	pool.query(sql,[offset,ps],(err,result)=>{
+		if(err) throw err;
+		// 获取数据库返回的结果
+		res.send({code:1,msg:"查询成功",data:result})
+	})
+})
+
+//http://127.0.0.1:5000/IndexAside_footer?pno=1
 module.exports=router;

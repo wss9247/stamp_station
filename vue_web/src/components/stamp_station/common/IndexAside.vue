@@ -40,7 +40,7 @@
   </div>
   <!-- 滚动产品 -->
   <div class="curPro box">
-    <ul>
+    <!-- <ul>
       <li>
         <a >
           <img src="http://www.51gu.com/shop/asp/stpimg/SER/SERB025FC3.jpg">
@@ -50,17 +50,19 @@
           <h5><span>售价：</span><span>￥19.00</span></h5>
         </a>
       </li>
-    </ul>
+    </ul> -->
+    <IndexAside_footer></IndexAside_footer>
   </div>
 </div>
 </template>
 <script>
 import IndexAside_clasif from "./IndexAside_clasif.vue";
+import IndexAside_footer from "./IndexAside_footer.vue";
 export default {
   data(){
     return{}
   },
-  components:{IndexAside_clasif}
+  components:{IndexAside_clasif,IndexAside_footer}
 }
 </script>
 <style scoped>
