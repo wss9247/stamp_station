@@ -32,34 +32,41 @@ router.get("/pros",(req,res)=>{
 		res.send({code:1,msg:"查询成功",data:result})
 	})
 })
+// ============================================ 购物车 ===================================================
 // 将商品添加到购物车
-router.get("/addcart",(req,res)=>{
-    // 先登录
-    var uid=req.session.uid;
-    // // // 如果用户没有登录，返回错误信息
-    if(!uid){
-			res.send({code:0 ,msg:"请先登录"});
-			return;
-    }
-    // 获取购物车id,price ,stitle
-    var sid=req.query.sid;
-    var price=req.query.price;
-    var stitle=req.query.stitle;
-    // 查询用户是否购买过此商品
-    var sql="select cid from carts where uid=? and sid=?";
-    pool.query(sql,[uid,sid],(err,result)=>{
+router.get("/addcart",(req,res)=>{		
+	var sid=req.query.sid;	// 获取购物车id
+	var uid=req.session.uid;	// 获取存在session对象中的用户id
+	if(!uid){  // 判断用户是否已登录
+		res.send({code:0 ,msg:"请先登录"});
+		return;
+	}
+	// 查询用户是否购买过此商品
+	var sql="select cid from carts where uid=? and sid=?";
+	pool.query(sql,[uid,sid],(err,result)=>{
+		if(err) throw err;
+		var sql1="";
+		if(result.length==0){  // 用户购物车中无数据，则insert
+			sql1=`insert into carts (cid,uid,sid,stitle,price,counts,imgurl,snum) values(
+				null,${uid},${sid},
+				(select stitle from stamp_details where sid=${sid}),
+				(select price from stamp_details where sid=${sid}),
+				1,
+				(select imgurl from stamp_details where sid=${sid}),
+				(select snum from stamp_details where sid=${sid})
+			)`;
+		}else{	 // 用户购物车中有数据，则盖商品数量加1
+			sql1=`update carts set counts=counts+1 where uid=${uid} and sid=${sid}`
+		}
+		pool.query(sql1,(err,result)=>{
 			if(err) throw err;
-			var sql="";
-			// 没有购买就添加，购买过就添加
-			if(result.length==0){
-					sql=`insert into carts values(null,${uid},${sid},${stitle},${price},${counts},${imgurl})`;
-			}else{
-					sql=`update carts set counts=counts+1 where uid=${uid} and sid=${sid}`
+			console.log(result)
+			if(result){
+				if(result.affectedRows>0){
+					res.send({code:1,msg:"添加成功",data:result});
+				}
 			}
-			pool.query(sql,(err,result)=>{
-					if(err) throw err;
-					res.send({code:1,msg:"添加成功"});
-			})
+		})
 	})
 })
 
@@ -67,14 +74,18 @@ router.get("/addcart",(req,res)=>{
 router.get("/cart",(req,res)=>{
 // 获取UID 并且判断如果没有请先登录
   var uid=req.session.uid;
-    if(!uid){
+  if(!uid){
 		res.send({code:0,msg:"请登录"});
     return;
 	}
 	var sql="select cid,uid,sid,stitle,price,counts,imgurl from carts where uid=?";
 	pool.query(sql,[uid],(err,result)=>{
 		if(err) throw err;
-		res.send({code:1,mag:"查询成功",data:result})
+		if(result.length==0){
+			res.send({code:-1,mag:"购物车中空空的，赶紧去添加吧"})
+		}else{
+			res.send({code:1,mag:"查询成功",data:result})
+		}
 	})
 })
 

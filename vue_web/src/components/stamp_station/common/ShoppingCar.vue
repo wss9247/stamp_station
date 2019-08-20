@@ -1,15 +1,24 @@
 <template>
-    <div id="shoppingCar">
-			<!-- 顶部背景图 -->
-    <Hd></Hd>
-    <div class="Carbox">
-			<div class="position">&gt;&gt; 我的购物车</div>
-			<!-- 配送 -->
+<div id="shoppingCar">
+	<!-- 页头组件 -->
+	<Hd></Hd>
+	<div class="Carbox">
+		<div class="position">&gt;&gt; 我的购物车</div>		
+		<!-- 空白提示 -->
+		<div class="Tips hide">购物车中空空如也，赶紧去添加吧。 <a @click="ToMarket">点击购买</a></div>
+		<!-- 购物车数据模块 -->
+		<div class="carmodule">
+			<!-- 标题 -->
 			<div class="area">
-					<a><em>全部商品</em> <span>1</span></a>
-					<div>配送至：<select><option value="area">配送地址</option></select></div>
+				<a><em>全部商品</em> <span>1</span></a>
+				<div>配送至：
+					<select>
+						<option value="area">配送地址</option>
+					</select>
+				</div>
 			</div>
-			<div class="cart-item" v-for="(item,i) of items" :key="i">
+			<!-- 数据列表 -->
+			<div class="cart-item">
 				<div class="top">
 					<div><input type="checkbox" class="selectAll">全选</div>
 					<div>商品</div>
@@ -19,19 +28,16 @@
 					<div>小计</div>
 					<div>操作</div>
 				</div>
-				<div><input type="checkbox">编号：PARB706SS</div>
-				<div class="details">
-						<!-- <input type="checkbox"> -->
-					<div class="product-img">
-						<a ><img  alt=""></a>
-					</div>
+				<div class="details"  v-for="(item,i) of list" :key="i">
+					<input type="checkbox">
+					<a class="product-img" :style="`background-image:url(${item.imgurl})`"></a>
 					<!-- 添加购物车的商品内容 -->
 					<ul class="details-text">
 						<li>商品名称：{{item.stitle}}</li>
 						<li>商品编号：{{item.snum}}</li>
 					</ul>
 					<ul class="count">
-						<li>￥{{item.price}}</li>
+						<li class="price">￥{{item.price}}</li>
 						<li>
 								<button>-</button>
 								<button>1</button>
@@ -47,33 +53,38 @@
 					</ul>
 				</div>
 			</div>
+			<!-- 总计 -->
+			<div class="bottom">
+				<ul >
+					<li><input type="checkbox"></li>
+					<li>全选</li>
+					<li><a>删除所选商品</a></li>
+					<li><a>移到收藏</a></li>
+					<li><a>清理购物车</a></li>
+				</ul>
+				<ul class="bottom-right">
+					<li>已选择<span>1</span> 件商品</li>
+					<li>总价：</li>
+					<li><span>￥188</span></li>
+					<li><button>去结算</button></li>
+				</ul>
+			</div>
 		</div>
-		<div class="bottom">
-			<ul >
-				<li><input type="checkbox"></li>
-				<li>全选</li>
-				<li><a>删除所选商品</a></li>
-				<li><a>移到收藏</a></li>
-				<li><a>清理购物车</a></li>
-			</ul>
-			<ul class="bottom-right">
-				<li>已选择<span>1</span> 件商品</li>
-				<li>总价：</li>
-				<li><span>￥188</span></li>
-				<li><button>去结算</button></li>
-			</ul>
-		</div>
-    </div>
+	</div>
+</div>
 </template>
 <script>
 import Hd from "./Header";
 export default {
     data(){
 		return{
-			items:[]
+			list:[]
 		}
 	},
 	methods:{
+		ToMarket(){
+			this.$router.push("/market")
+		}
 		// selectAll(e){
 		// 	var button=e.target.checked;
 		// 	// 循环遍历购物车
@@ -108,17 +119,16 @@ export default {
   //       }
   //   })
 	// },
-	created(){
-		// 获取后台数据
-		this.axios.get("addcart").then(res=>{
-			this.list=res.data.data;
-			for(var item of this.items){
-				var date=item.sdate;
-				var sdate=new Date(date);
-				var year=sdate.getUTCFullYear();
-				var month=sdate.getMonth()+1;
-				var date1=sdate.getDate();
-				pro.sdate=year+"-"+month+"-"+date1
+	mounted(){
+		// 自动访问数据库中的购物车数据	
+		this.axios.get("cart").then(res=>{
+			if(res.data.code==0){ // 未登录
+				this.$toast(res.data.msg);
+				this.$router.push("/index");
+			}else if(res.data.code==-1){ // 购物车中是空的
+				$("#ShoppingCar .Tips").removeClass("hide")
+			}else{		// 得到数据
+				this.list=res.data.data;
 			}
 		})
 	},
