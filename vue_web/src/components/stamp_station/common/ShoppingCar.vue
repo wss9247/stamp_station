@@ -3,7 +3,7 @@
 			<!-- 顶部背景图 -->
     <Hd></Hd>
     <div class="Carbox">
-			<div class="position">>> 我的购物车</div>
+			<div class="position">&gt;&gt; 我的购物车</div>
 			<!-- 配送 -->
 			<div class="area">
 					<a><em>全部商品</em> <span>1</span></a>
