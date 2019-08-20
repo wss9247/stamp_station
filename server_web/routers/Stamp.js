@@ -104,16 +104,26 @@ router.get("/snumInfo",(req,res)=>{
   })
 })
 
+// 查询所有数据：
+router.get("/searchAll",(req,res)=>{
+  var sql= `select count(sid) from stamp_details`;
+  pool.query(sql,(err,result)=>{
+    res.send({code:1,msg:"查询成功",data:result});   
+    console.log(result) 
+  })
+})
+
 // 查询数据1：
 router.get("/searchStamp",(req,res)=>{
-  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount,status from stamp_details limit 0,20`;
+  var start=req.query.start;  // 开始的下标
+  var count=req.query.count;  // 要查询的个数
+  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount,status from stamp_details limit ${start},${count}`;
   pool.query(sql,(err,result)=>{
     if(result.length==0){
-      res.send({code:-1,msg:"未查询到任何数据",data:result});
+      res.send({code:-1,msg:"未查询到任何数据"});
     }else{
       res.send({code:1,msg:"查询成功",data:result});
-    }
-    
+    }    
   })
 })
 

@@ -1,7 +1,6 @@
 /* 外边的大边框 */
 #market{
     width:783px;height:100%;
-    border:1px solid #ccc;
 }
 /* 下拉选择框 */
 #market .choice{
@@ -20,50 +19,56 @@
 #market .probox{
     display:flex;
     flex-wrap:wrap;
+    border:1px solid #ccc;
 }
 /* 单个商品的样式 */
 #market .product{
-    width:190px;height:280px;
+    width:25%;height:284px;
     border:2px dotted #ccc;
     border-top:none;
     border-left:none;
     text-align:center;
     position:relative;
 }
+#market .product:nth-child(4n){border-right:none;}
 
 /* 图片 */
 #market .product-img{
-    /* width:170px;height:102px; */
-    text-align:center;
+    width:100%;
 }
-
 #market .product-img a{
     display:block;
     width:170px;height:102px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    margin-top:10px;
+    margin:10px auto;
 }
+#market .collection,
 #market .product ul{
+    width:170px;
     text-align:left;
-    margin-left:20px;
-    position:relative;
+    margin:0 auto; 
 }
-
+#market .product ul{height:120px;}
+#market .product ul li{line-height:20px;}
+#market .product ul li.title{
+    -webkit-line-clamp:2;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+#market .collection{margin-top:6px;}
 #market .collection a{
     margin-right:5px;
     display:inline-block;
     width:69px;
     height:26px;
     background:url("http://www.51gu.com/cn/images/but_dg.jpg") no-repeat left top;
-
 } 
 #market .collection a:last-child{
+    float:right;
     width:75px;
     background-image: url("http://www.51gu.com/cn/images/but_che.jpg");
-}
-#market .collection{
-    position:absolute;
-    left:10%;top:89%;
 }
