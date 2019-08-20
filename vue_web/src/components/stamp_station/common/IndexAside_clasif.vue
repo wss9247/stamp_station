@@ -20,9 +20,6 @@ export default {
     // 1.发送请求
     var url="IndexAside_clasif";
     this.axios.get(url).then(res=>{
-    // 2.获取服务器返回结果
-    // console.log(res.data.data);
-    // 3.将返回结果保存？
     this.list=res.data.data;
     })
    }
