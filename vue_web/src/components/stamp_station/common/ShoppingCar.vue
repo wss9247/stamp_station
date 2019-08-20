@@ -20,7 +20,7 @@
 			<!-- 数据列表 -->
 			<div class="cart-item">
 				<div class="top">
-					<div><input type="checkbox" class="selectAll">全选</div>
+					<div><input type="checkbox" class="selectAll" @click="selectAll">全选</div>
 					<div>商品</div>
 					<div></div>
 					<div>单价</div>
@@ -29,7 +29,7 @@
 					<div>操作</div>
 				</div>
 				<div class="details"  v-for="(item,i) of list" :key="i">
-					<input type="checkbox">
+					<input type="checkbox" v-model="item.select">
 					<a class="product-img" :style="`background-image:url(${item.imgurl})`"></a>
 					<!-- 添加购物车的商品内容 -->
 					<ul class="details-text">
@@ -46,8 +46,8 @@
 						<li>￥188</li>
 						<li>
 							<ul>
-									<li><a>删除</a></li>
-									<li><a>移到我的收藏</a></li>
+									<li><a @click="deleteCar">删除</a></li>
+									<li><a @click="collection">移到我的收藏</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -58,9 +58,9 @@
 				<ul >
 					<li><input type="checkbox"></li>
 					<li>全选</li>
-					<li><a>删除所选商品</a></li>
-					<li><a>移到收藏</a></li>
-					<li><a>清理购物车</a></li>
+					<li><a @click="deleteCar">删除所选商品</a></li>
+					<li><a @click="collection">移到收藏</a></li>
+					<li><a @click="clearCars">清理购物车</a></li>
 				</ul>
 				<ul class="bottom-right">
 					<li>已选择<span>1</span> 件商品</li>
@@ -82,16 +82,25 @@ export default {
 		}
 	},
 	methods:{
+		deleteCar(){
+			this.$messagebox.confirm("删除商品","您可以选择移到关注，或删除商品。")
+		},
+		clearCars(){
+			this.$messagebox.confirm("是否清空购物车","是否确定清空")
+		},
+		collection(){
+			this.$messagebox.confirm("移到收藏","移动后选中商品将不在购物车中显示。")
+		},
 		ToMarket(){
 			this.$router.push("/market")
-		}
-		// selectAll(e){
-		// 	var button=e.target.checked;
-		// 	// 循环遍历购物车
-		// 	for(var item of this.list){
-		// 		item.button=button;
-		// 	}
-		// },
+		},
+		selectAll(e){
+			var select=e.target.checked;
+			// 循环遍历购物车
+			for(var item of this.list){
+				item.select=select;
+			}
+		},
 	},
 	components:{Hd},
 	// loadMore(){
