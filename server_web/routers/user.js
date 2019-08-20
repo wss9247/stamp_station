@@ -8,18 +8,16 @@ router.get("/indexright",(req,res)=>{
   var uname=req.query.uname;
   var upwd=req.query.upwd;
   // 2.查询数据库 
-  var sql="SELECT uid,nickname FROM users WHERE uname=? AND upwd=?";
+  var sql="SELECT uid FROM users WHERE uname=? AND upwd=?";
   // 3.执行sql语句 
   pool.query(sql,[uname,upwd],(err,result)=>{
-    // 如果哟错误就抛出错误
-    if(err) throw err;
     console.log(result)
     // 判断sql 语句 如果条件成立 则密码有误 否则
     if(result.length==0){
       res.send({code:-1,msg:"用户名或密码有误"})
     }else{
      req.session.uid=result[0].uid;
-      res.send({code:1,msg:"登录成功",data:result})
+      res.send({code:1,msg:"登录成功"})
     }
   })
 })
@@ -72,6 +70,33 @@ router.get("/register",(req,res)=>{
     }
   })
 }) 
+
+// 退出登录
+router.get("/quitLogin",(req,res)=>{
+  req.session.uid=null;
+  res.send({code:1,msg:"退出登录"})
+})
+
+// 初始化用户数据
+router.get("/initUser",(req,res)=>{
+  var uid=req.session.uid   //获取session对象中保存好的uid  
+  console.log(uid)
+  if(!uid){ // 如果uid不存在，表示用户未登录
+    res.send({code:0,msg:"请先登录！"});    
+    return ;
+  }
+  var sql=`select uid,nickname from users where uid=${uid}`;
+  pool.query(sql,(err,result)=>{
+    if(result.length==0){
+      res.send({code:-1,msg:"登录失败"})
+    }else{
+      res.send({code:1,msg:"登录成功",data:result})
+    }
+  })
+})
+
+
+
 
 // http://127.0.0.1:5000/register?upwd=123456&uname=qqqqqqqq&nickname=鬼子&sex=0&bitrh=2000-0-0&email=123456789&tel=12345678912&id_card=123456789
 

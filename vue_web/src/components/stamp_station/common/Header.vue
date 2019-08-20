@@ -2,7 +2,13 @@
   <header id="header">
     <div class="hdTop">
       <img src="../../../img/header.jpg" >
-      <div class="user">{{nickname}}<a>注册</a></div>
+      <div class="user" v-show="isLogin">
+        <span>{{nickname}}</span>
+        <span >
+          <a @click="Tomanage" class="managePage">进入系统后台</a>
+          <a @click="quitLogin">退出</a>
+        </span>
+      </div>
     </div>
     <div class="menus">
       <a @click="jumpTo" v-for="(m,i) of menus" :key="i" :data-id="i" :data-link="m.murl" :class="{active:i==mid}" >{{m.mtitle}}</a>
@@ -14,6 +20,7 @@
 export default {
   data(){return {
     current:0,
+    isLogin:false,
     nickname:"请登录",
     menus:[
       {"mtitle":"首页","murl":"/index"},
@@ -27,6 +34,24 @@ export default {
   methods:{
     select(e){
       this.current=e.target.dataset.id;
+    },
+    jumpTo(e){ 
+      var url=e.target.dataset.link;
+      this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
+    },
+    quitLogin(e){
+      console.log(23)
+      if(!this.isLogin){
+        $(e.target).show();
+      }else{
+        this.axios.get("quitLogin").then(res=>{
+          this.nickname="请登录";
+          $(e.target).hide();
+        })
+      }
+    },
+    Tomanage(){
+      this.$router.push("/manage")
     }
   },
   props:["mid"],// 从父组件的mid属性中拿到mid
@@ -44,26 +69,32 @@ export default {
         case 6:week="六";break;
       };
       return `今天是：${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日，星期${week}`;
-      
     }
   },
-  methods:{    
-    jumpTo(e){ 
-      var url=e.target.dataset.link;
-      console.log(url)
-      this.$router.push(url);// 点击后跳转到相应的页面，页面地址通过自定义属性data-link获得
-    },
+  watch:{
+    nickname(){
+      console.log(this.nickname)
+      console.log("刷新")
+      this.$router.push("/index")
+    }
   },
   created(){
-    this.axios.get("indexright",(req,res)=>{
-      if(res.data.code==1){
-        console.log(res)
-        // this.nickname=res.data.data[0].nickname
-      }
-      
-    })
   },
   mounted(){
+    this.axios.get("initUser").then(res=>{
+      $("#header .user .managePage").hide();
+      if(res.data.code==0){  //未登录
+        this.nickname="请登录";
+      }else if(res.data.code==1){ 
+        this.isLogin=true;
+        this.nickname=res.data.data[0].nickname
+        if(res.data.data[0].uid==-1){//管理员登录
+          $("#header .user .managePage").show();
+        }else{  // 普通用户
+
+        }
+      }
+    })
   }
 }
 </script>
@@ -104,13 +135,5 @@ export default {
   position: absolute;
   right:20px;top:159px;
 }
-/* #header .menus a + a:before{
-  content:"";
-  display:block;
-  width:2px;height:11px;
-  padding-right:24px;
-  font-weight:normal;color:#000;
-  background: url("../../../img/nav_line.gif") no-repeat;
-} */
 </style>
 
