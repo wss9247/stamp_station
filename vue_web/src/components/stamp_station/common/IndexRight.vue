@@ -2,25 +2,25 @@
 <div id="IndexRight">
   <div class="right_bg">
     <div class="title">
-      <img src="http://www.51gu.com/cn/images/t5_h1.jpg">
+      <img src="../../../img/t5_h1.jpg">
     </div>
     <div class="head">
       用户名：<input type="text" id="i2" v-model="uname">
       <br>
       密码：<input type="password" id="i1" v-model="upwd">
-          <img src="http://www.51gu.com/cn/images/login.jpg" @click="btn1">
+          <img src="../../../img/login.jpg" @click="btn1">
     </div>
     <div class="buttom">
       <a >
-        <img src="http://www.51gu.com/cn/images/font_1.gif" @click="btn2">
+        <img src="../../../img/font_1.gif" @click="btn2">
       </a>
       <a >
-        <img src="http://www.51gu.com/cn/images/font_2.gif" @click="btn3">
+        <img src="../../../img/font_2.gif" @click="btn3">
       </a>
     </div>
   </div>
   <div id="right1">
-    <img src="http://www.51gu.com/cn/images/s_img02.jpg">
+    <img src="../../../img/s_img02.jpg">
   </div>
   <h3 class="title198">索取目录</h3>
   <div class="right2">

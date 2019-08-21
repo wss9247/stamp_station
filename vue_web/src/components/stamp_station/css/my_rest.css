@@ -48,12 +48,12 @@ h3{
 /* 宽198px的模块标题 背景 */
 h3.title198{
 	color:#fff;
-  background:url("http://www.51gu.com/cn/images/t1_bg.jpg") no-repeat left top;
+  background:url("../../../img/t1_bg.jpg") no-repeat left top;
 }
 /* 宽581px的模块标题 背景 */
 h3.title581{
 	color:#fff;
-  background:url("http://www.51gu.com/cn/images/t3_bg.jpg") no-repeat left top;
+  background:url("../../../img/t3_bg.jpg") no-repeat left top;
 }
 h3.title4,
 h3.title2{

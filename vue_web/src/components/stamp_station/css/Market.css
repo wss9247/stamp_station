@@ -65,10 +65,10 @@
     display:inline-block;
     width:69px;
     height:26px;
-    background:url("http://www.51gu.com/cn/images/but_dg.jpg") no-repeat left top;
+    background:url("../../../img/but_dg.jpg") no-repeat left top;
 } 
 #market .collection a:last-child{
     float:right;
     width:75px;
-    background-image: url("http://www.51gu.com/cn/images/but_che.jpg");
+    background-image: url("../../../img/but_che.jpg");
 }
