@@ -82,9 +82,24 @@ router.get("/cart",(req,res)=>{
 	pool.query(sql,[uid],(err,result)=>{
 		if(err) throw err;
 		if(result.length==0){
-			res.send({code:-1,mag:"购物车中空空的，赶紧去添加吧"})
+			res.send({code:-1,msg:"购物车中空空的，赶紧去添加吧"})
 		}else{
-			res.send({code:1,mag:"查询成功",data:result})
+			res.send({code:1,msg:"查询成功",data:result})
+		}
+	})
+})
+
+// 删除选中的商品
+router.get("/del",(req,res)=>{
+	var cid=req.query.cid;
+	var sql="delete from carts where cid=?";
+	pool.query(sql,[cid],(err,result)=>{
+		// console.log(result)
+		if(err) throw err;
+		if(result.affectedRows>0){
+			res.send({code:1,msg:"删除成功"});
+		}else{
+			res.send({code:-1,msg:"删除失败"})
 		}
 	})
 })

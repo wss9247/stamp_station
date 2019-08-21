@@ -43,10 +43,10 @@
 								<button>1</button>
 								<button>+</button>
 						</li>
-						<li>￥188</li>
+						<li>￥{{item.price}}</li>
 						<li>
 							<ul>
-									<li><a @click="deleteCar">删除</a></li>
+									<li><a @click="del">删除</a></li>
 									<li><a @click="collection">移到我的收藏</a></li>
 							</ul>
 						</li>
@@ -58,9 +58,8 @@
 				<ul >
 					<li><input type="checkbox"></li>
 					<li>全选</li>
-					<li><a @click="deleteCar">删除所选商品</a></li>
+					<li><a @click="del">删除所选商品</a></li>
 					<li><a @click="collection">移到收藏</a></li>
-					<li><a @click="clearCars">清理购物车</a></li>
 				</ul>
 				<ul class="bottom-right">
 					<li>已选择<span>1</span> 件商品</li>
@@ -82,11 +81,23 @@ export default {
 		}
 	},
 	methods:{
-		deleteCar(){
-			this.$messagebox.confirm("删除商品","您可以选择移到关注，或删除商品。")
-		},
-		clearCars(){
-			this.$messagebox.confirm("是否清空购物车","是否确定清空")
+		del(e){
+			var cid=e.target.dataset.cid;
+			this.$messagebox.confirm("删除商品","您可以选择移到关注，或删除商品。").then(res=>{
+				var url="del";
+				var obj={cid:cid};
+				this.axios.get(url,{params:obj}).then(res=>{
+					if(res.data.code>0){
+						this.$toast("删除成功");
+						this.loadMore();
+					}
+				})
+			})
+			.catch(err=>{
+				this.$toast("删除失败")
+			})
+			
+
 		},
 		collection(){
 			this.$messagebox.confirm("移到收藏","移动后选中商品将不在购物车中显示。")
@@ -103,31 +114,6 @@ export default {
 		},
 	},
 	components:{Hd},
-	// loadMore(){
-	// 	// 加载购物车中的数据
-	// 	var url ="cart";
-	// 	this.axios.get(url).then(res=>{
-	// 		// 获取返回结果
-	// 		if(res.data.data==0){
-	// 			// 如果用户没有登录跳转到登录界面
-	// 			this.$messagebox("消息","请登录").then(res=>{
-	// 				this.$router.push("/index");
-	// 				return;
-	// 			})
-	// 		}else{
-	// 			var list=res.data.data;
-	// 			this.$store.commit("clear")
-  //       注意先添加cb属性再赋值给list
-  //       for(var item of list){
-  //         item.cb=false;
-  //         // 修改共享购物车中的数量
-  //         this.$store.commit("increment")
-  //       }
-  //       this.list=list;
-  //       console.log(this.list);
-  //       }
-  //   })
-	// },
 	mounted(){
 		// 自动访问数据库中的购物车数据	
 		this.axios.get("cart").then(res=>{
