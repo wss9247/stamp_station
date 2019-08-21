@@ -56,7 +56,7 @@ export default {
 		},
 		info(e){
 			var sid=e.target.dataset.sid;
-			var url=`info?sid=${sid}`;
+			var url=`/info?sid=${sid}`;
 			this.$router.push(url);
 		},
 		selc(){

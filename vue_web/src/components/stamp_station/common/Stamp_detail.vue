@@ -78,6 +78,7 @@ export default {
 		// 获取商品详细信息
 		this.axios.get("info",{params:{sid}}).then(res=>{
 			this.pro=res.data.data[0];
+			console.log(res)
 		})
 		// 获取商品的相关专题
 		this.axios.get("infoSub",{params:{sid}}).then(res=>{
