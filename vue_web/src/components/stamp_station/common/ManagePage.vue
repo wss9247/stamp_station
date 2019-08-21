@@ -35,7 +35,7 @@ export default {
   },
   components:{Hd,ManageAside,fot,
     searchStamp,AddStamp
-  },
+  }
 
 }
 </script>

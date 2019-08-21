@@ -13,7 +13,6 @@ router.get("/indexright",(req,res)=>{
   pool.query(sql,[uname,upwd],(err,result)=>{
     // 如果哟错误就抛出错误
     if(err) throw err;
-    console.log(result)
     // 判断sql 语句 如果条件成立 则密码有误 否则
     if(result.length==0){
       res.send({code:-1,msg:"用户名或密码有误"})
@@ -46,9 +45,6 @@ router.get("/noupwd",(req,res)=>{
 
 //注册数据库
 router.get("/register",(req,res)=>{
-  console.log(req);
-  console.log(res);
-  console.log(req.query);
   var obj={
     uid:req.query.uid,
     upwd:req.query.upwd,
@@ -63,7 +59,7 @@ router.get("/register",(req,res)=>{
   // console.log(obj.upwd);
   var sql="INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?);";
   pool.query(sql,[obj.uid,obj.upwd,obj.uname,obj.nickname,obj.sex,obj.bitrh,obj.email,obj.tel,obj.id_card],(err,result)=>{
-    console.log(result+"1212")
+   
     if(err) throw err;
     if(result.length==0){
       res.send({code:-1,msg:"注册失败"})
@@ -82,7 +78,6 @@ router.get("/quitLogin",(req,res)=>{
 // 初始化用户数据
 router.get("/initUser",(req,res)=>{
   var uid=req.session.uid   //获取session对象中保存好的uid  
-  console.log(uid)
   if(!uid){ // 如果uid不存在，表示用户未登录
     res.send({code:0,msg:"请先登录！"});    
     return ;

@@ -50,7 +50,7 @@
       </thead>
       <tbody>
         <tr v-for="(s,i) of stamp" :key="i">
-          <td>{{++i}}</td><td>{{s.snum}}</td><td class="title">{{s.stitle}}</td><td>{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td>{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
+          <td>{{(pnum-1)*8+i+1}}</td><td>{{s.snum}}</td><td class="title">{{s.stitle}}</td><td>{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td>{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
           <td>
             <a >修改</a>
             <a class="info">查看</a>
@@ -60,16 +60,38 @@
       </tbody>
     </table>
   </div>
+	<!-- 引入分页栏 -->
+	<pagination @sendPage="sendPage"></pagination>
 </div>
 </template>
 <script>
+
+import pagination from "../pagination";
 export default {
   data(){return {
     stamp:[],
-    status:""
+    status:"",
+    pnum:1,
   }},
-  // methods:{
-  //   delStamp(e){
+	components: {pagination},
+  methods:{
+    sendPage(data){
+      this.pnum=data.pnum;
+      var count=data.count;                   // 每页显示的个数
+      var start=(this.pnum-1)*8;          // 开始下标
+      this.axios.get("searchStamp",{params:{start,count}}).then(res=>{
+      if(res.data.code==1){
+        for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
+          item.sdate=item.sdate.slice(0,10);
+          item.shelfTime=item.sdate.slice(0,10);
+        }
+        this.stamp=res.data.data;
+      }else{
+        this.$toast("未查询到任何数据");
+      }
+    })
+    },
+    delStamp(e){
   //     // var sid=e.target.dataset.sid
   //     var data=new URLSearchParams();
   //       data.append("sid",sid);
@@ -77,10 +99,12 @@ export default {
   //       this.axios.post("delStamp",data).then(res=>{
 
   //       })
-  //   },
-  // },
-  created(){
-    this.axios.get("searchStamp").then(res=>{
+    },
+  },
+  created(){   
+    var count=8;                   // 每页显示的个数
+    var start=(this.pnum-1)*8;          // 开始下标
+    this.axios.get("searchStamp",{params:{start,count}}).then(res=>{
       if(res.data.code==1){
         for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
           item.sdate=item.sdate.slice(0,10);

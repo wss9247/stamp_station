@@ -104,14 +104,17 @@ router.get("/snumInfo",(req,res)=>{
   })
 })
 
-// 查询所有数据：
+// 查询所有数据个数：
 router.get("/searchAll",(req,res)=>{
   var sql= `select count(sid) from stamp_details`;
   pool.query(sql,(err,result)=>{
-    res.send({code:1,msg:"查询成功",data:result});   
-    console.log(result) 
+    if(!result){
+      res.send({code:1,msg:"查询成功",data:result});
+    }
   })
 })
+
+
 
 // 查询数据1：
 router.get("/searchStamp",(req,res)=>{
