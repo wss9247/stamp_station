@@ -50,10 +50,10 @@
       </thead>
       <tbody>
         <tr v-for="(s,i) of stamp" :key="i">
-          <td>{{(pnum-1)*8+i+1}}</td><td>{{s.snum}}</td><td class="title">{{s.stitle}}</td><td>{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td>{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
-          <td>
+          <td>{{(pnum-1)*8+i+1}}</td><td width="85">{{s.snum}}</td><td class="title">{{s.stitle}}</td><td width="70">{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td width="85">{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
+          <td width="109">
             <a >修改</a>
-            <a class="info">查看</a>
+            <a class="info" @click="toInfo" :data-sid="s.sid">查看</a>
             <a @click="delStamp" :data-sid="s.sid" class="del" >{{s.status?"禁用":"启用"}}</a>
           </td>
         </tr>
@@ -75,36 +75,43 @@ export default {
   }},
 	components: {pagination},
   methods:{
-    sendPage(data){
+    sendPage(data){  // 接收分页组件pagination中的数据后自动调用方法
       this.pnum=data.pnum;
       var count=data.count;                   // 每页显示的个数
-      var start=(this.pnum-1)*8;          // 开始下标
-      this.axios.get("searchStamp",{params:{start,count}}).then(res=>{
-      if(res.data.code==1){
-        for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
-          item.sdate=item.sdate.slice(0,10);
-          item.shelfTime=item.sdate.slice(0,10);
+      var start=(this.pnum-1)*count;          // 开始下标
+      var px="shelfTime desc";  // 排序方式
+      this.axios.get("searchStamp",{params:{start,count,px}}).then(res=>{
+        if(res.data.code==1){
+          for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
+            item.sdate=item.sdate.slice(0,10);
+            item.shelfTime=item.sdate.slice(0,10);
+          }
+          this.stamp=res.data.data;
+        }else{
+          this.$toast("未查询到任何数据");
         }
-        this.stamp=res.data.data;
-      }else{
-        this.$toast("未查询到任何数据");
-      }
-    })
+      })
+    },
+    toInfo(e){  // 查看详情
+			var sid=e.target.dataset.sid;
+			var url=`info?sid=${sid}`;
+			this.$router.push(url);
     },
     delStamp(e){
-  //     // var sid=e.target.dataset.sid
-  //     var data=new URLSearchParams();
-  //       data.append("sid",sid);
-  //       // 2.1 发送数据
-  //       this.axios.post("delStamp",data).then(res=>{
+      // // var sid=e.target.dataset.sid
+      // var data=new URLSearchParams();
+      // data.append("sid",sid);
+      // // 2.1 发送数据
+      // this.axios.post("delStamp",data).then(res=>{
 
-  //       })
+      // })
     },
   },
   created(){   
-    var count=8;                   // 每页显示的个数
-    var start=(this.pnum-1)*8;          // 开始下标
-    this.axios.get("searchStamp",{params:{start,count}}).then(res=>{
+    var count=20;                   // 每页显示的个数
+    var start=(this.pnum-1)*count;          // 开始下标
+    var px="shelfTime desc";  // 排序方式
+    this.axios.get("searchStamp",{params:{start,count,px}}).then(res=>{
       if(res.data.code==1){
         for(var item of res.data.data){ //遍历，截取发行时间和上架时间的年月日
           item.sdate=item.sdate.slice(0,10);
@@ -120,6 +127,8 @@ export default {
 </script>
 <style scoped>
 /* 搜索模块 */
+#searchStamp{
+}
 #searchStamp .searchbox td:nth-child(2n){
   padding-right:40px;
 }
@@ -143,12 +152,12 @@ export default {
   overflow:scroll;
 }
 #searchStamp .stamplist table{
-  width:150%;
+  width:125%;
 }
 #searchStamp .stamplist th,
 #searchStamp .stamplist td{
   line-height:26px;
-  padding:0 10px;
+  padding:0 3px;
   font-size:12px;
   border:1px solid #c1cede;
 }
@@ -162,8 +171,11 @@ export default {
 #searchStamp .stamplist td.title{
   width:30%;
 }
+#searchStamp .stamplist td:first-child{
+  text-align:center;
+}
 #searchStamp .stamplist td:last-child a{
-  margin:0 5px;
+  margin:0 4px;
   color:#00f;
 }
 #searchStamp .stamplist td:last-child a.del{

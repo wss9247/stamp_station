@@ -1,19 +1,22 @@
 <template>
 <div id="manageAside">
-  <!-- 邮票管理：新增，查询，删除，修改 -->
-  <div class="menuBox">
-    <h3 class="title198">邮票管理</h3>
-    <ul>
-      <li @click="linkTo" v-for="(item,i) of stamp" :key="i" :data-any="item.mAny">{{item.mtitle}}</li>
-      <li>新增</li>
-    </ul>
-  </div>      
-  <!-- 用户管理：查询，修改，禁用 -->
-  <div class="menuBox">
-    <h3 class="title198">用户管理</h3>
-    <ul>
-      <li @click="linkTo" v-for="(item,i) of user" :key="i" :data-mAny="item.mAny">{{item.mtitle}}</li>
-    </ul>
+  <h3 class="mng-title">导航</h3>
+  <div class="mngbox">
+    <!-- 邮票管理：新增，查询，删除，修改 -->
+    <div class="menuBox">
+      <h3 class="title198">邮票管理</h3>
+      <ul>
+        <li @click="linkTo" v-for="(item,i) of stamp" :key="i" :data-any="item.mAny">{{item.mtitle}}</li>
+        <li>新增</li>
+      </ul>
+    </div>      
+    <!-- 用户管理：查询，修改，禁用 -->
+    <div class="menuBox">
+      <h3 class="title198">用户管理</h3>
+      <ul>
+        <li @click="linkTo" v-for="(item,i) of user" :key="i" :data-mAny="item.mAny">{{item.mtitle}}</li>
+      </ul>
+    </div>
   </div>
 </div>
 </template>
@@ -38,11 +41,14 @@ export default {
     linkTo(e){ //点击时，将data-mAny属性值传递给父组件
       var any=e.target.dataset.any;
       this.$emit("getSection",any); 
-    },
+    }
   },
 }
 </script>
 <style scoped>
+#manageAside{
+  width:198px;
+}
 #manageAside .menuBox{
   margin-bottom:10px;
   background: #f3fdfe;

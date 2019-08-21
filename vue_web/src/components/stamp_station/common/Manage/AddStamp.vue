@@ -213,6 +213,8 @@ export default {
 }
 </script>
 <style scoped>
+#addstamp{  
+}
 #addstamp table td{
   padding-bottom:10px;
 }

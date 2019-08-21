@@ -99,3 +99,15 @@ h2.title-1{
 	 border-bottom:1px solid #ddd;
 	 margin-bottom:10px;
 } 
+
+
+/* 修改toast组件样式 */
+.mint-toast {
+  background-color: #446fa4 !important;
+}
+.toasts {
+  background: #446fa4 !important;
+}
+.mint-toast-text{
+	color:#fff !important;
+}
