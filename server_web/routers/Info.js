@@ -6,8 +6,7 @@ router.get("/info",(req,res)=>{
   var sid=req.query.sid
   var sql=`select sid,stitle,snum,nname,sdate,price,imgurl,detials from stamp_details where sid=${sid}`;
   pool.query(sql,(err,result)=>{
-    console.log(result)
-    if(!result){
+    if(result){
       res.send({code:1,msg:"获取数据成功",data:result});
     }else{
       res.send({code:-1,msg:"未查询到对应数据"});
