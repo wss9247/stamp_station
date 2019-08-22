@@ -133,7 +133,10 @@ router.get("/searchStamp",(req,res)=>{
 
 // 停用
 router.post("/delStamp",(req,res)=>{
-  var sql=`update stamp_details set status=? where sid="${req.body.sid}"`
+  var sql=`update stamp_details set status="${req.body.status}" where sid="${req.body.sid}"`;
+  pool.query(sql,(err,result)=>{
+    res.send({code:1,msg:"修改成功"})
+  })
 })
 
 

@@ -51,10 +51,10 @@
       <tbody>
         <tr v-for="(s,i) of stamp" :key="i">
           <td>{{(pnum-1)*8+i+1}}</td><td width="85">{{s.snum}}</td><td class="title">{{s.stitle}}</td><td width="70">{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td width="85">{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
-          <td width="109">
+          <td width="137">
             <a >修改</a>
             <a class="info" @click="toInfo" :data-sid="s.sid">查看</a>
-            <a @click="delStamp" :data-sid="s.sid" class="del" >{{s.status?"禁用":"启用"}}</a>
+            <a @click="delStamp" :data-sid="s.sid" :data-status="s.status" class="del" >点击{{s.status==1?"禁用":"启用"}}</a>
           </td>
         </tr>
       </tbody>
@@ -70,7 +70,7 @@ import pagination from "../pagination";
 export default {
   data(){return {
     stamp:[],
-    status:"",
+    status:1, // 默认启用
     pnum:1,
   }},
 	components: {pagination},
@@ -98,13 +98,23 @@ export default {
 			this.$router.push(url);
     },
     delStamp(e){
-      // // var sid=e.target.dataset.sid
-      // var data=new URLSearchParams();
-      // data.append("sid",sid);
-      // // 2.1 发送数据
-      // this.axios.post("delStamp",data).then(res=>{
-
-      // })
+      var sid=e.target.dataset.sid
+      var status=e.target.dataset.status;
+      if(status==0){
+        status=1;
+      }else{
+        status=0;
+      }
+      var data=new URLSearchParams();
+      data.append("sid",sid);
+      data.append("status",status);
+      // 2.1 发送数据
+      this.axios.post("delStamp",data).then(res=>{
+        if(res.data.code==1){
+          this.$toast("修改成功")
+          this.$router.go(0)
+        }
+      })
     },
   },
   created(){   
@@ -152,7 +162,7 @@ export default {
   overflow:scroll;
 }
 #searchStamp .stamplist table{
-  width:125%;
+  width:140%;
 }
 #searchStamp .stamplist th,
 #searchStamp .stamplist td{
