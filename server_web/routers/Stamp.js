@@ -116,12 +116,14 @@ router.get("/searchAll",(req,res)=>{
 
 
 
-// 查询数据1：
+// 负责查询数据1：
 router.get("/searchStamp",(req,res)=>{
   var start=req.query.start;  // 开始的下标
   var count=req.query.count;  // 要查询的个数
   var px=req.query.px;        // 排序方式
-  var sql= `select sid,stitle,snum,nname,sdate,shelfTime,kname,price,samount,status from stamp_details order by ${px} limit ${start},${count}`;
+  var sql= `select sid,stitle,
+  (select imgurl from imgs i where i.sid=s.sid) imgurl,
+  snum,nname,sdate,shelfTime,kname,price,samount,status from stamp_details s order by ${px} limit ${start},${count}`;
   pool.query(sql,(err,result)=>{
     if(result.length==0){
       res.send({code:-1,msg:"未查询到任何数据"});

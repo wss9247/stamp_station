@@ -36,7 +36,7 @@ export default {
     user:[],
     menus:[
       {"mtitle":"首页","murl":"/index"},
-      {"mtitle":"用户专区","murl":""},
+      {"mtitle":"用户专区","murl":"/Member"},
       {"mtitle":"网上超市","murl":"/market"},
       {"mtitle":"电子目录","murl":"/book"},
       {"mtitle":"帮助中心","murl":""},
