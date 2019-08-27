@@ -1,31 +1,33 @@
 <template>
   <header id="header">
-    <div class="hdTop">
-      <img src="../../../img/header.jpg" >
-      <div class="user">
-        <!-- 未登录 -->
-        <span v-if="isLogin==0">请登录<a @click="ToRegist">注册</a></span>
-        <!-- 普通用户登录 -->
-        <span v-else-if="isLogin==1">
-          用户名：{{user.uname}}
-          <!-- <a @click="updateUser">修改账户</a> -->
-          <a @click="ToShopping">购物车</a>
-          <a>查看订单</a>
-          <a @click="quitLogin">退出</a>
-        </span>
-        <!-- 管理员账号 -->
-        <span v-else>
-          用户名：{{user.uname}}
-          <!-- <a @click="updateUser">修改账户</a> -->
-          <a @click="Tomanage" class="managePage">进入系统后台</a>
-          <a @click="quitLogin">退出</a>
-        </span>
+    <div class="box">
+      <div class="hdTop">
+        <img src="../../../img/header.jpg" >
+        <div class="user">
+          <!-- 未登录 -->
+          <span v-if="isLogin==0">请登录<a @click="ToRegist">注册</a></span>
+          <!-- 普通用户登录 -->
+          <span v-else-if="isLogin==1">
+            用户名：{{user.uname}}
+            <!-- <a @click="updateUser">修改账户</a> -->
+            <a @click="ToShopping">购物车</a>
+            <a>查看订单</a>
+            <a @click="quitLogin">退出</a>
+          </span>
+          <!-- 管理员账号 -->
+          <span v-else>
+            用户名：{{user.uname}}
+            <!-- <a @click="updateUser">修改账户</a> -->
+            <a @click="Tomanage" class="managePage">进入系统后台</a>
+            <a @click="quitLogin">退出</a>
+          </span>
+        </div>
       </div>
+      <div class="menus">
+        <a @click="jumpTo" v-for="(m,i) of menus" :key="i" :data-id="i" :data-link="m.murl" :class="{active:i==mid}" >{{m.mtitle}}</a>
+      </div>
+      <div class="date" v-html="date"></div>
     </div>
-    <div class="menus">
-      <a @click="jumpTo" v-for="(m,i) of menus" :key="i" :data-id="i" :data-link="m.murl" :class="{active:i==mid}" >{{m.mtitle}}</a>
-    </div>
-    <div class="date" v-html="date"></div>
   </header>
 </template>
 <script>
@@ -103,8 +105,13 @@ export default {
 </script>
 <style scoped>
 #header{
-  position: relative;
   width:100%;
+  height:201px;
+}
+#header .box{
+  position: relative;
+  width:1002px;
+  margin:0 auto;
   height:201px;
 }
 /* 顶部用户管理 */

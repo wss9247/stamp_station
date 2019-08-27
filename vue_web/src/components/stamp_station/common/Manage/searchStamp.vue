@@ -1,5 +1,6 @@
 <template>
 <div id="searchStamp">
+  <div class="posi"> >>邮票管理 > 邮票查询</div>
   <div class="searchbox">
     <table>
       <tr>
@@ -18,8 +19,6 @@
             <option value="">中国</option>
           </select>
         </td>
-      </tr>
-      <tr>
         <td>专题：</td>
         <td>
           <select name="subjects">
@@ -50,7 +49,16 @@
       </thead>
       <tbody>
         <tr v-for="(s,i) of stamp" :key="i">
-          <td>{{(pnum-1)*8+i+1}}</td><td width="85">{{s.snum}}</td><td class="title">{{s.stitle}}</td><td width="70">{{s.nname}}</td><td>{{s.sdate}}</td><td>{{s.shelfTime}}</td><td>专题</td><td width="85">{{s.kname}}</td><td>{{s.price}}</td><td>{{s.samount}}</td>
+          <td width="40">{{(pnum-1)*8+i+1}}</td>
+          <td width="90">{{s.snum}}</td>
+          <td class="title">{{s.stitle}}</td>
+          <td width="82">{{s.nname}}</td>
+          <td width="120">{{s.sdate}}</td>
+          <td width="120">{{s.shelfTime}}</td>
+          <td>专题</td>
+          <td width="90">{{s.kname}}</td>
+          <td width="50">{{s.price}}</td>
+          <td>{{s.samount}}</td>
           <td width="137">
             <a >修改</a>
             <a class="info" @click="toInfo" :data-sid="s.sid">查看</a>
@@ -137,7 +145,13 @@ export default {
 </script>
 <style scoped>
 /* 搜索模块 */
-#searchStamp{
+#searchStamp {
+  /* margin-left:20px; */
+}
+#searchStamp .posi{
+  height:40px;
+  line-height:40px;
+  margin-bottom:20px;
 }
 #searchStamp .searchbox td:nth-child(2n){
   padding-right:40px;
@@ -158,11 +172,12 @@ export default {
 }
 /* 商品列表 */
 #searchStamp .stamplist{
+  margin-top:10px;
   width:100%;
   overflow:scroll;
 }
 #searchStamp .stamplist table{
-  width:140%;
+  width:100%;
 }
 #searchStamp .stamplist th,
 #searchStamp .stamplist td{
@@ -177,9 +192,6 @@ export default {
   line-height:34px;
   background:#537cb0;
   color:#fff;
-}
-#searchStamp .stamplist td.title{
-  width:30%;
 }
 #searchStamp .stamplist td:first-child{
   text-align:center;

@@ -48,6 +48,9 @@ export default {
 <style scoped>
 #manageAside{
   width:198px;
+  margin-top:40px;
+  border-right:1px solid #ddd;
+  border-bottom:1px solid #ddd;
 }
 #manageAside .menuBox{
   margin-bottom:10px;

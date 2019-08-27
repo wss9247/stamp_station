@@ -41,6 +41,15 @@ export default {
 </script>
 <style scoped>
 #manageStation{
-
+  width:100%;
+  background: url("../../../img/nav_bg.jpg") repeat-x center 159px;
 }
+#manageStation .container{
+  width:100%;
+  margin-top:0;
+  justify-content: left;
+}
+#manageStation aside{margin-right:20px;margin-left:3px;}
+#manageStation section{width:100%;}
+
 </style>

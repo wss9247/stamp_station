@@ -1,6 +1,7 @@
 <template>
 <!-- 主体区域 -->
 <div id="addstamp">
+  <div class="posi"> >>邮票管理 > 新增邮票</div>
   <table cellspacing=0 cellpadding=0>
     <tr><td>邮票名称：</td><td><input class="stitle" v-model="stitle" type="text"></td></tr>
     <tr><td>邮票编号：</td><td><input v-model="snum" type="text"><span>{{beizhu}}</span></td></tr>
@@ -213,7 +214,10 @@ export default {
 }
 </script>
 <style scoped>
-#addstamp{  
+#addstamp .posi{
+  height:40px;
+  line-height:40px;
+  margin-bottom:20px;
 }
 #addstamp table td{
   padding-bottom:10px;
