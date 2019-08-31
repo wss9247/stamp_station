@@ -1,10 +1,10 @@
 <template>
-  <div class="registropage">
-   <hd></hd>
-	<div class="position">&gt;&gt; 新用户注册</div>
-   <div>
-      <registro></registro>
-   </div>
+  <div id="registropage">
+    <hd></hd>
+    <div class="position">&gt;&gt; 新用户注册</div>
+    <div>
+        <registro></registro>
+    </div>
   </div>
 </template>
 <script>
@@ -17,3 +17,9 @@ export default {
    components:{hd,registro}
 }
 </script>
+<style scoped >
+#registropage .position{
+  width:1002px;
+  margin:0 auto;
+}
+</style>

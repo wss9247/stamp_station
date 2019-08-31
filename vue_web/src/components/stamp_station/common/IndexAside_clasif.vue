@@ -2,7 +2,7 @@
   <div id="IndexAside_clasif">
     <ul class="xs">
       <li class="xs_li" v-for="(item,i) of list" :key="i">
-        <img src="http://www.51gu.com/cn/images/01.gif">
+        <img src="../../../img/Star.png">
         <a href="#">{{item.stitle}}</a>
       </li>
     </ul>

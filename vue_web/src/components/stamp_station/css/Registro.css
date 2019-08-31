@@ -7,6 +7,7 @@
 /* 最外层的样式 */
 #registro{
   width:1003px;
+  margin:0 auto;
   /* border:1px solid #f00; */
 }
 #registro .reg_a{

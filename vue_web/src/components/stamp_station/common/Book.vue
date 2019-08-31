@@ -2,13 +2,14 @@
 <div id="books">
 	<!-- 顶部渐变色 -->
 	<h3 class="title4">
-		<img src="http://www.51gu.com/cn/images/title_h1.gif">电子目录
+		<!-- <img src="http://www.51gu.com/cn/images/title_h1.gif">  -->
+		电子目录
 	</h3>
 	<!-- 商品图片 循环 -->
 	<div class="bookbox">
 		<div class="book-item">
 			<a href="javascript:;">
-				<img src="http://www.51gu.com/UploadFiles/image/20171213021828944.jpg" border="0" width="106" height="150">
+				<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=468803764,4106077049&fm=26&gp=0.jpg" border="0" width="106" height="150">
 			</a>
 			<p class="cent"><a href="javascript:;">2017年第5期</a></p>
 		</div>

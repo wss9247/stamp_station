@@ -1,11 +1,13 @@
 <template>
 <div id="IndexAside">
   <!-- 联系方式 -->
+  <!--
   <div class="service box">
     <a>
       <img src="http://www.51gu.com/UploadFiles/image/20180615111003624.jpg">
     </a>
   </div>
+  -->
   <!-- 公告 -->
   <div class="notice box">
     <div class="t_1">
@@ -19,7 +21,7 @@
     </div>
     <div class="t_3">
       <!-- <ul>
-        <li><img src="http://www.51gu.com/cn/images/01.gif">
+        <li><img src="../../../img/Star.png">
           <a >克罗地亚科学艺术研究...</a>
         </li>
       </ul> -->
@@ -31,7 +33,7 @@
   <div class="saleBand box">
     <div class="tade_bg"> 
     <table>
-      <td id="t1"><img src="http://www.51gu.com/cn/images/date.jpg"></td>
+      <td id="t1"><img src="../../../img/Star.png"></td>
       <td id="t2">
           1900年8月10日戴维斯和沃德赢得第一个戴维斯奖杯
       </td>

@@ -17,6 +17,7 @@ Vue.use(Router)
 // 2.为组件执行访问路径 /Exam01 
 export default new Router({
   routes: [
+    {path:'',component:index}, // 首页
     {path:'/index',component:index}, // 首页
     {path:'/market',component:MarketPage}, //网上超市
     {path:'/info',component:StampinfoPage}, // 商品详情页

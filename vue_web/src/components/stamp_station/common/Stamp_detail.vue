@@ -61,7 +61,7 @@ export default {
 							this.$router.push("index")
 							// res.send("请登录")
 						})
-					alert("请登录")
+					// alert("请登录")
 					}else{
 						alert("添加成功");
 						this.$router.push("/ShoppingCar")

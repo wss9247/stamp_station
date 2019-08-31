@@ -24,7 +24,7 @@
   </div>
   <h3 class="title198">索取目录</h3>
   <div class="right2">
-    <img src="http://www.51gu.com/cn/images/s_img03.jpg">
+    <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg">
   </div>
   <div class="right3">
     <a >索取目录</a>
@@ -33,7 +33,7 @@
   <div class="right4">
     <ul>
       <li><a href="">
-        <img src="http://www.51gu.com/shop/asp/stpimg/9AA/9AACATA9013.jpg">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg">
       </a>
     </li>
     <li>
@@ -48,7 +48,7 @@
     </ul>
     <ul>
         <li><a href="">
-          <img src="http://www.51gu.com/shop/asp/stpimg/9AA/9AACANA8013.jpg">
+          <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg">
         </a>
       </li>
       <li>
@@ -64,7 +64,7 @@
       </ul>
       <ul>
         <li><a href="">
-          <img src="http://www.51gu.com/shop/asp/stpimg/9AA/9AACAT5013.jpg">
+          <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg">
         </a>
         </li>
         <li>
@@ -79,9 +79,11 @@
         </li>
       </ul>
   </div>
-  <div class="right5"><img src="http://www.51gu.com/cn/images/a_01.jpg"></div>
-  <div class="right5"><img src="http://www.51gu.com/cn/images/a_02.jpg"></div>
-  <div class="right5"><img src="http://www.51gu.com/cn/images/a_03.jpg"></div>
+  <!--
+  <div class="right5"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg"></div>
+  <div class="right5"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg"></div>
+  <div class="right5"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3029803031,3165780329&fm=26&gp=0.jpg"></div>
+  -->
   <select name="">
     <option value="">友情链接</option>
     <option value="">万网用户</option>
@@ -130,7 +132,7 @@ export default {
  }
 }
 </script>>
-<style>
+<style scoped>
 
 /* IndexRight 的宽度*/
 #IndexRight{width:198px;}
@@ -197,6 +199,9 @@ export default {
 #IndexRight1 img{
   margin:8px; 
 }
+#right1{
+  text-align: center;
+}
 /* right2 的样式 */
 .right2{
   width:194px;
@@ -207,6 +212,7 @@ export default {
 }
 /* right2 的样式 */
 .right2 img{
+  width:150px;height:150px;
   text-align: center;
  margin-top:20px;
 }
@@ -259,5 +265,10 @@ export default {
 select{
   width:194px;
   height:20px;
+}
+
+.right4 img,.right5 img{
+  
+  width:150px;height:150px;
 }
 </style>

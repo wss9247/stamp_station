@@ -5,7 +5,10 @@
         <img src="../../../img/header.jpg" >
         <div class="user">
           <!-- 未登录 -->
-          <span v-if="isLogin==0">请登录<a @click="ToRegist">注册</a></span>
+          <span v-if="isLogin==0">
+            <em @click="toIndex"> 请登录</em>
+            <a @click="ToRegist">注册</a>
+          </span>
           <!-- 普通用户登录 -->
           <span v-else-if="isLogin==1">
             用户名：{{user.uname}}
@@ -46,6 +49,9 @@ export default {
     ],
   }},
   methods:{
+    toIndex(){
+      this.$router.push("/index");
+    },
     select(e){
       this.current=e.target.dataset.id;
     },
@@ -118,6 +124,9 @@ export default {
 #header .user{
   position:absolute;
   right:0;top:5px;
+}
+#header em{
+  cursor:pointer;
 }
 #header .user a{margin-left:15px;}
 #header div>img{display:block;}

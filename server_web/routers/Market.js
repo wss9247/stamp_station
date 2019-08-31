@@ -4,7 +4,8 @@ var router=express.Router();
 
 // 网上超市
 router.get("/market",(req,res)=>{
-    var sql=`select sid,snum,nname,sdate,stitle,price,imgurl from stamp_details`;
+  	var px=req.query.px;        // 排序方式
+    var sql=`select sid,snum,nname,sdate,stitle,price,(select imgurl from imgs i where i.sid=s.sid) imgurl from stamp_details s order by ${px}`;
     pool.query(sql,function(err,result){
         // // if(err) throw err;
         // console.log(result)

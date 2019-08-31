@@ -5,7 +5,7 @@ var router = express.Router();
 // 新品推荐
 router.get("/newPro",(req,res)=>{
   // console.log(req.id);
-  var sql=`select sid,stitle,nname,snum,detials,imgurl from stamp_details order by sdate limit 0,7`;
+  var sql=`select sid,stitle,nname,snum,detials,(select imgurl from imgs i where i.sid=s.sid) imgurl from stamp_details s order by sdate limit 0,7`;
   pool.query(sql,function(err,result){
     if(result!=undefined){
       res.send({code:1,msg:"获取数据成功",data:result});

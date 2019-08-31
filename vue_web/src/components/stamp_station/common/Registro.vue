@@ -52,8 +52,10 @@
         <tr>
           <td></td>
           <td>
-            <img src="http://www.51gu.com/cn/images/but_tj.jpg" @click="btn1">
-            <img src="http://www.51gu.com/cn/images/but_res.jpg" @click="btn2">
+            <button  @click="btn1">提交</button>
+            <button  @click="btn2">登录</button>
+            <!-- <img src="http://www.51gu.com/cn/images/but_tj.jpg" @click="btn1">
+            <img src="http://www.51gu.com/cn/images/but_res.jpg" @click="btn2"> -->
           </td>
         </tr>
       </table>

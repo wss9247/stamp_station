@@ -1,7 +1,8 @@
 /* 整体框架 */
 #shoppingCar{
-    width:990px;height:862px;
+    width:1002px;height:862px;
     color:#000;
+    margin:0 auto;
 }
 /* 配送 */
 #shoppingCar .area{

@@ -38,5 +38,8 @@ export default {
  
 </script>
 <style scoped>
-
+#StampinfoPage .position{
+  width:1002px;
+  margin:0 auto;
+}
 </style>

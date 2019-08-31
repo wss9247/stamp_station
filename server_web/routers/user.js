@@ -122,7 +122,7 @@ router.get("/IndexAside_footer",(req,res)=>{
 	if(!p){p=1}//页数
 	if(!ps){ps=8}//每页显示的条数
 	var offset=(p-1)*ps;
-	var sql="select sid,stitle,price,nname,sdate,imgurl from stamp_details limit ?,?";
+	var sql="select sid,stitle,price,nname,sdate,(select imgurl from imgs i where i.sid=s.sid) imgurl from stamp_details s limit ?,?";
 	pool.query(sql,[offset,ps],(err,result)=>{
 		if(err) throw err;
 		// 获取数据库返回的结果
